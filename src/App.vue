@@ -1,29 +1,33 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div id="app" class="page grid-container">
+    <div class="main-container">
+      <router-view/>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-@import "src/assets/reset.css";
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
+import { API_URL } from '@/utils';
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+console.log(API_URL);
+export default {};
+</script>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="sass">
+@import 'main.sass'
+.page
+  background-color: #F9FCFB
+
+.grid-container
+  display: grid
+  grid-template-columns: .5fr 2.7fr .5fr
+  grid-template-rows: 1fr
+  gap: 0 0
+  grid-template-areas: '. main-container .'
+  background-color: $white
+
+.main-container
+  grid-area: main-container
+
 </style>
