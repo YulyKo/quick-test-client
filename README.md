@@ -1,5 +1,11 @@
 # quick-test-client
 
+Vue cli 4.5.6
+
+Node: 10.18.0
+
+npm: 6.13.4
+
 ## Project setup
 ```
 npm install
@@ -22,3 +28,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Additional packages:
+* normalize
+* reset.css
+* materialize
+* husky
+* eslint with babel
