@@ -8,9 +8,6 @@
 
 <script>
 
-import { API_URL } from '@/utils';
-
-console.log(API_URL);
 export default {};
 </script>
 
