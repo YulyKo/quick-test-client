@@ -8,7 +8,10 @@
 
 <script>
 
-export default {};
+export default {
+  methods: {},
+  created() {},
+};
 </script>
 
 <style lang="sass">

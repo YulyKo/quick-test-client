@@ -13,7 +13,7 @@
           </li>
           <li>
             <router-link tag="a"
-                         to="/register"
+                         to="/registration"
                          class="header__menu_link link text">
               Sign up</router-link>
           </li>
