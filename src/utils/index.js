@@ -1,5 +1,7 @@
-export const API_URL = 'https://quick-test-api.herokuapp.com';
+const validations = require('./validations');
+const constants = require('./constants');
 
-export default {
-  API_URL,
+module.exports = {
+  constants,
+  validations,
 };

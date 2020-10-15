@@ -8,8 +8,11 @@ Vue.use(axios);
 
 const state = {
   token: localStorage.getItem('token') || '',
-  teacher: {},
   status: '',
+  existEmail: {
+    status: '',
+    message: '',
+  },
 };
 
 export default {

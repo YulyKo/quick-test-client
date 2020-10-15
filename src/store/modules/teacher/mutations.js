@@ -16,9 +16,15 @@ const logout = (state) => {
   state.token = '';
 };
 
+const setExistEmail = (state, data) => {
+  state.existEmail.status = data.status;
+  state.existEmail.message = data.message;
+};
+
 export default {
   authError,
   authRequest,
   authSuccess,
   logout,
+  setExistEmail,
 };

@@ -49,10 +49,7 @@ const { isLoggedIn } = store.getters;
 if (isLoggedIn) {
   router.push('/home').then();
 } else if (isLoggedIn === false) {
-  console.log(isLoggedIn);
   router.push('/').then();
-} else {
-  console.log('hm..');
 }
 
 export default router;

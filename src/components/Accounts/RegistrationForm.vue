@@ -24,7 +24,8 @@
     <label for="email"
            class="text label">E-Mail Address</label>
     <div>
-      <input v-model="email"
+      <input v-model.lazy="email"
+             @focusout="checkEmail"
              type="text"
              id="email"
              class="text input"
@@ -50,16 +51,20 @@
              class="text input"
              required>
     </div>
-
+    <div v-if="isFree">
+      {{ getExistEmailMessage }}
+    </div>
     <div>
       <button type="submit"
-              class="text button--submit">Sign up</button>
+              :disabled="isFree"
+      >Sign up</button>
     </div>
   </form>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import { validEmail } from '@/utils/validations';
 
 export default {
   name: 'RegistrationForm',
@@ -70,11 +75,23 @@ export default {
       email: 'admin@admin.com',
       password: 'Adm1nadmin!',
       password_confirmation: 'Adm1nadmin!',
+      isExistEmailMessage: '',
+      isFree: false,
     };
+  },
+  computed: {
+    ...mapGetters(['getExistEmail']),
+    getExistEmailMessage() {
+      return this.getExistEmail.message;
+    },
+    getExistEmailStatus() {
+      return this.getExistEmail.status;
+    },
   },
   methods: {
     ...mapActions({
       registration: 'registration',
+      checkExistEmail: 'checkExistEmail',
     }),
     async register() {
       const data = {
@@ -94,10 +111,24 @@ export default {
         console.log(error);
       }
     },
+    checkEmail() {
+      const data = {
+        email: this.email,
+      };
+      if (validEmail(this.email)) {
+        this.checkExistEmail(data);
+      }
+      this.isExistEmailMessage = this.getExistEmailMessage;
+      this.isFree = this.getExistEmailStatus === 'free';
+    },
   },
 };
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+.button--submit
+  background: #2ce971
 
+.disabled
+  background-color: #ef5b5b
 </style>

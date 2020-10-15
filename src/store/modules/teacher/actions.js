@@ -1,10 +1,14 @@
 import axios from 'axios';
-import { API_URL } from '@/utils';
+import {
+  CHECK_EMAIL_URL,
+  LOGIN_URL,
+  REFRESH_TOKEN_URL,
+  REGISTRATION_URL,
+} from '@/utils/constants';
 
 const login = ({ commit }, loggedTeacher) => new Promise((resolve, reject) => {
-  const URL = `${API_URL}/api/v1/auth/login`;
   commit('authRequest');
-  axios.post(URL, loggedTeacher)
+  axios.post(LOGIN_URL, loggedTeacher)
     .then((resp) => {
       const { token } = resp.data;
       localStorage.setItem('token', token);
@@ -26,10 +30,8 @@ const logout = ({ commit }) => new Promise((resolve) => {
 });
 
 const registration = ({ commit }, registerTeacher) => new Promise((resolve, reject) => {
-  const URL = `${API_URL}/api/v1/auth/registration`;
   commit('authRequest');
-  axios.post(URL, registerTeacher).then((response) => {
-    console.log(response);
+  axios.post(REGISTRATION_URL, registerTeacher).then((response) => {
     const { token } = response.data;
     localStorage.setItem('token', token);
     commit('authSuccess', token);
@@ -45,7 +47,7 @@ const getNewToken = ({ commit }, oldToken, originalRequest) => new Promise(() =>
   const thisOriginalRequest = originalRequest;
   commit('authRequest');
   axios({
-    url: `${API_URL}/auth/refresh`,
+    url: REFRESH_TOKEN_URL,
     data: oldToken,
     method: 'POST',
   }).then((response) => {
@@ -70,9 +72,18 @@ const refreshToken = ({ commit }, token) => {
   });
 };
 
+const checkExistEmail = ({ commit }, email) => new Promise((resolve, reject) => {
+  axios.post(CHECK_EMAIL_URL, email)
+    .then((response) => {
+      commit('setExistEmail', response.data);
+      resolve(response);
+    }).catch((err) => reject(err));
+});
+
 export default {
   login,
   logout,
   registration,
   refreshToken,
+  checkExistEmail,
 };
