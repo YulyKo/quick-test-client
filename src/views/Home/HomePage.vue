@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <header class="header row">
       <div class="header__logo">
         <router-link class="header__logo_link" tag="a" to="/">
@@ -41,10 +41,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+$marginTop: 7vh
+.page
+  height: calc(100% - (2 * 7vh))
 
 .header
+  margin-top: $marginTop
   width: 100%
-  height: 7rem
+  height: auto
   display: flex
   justify-content: space-between
   align-items: center
@@ -57,16 +61,18 @@ export default {
     justify-content: space-between
     &_link
       display: block
-      margin-top: .5rem
+      margin-top: 2vh
 
 .link__logo-img
-  height: 3rem
+  height: 9vh
 
-.container__list
-  margin: 0 auto
-  width: 84%
-  list-style-type: decimal
-  &_item
-    margin-bottom: 2rem
-    padding-left: 1.6rem
+.container
+  margin-top: $marginTop
+  &__list
+    margin: 0 auto
+    width: 84%
+    list-style-type: decimal
+    &_item
+      margin-bottom: 2rem
+      padding-left: 1.6rem
 </style>

@@ -16,13 +16,16 @@ export default {
 
 <style lang="sass">
 @import 'main.sass'
+body
+  background-color: $blue
+
 .page
-  background-color: #F9FCFB
+  background-color: $white
 
 .grid-container
   display: grid
   grid-template-columns: .5fr 2.7fr .5fr
-  grid-template-rows: 1fr
+  grid-template-rows: 100vh
   gap: 0 0
   grid-template-areas: '. main-container .'
   background-color: $white
