@@ -1,5 +1,5 @@
 <template>
-  <main class="page">
+  <main class="">
     <img class="page__logo"
          src="@/assets/images/logo.png"
          alt="Quick Test logo">
@@ -26,14 +26,6 @@ export default {
 @import '../../main.sass'
 
 .page
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  &__logo
-    height: 15vh
-    margin-bottom: 4vh
-    margin-top: 8vh
   &__nav
     margin-bottom: 4vh
     width: 100%

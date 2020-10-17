@@ -1,16 +1,27 @@
 <template>
-  <form @submit.prevent="login" method="post">
-    <label for="email">Email</label>
-    <input v-model="email"
-           type="text"
-           id="email">
-    <label for="password">Password</label>
-    <input v-model="password"
-           type="password"
-           id="password">
+  <form @submit.prevent="login" method="post" class="form">
+    <div class="form__container">
+      <label for="email"
+             class="text form__container_label">Email</label>
+      <div class="input_wrapper">
+        <input v-model="email"
+               type="text"
+               id="email"
+               class="text form__container_input">
+      </div>
+    </div>
+    <div class="form__container">
+      <label for="password"
+             class="text form__container_label">Password</label>
+      <div class="input_wrapper">
+        <input v-model="password"
+               type="password"
+               id="password"
+               class="text form__container_input">
+      </div>
+    </div>
     <button type="submit"
-            class="text button--submit">Login</button>
-    <router-link tag="a" to="/registration">Sign up</router-link>
+            class="text form__button-submit">Login</button>
   </form>
 </template>
 

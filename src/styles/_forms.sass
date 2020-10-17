@@ -6,21 +6,19 @@ $button_height: 3rem
 
 .form
   width: 100%
+  margin: 0 auto
   &__container
-    //width: 100%
-    //display: flex
-    //align-items: baseline
-    //flex-wrap: wrap
-    //flex-direction: column
-    width: 52%
+    margin-top: 3em
+    margin-right: auto
+    margin-left: auto
+    width: 54%
     display: flex
-    margin: 0 auto
     align-items: baseline
     flex-wrap: wrap
     justify-content: space-between
     &_input
       height: 1.5rem
-      padding: .5em 1.5em
+      padding: 0.1em 1.2em
       width: calc(100% - 2 * 1em - 4px)
       border: 3px solid $blue
       border-radius: $common_border_radius
@@ -33,8 +31,8 @@ $button_height: 3rem
       margin-right: $common_margin
   &__button-submit
     margin: 4vh auto
+    padding: 1em 3.5em
     display: block
-    height: $button_height
     border-radius: $common_border_radius
     border: none
     background-color: $green
@@ -42,107 +40,96 @@ $button_height: 3rem
     &:hover
       background-color: $blue
 
-//.link_wrapper
-//  margin: 0 auto
 
 @media (min-width: 0px) and (max-width: 755px)
   .form
     width: 100%
-  .link_wrapper
+  .input_wrapper
     width: 100%
   .form__container
+    margin-top: 0
     width: 100%
   .form__container_input
     height: 1.5rem
-    padding: .5em 1em
-    width: calc(100% - 2 * 2vh - 4px)
+    //padding: .5em 1em
     border: 2px solid $blue
   .form__button-submit
-    padding: 1vh 5vh
+    padding: .7em 3.5em
 @media (min-width: 756px) and (max-width: 1007px)
   .form
     width: 90%
-  .link_wrapper
+  .input_wrapper
     width: 100%
   .form__container
+    margin-top: 0
     width: 100%
   .form__container_input
     height: 2rem
     border: 2px solid $blue
   .form__button-submit
-    padding: 1.5vh 5.5vh
+    padding: .8em 3.5em
 @media (min-width: 1008px) and (max-width: 1259px)
-  .form
-    width: 80%
-  .link_wrapper
+  .input_wrapper
     width: 100%
-  .form__container
-    width: 100%
+  .form__container_label
+    margin-top: 0
+    margin-bottom: 1vh
   .form__container_input
     height: 2.5rem
-    width: calc(100% - 2 * 2vh - 4px)
   .form__button-submit
-    padding: 2vh 6vh
+    margin-top: 3vh
+    margin-bottom: 2vh
+    padding: .9em 3.5em
 @media (min-width: 1260px) and (max-width: 1511px)
-  .form
-    width: 70%
-  .form__container
-    width: 100%
-  .link_wrapper
+  .input_wrapper
     width: 100%
   .form__container_input
     height: 3rem
-    width: calc(100% - 2 * 2vh - 4px)
-  .form__button-submit
-    padding: 3vh 6vh
-    height: calc(#{$button_height} + 2rem)
+  //.form__button-submit
+    //padding: 3vh 6vh
 @media (min-width: 1512px) and (max-width: 1763px)
-  .form
-    width: 60%
-  .link_wrapper
+  .input_wrapper
     width: 60%
   .form__container_input
     height: 3.5rem
-  .form__button-submit
-    padding: 3vh 7vh
-    height: calc(#{$button_height} + 2rem)
+  //.form__button-submit
+  //  padding: .5em 5em
 @media (min-width: 1764px) and (max-width: 2015px)
-  .form
-    width: 60%
-  .link_wrapper
+  .input_wrapper
     width: 60%
   .form__container_input
     height: 4rem
-  .form__button-submit
-    padding: 3vh 8vh
-    height: calc(#{$button_height} + 2.5rem)
+  //.form__button-submit
+  //  padding: .5em 5em
 @media (min-width: 2016px) and (max-width: 2267px)
   .form
-    width: 60%
-  .link_wrapper
+    width: 50rem
+  .input_wrapper
     width: 60%
   .form__container_input
     height: 4.5rem
-  .form__button-submit
-    padding: 3vh 8vh
-    height: calc(#{$button_height} + 3rem)
+  //.form__button-submit
+  //  padding: 3vh 8vh
 @media (min-width: 2268px) and (max-width: 5119px)
   .form
-    width: 100%
-  .link_wrapper
+    width: 50rem
+  .input_wrapper
     width: 60%
+  .form__container
+    width: 100%
   .form__container_input
     height: 5rem
-  .form__button-submit
-    padding: 3vh 8vh
-    height: auto
+  //.form__button-submit
+    //padding: 3vh 8vh
 @media (min-width: 5120px)
   .form
     width: 60%
-  .link_wrapper
-    width: 60%
+  .form__container
+    width: 50%
+  .input_wrapper
+    width: 70%
   .form__container_input
     height: 5rem
-  .form__button-submit
-    padding: 3vh 8vh
-    height: auto
+  //.form__button-submit
+  //  padding: 1vh 6vh
+  //  height: auto

@@ -3,7 +3,7 @@
     <div class="form__container">
       <label for="firstName"
              class="text form__container_label">First Name</label>
-      <div class="link_wrapper">
+      <div class="input_wrapper">
         <input id="firstName"
                type="text"
                v-model="firstName"
@@ -15,7 +15,7 @@
     <div class="form__container">
       <label for="lastName"
              class="text form__container_label">Last Name</label>
-      <div class="link_wrapper">
+      <div class="input_wrapper">
         <input id="lastName"
                type="text"
                v-model="lastName"
@@ -27,7 +27,7 @@
     <div class="form__container">
       <label for="email"
              class="text form__container_label">E-Mail Address</label>
-      <div class="link_wrapper">
+      <div class="input_wrapper">
         <input v-model.lazy="email"
                @focusout="checkEmail"
                type="text"
@@ -39,7 +39,7 @@
     <div class="form__container">
       <label for="password"
              class="text form__container_label">Password</label>
-      <div class="link_wrapper">
+      <div class="input_wrapper">
         <input v-model="password"
                type="password"
                id="password"
@@ -50,7 +50,7 @@
     <div class="form__container">
       <label for="password-confirm"
              class="text form__container_label">Confirm Password</label>
-      <div class="link_wrapper">
+      <div class="input_wrapper">
         <input id="password-confirm"
                type="password"
                v-model="password_confirmation"
