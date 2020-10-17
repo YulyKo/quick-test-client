@@ -1,0 +1,148 @@
+$common_margin: 2vh
+$pad_top_and_bottom: .5em
+$pad_right_and_left: 1em
+$common_border_radius: 100px
+$button_height: 3rem
+
+.form
+  width: 100%
+  &__container
+    //width: 100%
+    //display: flex
+    //align-items: baseline
+    //flex-wrap: wrap
+    //flex-direction: column
+    width: 52%
+    display: flex
+    margin: 0 auto
+    align-items: baseline
+    flex-wrap: wrap
+    justify-content: space-between
+    &_input
+      height: 1.5rem
+      padding: .5em 1.5em
+      width: calc(100% - 2 * 1em - 4px)
+      border: 3px solid $blue
+      border-radius: $common_border_radius
+      &:active, &:focus
+        border-color: $green
+    &_label
+      display: block
+      margin-top: calc(2 * #{$common_margin})
+      margin-bottom: $common_margin
+      margin-right: $common_margin
+  &__button-submit
+    margin: 4vh auto
+    display: block
+    height: $button_height
+    border-radius: $common_border_radius
+    border: none
+    background-color: $green
+    align-self: center
+    &:hover
+      background-color: $blue
+
+//.link_wrapper
+//  margin: 0 auto
+
+@media (min-width: 0px) and (max-width: 755px)
+  .form
+    width: 100%
+  .link_wrapper
+    width: 100%
+  .form__container
+    width: 100%
+  .form__container_input
+    height: 1.5rem
+    padding: .5em 1em
+    width: calc(100% - 2 * 2vh - 4px)
+    border: 2px solid $blue
+  .form__button-submit
+    padding: 1vh 5vh
+@media (min-width: 756px) and (max-width: 1007px)
+  .form
+    width: 90%
+  .link_wrapper
+    width: 100%
+  .form__container
+    width: 100%
+  .form__container_input
+    height: 2rem
+    border: 2px solid $blue
+  .form__button-submit
+    padding: 1.5vh 5.5vh
+@media (min-width: 1008px) and (max-width: 1259px)
+  .form
+    width: 80%
+  .link_wrapper
+    width: 100%
+  .form__container
+    width: 100%
+  .form__container_input
+    height: 2.5rem
+    width: calc(100% - 2 * 2vh - 4px)
+  .form__button-submit
+    padding: 2vh 6vh
+@media (min-width: 1260px) and (max-width: 1511px)
+  .form
+    width: 70%
+  .form__container
+    width: 100%
+  .link_wrapper
+    width: 100%
+  .form__container_input
+    height: 3rem
+    width: calc(100% - 2 * 2vh - 4px)
+  .form__button-submit
+    padding: 3vh 6vh
+    height: calc(#{$button_height} + 2rem)
+@media (min-width: 1512px) and (max-width: 1763px)
+  .form
+    width: 60%
+  .link_wrapper
+    width: 60%
+  .form__container_input
+    height: 3.5rem
+  .form__button-submit
+    padding: 3vh 7vh
+    height: calc(#{$button_height} + 2rem)
+@media (min-width: 1764px) and (max-width: 2015px)
+  .form
+    width: 60%
+  .link_wrapper
+    width: 60%
+  .form__container_input
+    height: 4rem
+  .form__button-submit
+    padding: 3vh 8vh
+    height: calc(#{$button_height} + 2.5rem)
+@media (min-width: 2016px) and (max-width: 2267px)
+  .form
+    width: 60%
+  .link_wrapper
+    width: 60%
+  .form__container_input
+    height: 4.5rem
+  .form__button-submit
+    padding: 3vh 8vh
+    height: calc(#{$button_height} + 3rem)
+@media (min-width: 2268px) and (max-width: 5119px)
+  .form
+    width: 100%
+  .link_wrapper
+    width: 60%
+  .form__container_input
+    height: 5rem
+  .form__button-submit
+    padding: 3vh 8vh
+    height: auto
+@media (min-width: 5120px)
+  .form
+    width: 60%
+  .link_wrapper
+    width: 60%
+  .form__container_input
+    height: 5rem
+  .form__button-submit
+    padding: 3vh 8vh
+    height: auto

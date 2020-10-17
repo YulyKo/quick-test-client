@@ -1,7 +1,13 @@
 <template>
-  <main>
+  <main class="page">
+    <img class="page__logo"
+         src="@/assets/images/logo.png"
+         alt="Quick Test logo">
     <registerForm></registerForm>
-    <router-link class="link text" tag="a" to="/login">Login</router-link>
+    <nav class="page__nav">
+      <router-link class="page__nav_link link text" tag="a" to="/login">Login</router-link>
+      <router-link class="page__nav_link link text" tag="a" to="/">Home</router-link>
+    </nav>
   </main>
 </template>
 
@@ -16,6 +22,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+@import '../../main.sass'
 
+.page
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  &__logo
+    height: 15vh
+    margin-bottom: 4vh
+    margin-top: 8vh
+  &__nav
+    margin-bottom: 4vh
+    width: 100%
+    display: flex
+    justify-content: space-around
+    &_link
+      padding: 2vh
 </style>

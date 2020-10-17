@@ -1,5 +1,6 @@
 <template>
-  <main>
+  <main class="page">
+    <img src="@/assets/images/logo.png" alt="Quick Test logo">
     <loginForm/>
   </main>
 </template>
@@ -15,6 +16,5 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
 </style>

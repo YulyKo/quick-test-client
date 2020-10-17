@@ -1,55 +1,62 @@
 <template>
-  <form @submit.prevent="register">
-    <label for="firstName"
-           class="text label">First Name</label>
-    <div>
-      <input id="firstName"
-             type="text"
-             v-model="firstName"
-             class="text input"
-             required
-             autofocus>
+  <form @submit.prevent="register" class="form">
+    <div class="form__container">
+      <label for="firstName"
+             class="text form__container_label">First Name</label>
+      <div class="link_wrapper">
+        <input id="firstName"
+               type="text"
+               v-model="firstName"
+               class="text form__container_input"
+               required
+               autofocus>
+      </div>
     </div>
-    <label for="lastName"
-           class="text label">Last Name</label>
-    <div>
-      <input id="lastName"
-             type="text"
-             v-model="lastName"
-             class="text input"
-             required
-             autofocus>
+    <div class="form__container">
+      <label for="lastName"
+             class="text form__container_label">Last Name</label>
+      <div class="link_wrapper">
+        <input id="lastName"
+               type="text"
+               v-model="lastName"
+               class="text form__container_input"
+               required
+               autofocus>
+      </div>
     </div>
-
-    <label for="email"
-           class="text label">E-Mail Address</label>
-    <div>
-      <input v-model.lazy="email"
-             @focusout="checkEmail"
-             type="text"
-             id="email"
-             class="text input"
-             required>
+    <div class="form__container">
+      <label for="email"
+             class="text form__container_label">E-Mail Address</label>
+      <div class="link_wrapper">
+        <input v-model.lazy="email"
+               @focusout="checkEmail"
+               type="text"
+               id="email"
+               class="text form__container_input"
+               required>
+      </div>
     </div>
-
-    <label for="password"
-           class="text label">Password</label>
-    <div>
-      <input v-model="password"
-             type="password"
-             id="password"
-             class="text input"
-             required>
+    <div class="form__container">
+      <label for="password"
+             class="text form__container_label">Password</label>
+      <div class="link_wrapper">
+        <input v-model="password"
+               type="password"
+               id="password"
+               class="text form__container_input"
+               required>
+      </div>
     </div>
-
-    <label for="password-confirm"
-           class="text label">Confirm Password</label>
-    <div>
-      <input id="password-confirm"
-             type="password"
-             v-model="password_confirmation"
-             class="text input"
-             required>
+    <div class="form__container">
+      <label for="password-confirm"
+             class="text form__container_label">Confirm Password</label>
+      <div class="link_wrapper">
+        <input id="password-confirm"
+               type="password"
+               v-model="password_confirmation"
+               class="text form__container_input"
+               required>
+      </div>
     </div>
     <div v-if="isFree">
       {{ getExistEmailMessage }}
@@ -57,6 +64,7 @@
     <div>
       <button type="submit"
               :disabled="isFree"
+              class="text form__button-submit"
       >Sign up</button>
     </div>
   </form>
@@ -126,6 +134,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import '../../main.sass'
+
 .button--submit
   background: #2ce971
 
