@@ -24,3 +24,7 @@ pnpm-debug.log*
 
 # .json
 package-lock.json
+
+#debug
+vue.config.js
+debug.log
