@@ -43,7 +43,7 @@
                required>
       </div>
       <ul v-if="errors">
-        <li v-for="(error, id) in errors.email" :key="id">{{ error }}</li>
+        <li>{{ errors.email }}</li>
       </ul>
     </div>
     <div class="form__container">
@@ -93,11 +93,11 @@ import {
   validName,
   validPassword,
 } from '@/utils/validations';
+//  ERROR_MESSAGE_FOR_EXISTED_EMAIL,
 
 import {
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
-  ERROR_MESSAGE_FOR_EXISTED_EMAIL,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_INVALID_NAME,
 } from '@/utils/constants';
@@ -114,7 +114,7 @@ export default {
       errors: {
         firstName: [],
         lastName: [],
-        email: [],
+        email: null,
         password: [],
         passwordConfirmation: [],
       },
@@ -143,20 +143,47 @@ export default {
         && lengthIfLastNAmeErrors === 0
         && lengthOfFirstNameErrors === 0));
     },
-
   },
   methods: {
     ...mapActions({
       registration: 'registration',
       checkExistEmail: 'checkExistEmail',
     }),
-    async register() {
+
+    register() {
+      this.localCheckExistEmail();
+      this.checkFormBeforeSendingNewTeacherToAPI();
+      this.count += 1;
+    },
+
+    async localCheckExistEmail() {
+      if (validEmail(this.email)) {
+        const thisEmail = this.email;
+        await this.checkExistEmail(thisEmail);
+        this.errors.email = this.getExistEmailMessage;
+      }
+    },
+
+    // localCheckExistEmail() {
+    //   const errorsArray = this.errors.email;
+    //   this.checkExistEmail(this.email);
+    //   const status = this.getExistEmail;
+    //   const isFree = status.status === 'free';
+    //   setMessage(errorsArray, ERROR_MESSAGE_FOR_EXISTED_EMAIL, isFree);
+    // },
+
+    checkFormBeforeSendingNewTeacherToAPI() {
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         password: this.password,
       };
+      if (this.checkErrors) console.log(`Send data to API ${data}`);
+      // this.sendNewTeacherToAPI(data);
+    },
+
+    async sendNewTeacherToAPI(data) {
       try {
         await this.registration(data).then(() => {
           this.$router.push('/home').then();
@@ -182,8 +209,7 @@ export default {
 
     checkEmail() {
       const validate = validEmail(this.email);
-      const errorsArray = this.errors.email;
-      setMessage(errorsArray, ERROR_MESSAGE_FOR_INVALID_EMAIL, validate);
+      if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
     },
 
     checkPassword() {
@@ -198,6 +224,7 @@ export default {
       const errorMessage = ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS;
       this.errors.passwordConfirmation = setMessage(errorsArray, errorMessage, isValid);
     },
+
     cleanErrorArray(errors, message) {
       const index = errors.indexOf(message);
       errors.splice(index, 1);
