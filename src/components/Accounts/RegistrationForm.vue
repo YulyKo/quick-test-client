@@ -11,7 +11,7 @@
                class="text form__container_input"
                required>
       </div>
-      <ul v-if="errors">
+      <ul v-if="errors.firstName">
         <li v-for="(error, id) in errors.firstName" :key="id">{{ error }}</li>
       </ul>
     </div>
@@ -26,7 +26,7 @@
                class="text form__container_input"
                required>
       </div>
-      <ul v-if="errors">
+      <ul v-if="errors.lastName">
         <li v-for="(error, id) in errors.lastName" :key="id">{{ error }}</li>
       </ul>
     </div>
@@ -42,7 +42,7 @@
                autocomplete="on"
                required>
       </div>
-      <ul v-if="errors">
+      <ul v-if="errors.email">
         <li>{{ errors.email }}</li>
       </ul>
     </div>
@@ -57,7 +57,7 @@
                @focusout="checkPassword"
                required>
       </div>
-      <ul v-if="errors">
+      <ul v-if="errors.password">
         <li v-for="(error, id) in errors.password" :key="id">{{ error }}</li>
       </ul>
     </div>
@@ -72,7 +72,7 @@
                class="text form__container_input"
                required>
       </div>
-      <ul v-if="errors">
+      <ul v-if="errors.passwordConfirmation">
         <li v-for="(error, id) in errors.passwordConfirmation" :key="id">{{ error }}</li>
       </ul>
     </div>
@@ -93,28 +93,28 @@ import {
   validName,
   validPassword,
 } from '@/utils/validations';
-//  ERROR_MESSAGE_FOR_EXISTED_EMAIL,
 
 import {
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_INVALID_NAME,
+  ERROR_MESSAGE_FOR_EXISTED_EMAIL,
 } from '@/utils/constants';
 
 export default {
   name: 'RegistrationForm',
   data() {
     return {
-      firstName: 'Addel',
-      lastName: 'Polxvgh',
+      firstName: '',
+      lastName: '',
       email: '',
-      password: '1qASDFGHJKL',
-      passwordConfirmation: '1qASDFGHJKL',
+      password: '',
+      passwordConfirmation: '',
       errors: {
         firstName: [],
         lastName: [],
-        email: null,
+        email: '',
         password: [],
         passwordConfirmation: [],
       },
@@ -125,22 +125,18 @@ export default {
     ...mapGetters({
       getExistEmail: 'getExistEmail',
     }),
-    getExistEmailMessage() {
-      return this.getExistEmail.message;
-    },
     getExistEmailStatus() {
       return this.getExistEmail.status;
     },
     checkErrors() {
       const lengthOfFirstNameErrors = this.errors.firstName.length;
-      const lengthIfLastNAmeErrors = this.errors.lastName.length;
-      const lengthOfEmailErrors = this.errors.email.length;
+      const lengthIfLastNameErrors = this.errors.lastName.length;
       const lengthOfPasswordErrors = this.errors.password.length;
       const lengthOfConfirmPasswordErrors = this.errors.passwordConfirmation.length;
       return ((lengthOfConfirmPasswordErrors === 0
         && lengthOfPasswordErrors === 0
-        && lengthOfEmailErrors === 0
-        && lengthIfLastNAmeErrors === 0
+        && this.errors.email
+        && lengthIfLastNameErrors === 0
         && lengthOfFirstNameErrors === 0));
     },
   },
@@ -157,20 +153,14 @@ export default {
     },
 
     async localCheckExistEmail() {
-      if (validEmail(this.email)) {
+      if (this.checkEmail()) {
         const thisEmail = this.email;
         await this.checkExistEmail(thisEmail);
-        this.errors.email = this.getExistEmailMessage;
+        const status = this.getExistEmailStatus;
+        if (status === 'exist') this.errors.email = ERROR_MESSAGE_FOR_EXISTED_EMAIL;
+        else this.errors.email = '';
       }
     },
-
-    // localCheckExistEmail() {
-    //   const errorsArray = this.errors.email;
-    //   this.checkExistEmail(this.email);
-    //   const status = this.getExistEmail;
-    //   const isFree = status.status === 'free';
-    //   setMessage(errorsArray, ERROR_MESSAGE_FOR_EXISTED_EMAIL, isFree);
-    // },
 
     checkFormBeforeSendingNewTeacherToAPI() {
       const data = {
@@ -179,8 +169,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      if (this.checkErrors) console.log(`Send data to API ${data}`);
-      // this.sendNewTeacherToAPI(data);
+      if (this.checkErrors) this.sendNewTeacherToAPI(data);
     },
 
     async sendNewTeacherToAPI(data) {
@@ -210,6 +199,7 @@ export default {
     checkEmail() {
       const validate = validEmail(this.email);
       if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
+      return validate;
     },
 
     checkPassword() {
@@ -223,11 +213,6 @@ export default {
       const isValid = this.password === this.passwordConfirmation;
       const errorMessage = ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS;
       this.errors.passwordConfirmation = setMessage(errorsArray, errorMessage, isValid);
-    },
-
-    cleanErrorArray(errors, message) {
-      const index = errors.indexOf(message);
-      errors.splice(index, 1);
     },
   },
 };
