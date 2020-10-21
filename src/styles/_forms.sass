@@ -39,7 +39,10 @@ $button_height: 3rem
     align-self: center
     &:hover
       background-color: $blue
-
+    &:disabled
+      background-color: #999999
+    &:focus
+      border: 2px solid #222
 
 @media (min-width: 0px) and (max-width: 755px)
   .form

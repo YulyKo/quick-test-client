@@ -72,9 +72,13 @@ const refreshToken = ({ commit }, token) => {
   });
 };
 
-const checkExistEmail = ({ commit }, email) => new Promise((resolve, reject) => {
-  axios.post(CHECK_EMAIL_URL, email)
+const checkExistEmail = ({ commit }, userEmail) => new Promise((resolve, reject) => {
+  const data = {
+    email: userEmail,
+  };
+  axios.post(CHECK_EMAIL_URL, data)
     .then((response) => {
+      console.log(response.data);
       commit('setExistEmail', response.data);
       resolve(response);
     }).catch((err) => reject(err));

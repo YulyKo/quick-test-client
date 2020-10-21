@@ -6,11 +6,14 @@
       <div class="input_wrapper">
         <input id="firstName"
                type="text"
-               v-model="firstName"
+               v-model.trim="firstName"
+               @focusout="checkFirstName"
                class="text form__container_input"
-               required
-               autofocus>
+               required>
       </div>
+      <ul v-if="errors.firstName">
+        <li v-for="(error, id) in errors.firstName" :key="id">{{ error }}</li>
+      </ul>
     </div>
     <div class="form__container">
       <label for="lastName"
@@ -18,34 +21,45 @@
       <div class="input_wrapper">
         <input id="lastName"
                type="text"
-               v-model="lastName"
+               v-model.trim="lastName"
+               @focusout="checkLastName"
                class="text form__container_input"
-               required
-               autofocus>
+               required>
       </div>
+      <ul v-if="errors.lastName">
+        <li v-for="(error, id) in errors.lastName" :key="id">{{ error }}</li>
+      </ul>
     </div>
     <div class="form__container">
       <label for="email"
              class="text form__container_label">E-Mail Address</label>
       <div class="input_wrapper">
-        <input v-model.lazy="email"
-               @focusout="checkEmail"
-               type="text"
+        <input v-model.trim="email"
+               type="email"
                id="email"
+               @focusout="checkEmail"
                class="text form__container_input"
+               autocomplete="on"
                required>
       </div>
+      <ul v-if="errors.email">
+        <li>{{ errors.email }}</li>
+      </ul>
     </div>
     <div class="form__container">
       <label for="password"
              class="text form__container_label">Password</label>
       <div class="input_wrapper">
-        <input v-model="password"
+        <input v-model.trim="password"
                type="password"
                id="password"
                class="text form__container_input"
+               @focusout="checkPassword"
                required>
       </div>
+      <ul v-if="errors.password">
+        <li v-for="(error, id) in errors.password" :key="id">{{ error }}</li>
+      </ul>
     </div>
     <div class="form__container">
       <label for="password-confirm"
@@ -53,17 +67,17 @@
       <div class="input_wrapper">
         <input id="password-confirm"
                type="password"
-               v-model="password_confirmation"
+               v-model.trim="passwordConfirmation"
+               @focusout="checkPasswordEquals"
                class="text form__container_input"
                required>
       </div>
-    </div>
-    <div v-if="isFree">
-      {{ getExistEmailMessage }}
+      <ul v-if="errors.passwordConfirmation">
+        <li v-for="(error, id) in errors.passwordConfirmation" :key="id">{{ error }}</li>
+      </ul>
     </div>
     <div>
       <button type="submit"
-              :disabled="isFree"
               class="text form__button-submit"
       >Sign up</button>
     </div>
@@ -72,28 +86,58 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import { validEmail } from '@/utils/validations';
+
+import {
+  setMessage,
+  validEmail,
+  validName,
+  validPassword,
+} from '@/utils/validations';
+
+import {
+  ERROR_MASSAGE_FOR_INVALID_PASSWORD,
+  ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
+  ERROR_MESSAGE_FOR_INVALID_EMAIL,
+  ERROR_MESSAGE_FOR_INVALID_NAME,
+  ERROR_MESSAGE_FOR_EXISTED_EMAIL,
+} from '@/utils/constants';
 
 export default {
   name: 'RegistrationForm',
   data() {
     return {
-      firstName: 'admin',
-      lastName: 'admin',
-      email: 'admin@admin.com',
-      password: 'Adm1nadmin!',
-      password_confirmation: 'Adm1nadmin!',
-      isExistEmailMessage: '',
-      isFree: false,
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
+      errors: {
+        firstName: [],
+        lastName: [],
+        email: '',
+        password: [],
+        passwordConfirmation: [],
+      },
+      count: 0,
     };
   },
   computed: {
-    ...mapGetters(['getExistEmail']),
-    getExistEmailMessage() {
-      return this.getExistEmail.message;
-    },
+    ...mapGetters({
+      getExistEmail: 'getExistEmail',
+    }),
     getExistEmailStatus() {
       return this.getExistEmail.status;
+    },
+    checkErrors() {
+      const lengthOfFirstNameErrors = this.errors.firstName.length;
+      const lengthIfLastNameErrors = this.errors.lastName.length;
+      const lengthOfPasswordErrors = this.errors.password.length;
+      const lengthOfConfirmPasswordErrors = this.errors.passwordConfirmation.length;
+      return ((lengthOfConfirmPasswordErrors === 0
+        && lengthOfPasswordErrors === 0
+        && this.errors.email
+        && lengthIfLastNameErrors === 0
+        && lengthOfFirstNameErrors === 0));
     },
   },
   methods: {
@@ -101,13 +145,34 @@ export default {
       registration: 'registration',
       checkExistEmail: 'checkExistEmail',
     }),
-    async register() {
+
+    register() {
+      this.localCheckExistEmail();
+      this.checkFormBeforeSendingNewTeacherToAPI();
+      this.count += 1;
+    },
+
+    async localCheckExistEmail() {
+      if (this.checkEmail()) {
+        const thisEmail = this.email;
+        await this.checkExistEmail(thisEmail);
+        const status = this.getExistEmailStatus;
+        if (status === 'exist') this.errors.email = ERROR_MESSAGE_FOR_EXISTED_EMAIL;
+        else this.errors.email = '';
+      }
+    },
+
+    checkFormBeforeSendingNewTeacherToAPI() {
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         password: this.password,
       };
+      if (this.checkErrors) this.sendNewTeacherToAPI(data);
+    },
+
+    async sendNewTeacherToAPI(data) {
       try {
         await this.registration(data).then(() => {
           this.$router.push('/home').then();
@@ -116,18 +181,38 @@ export default {
         if (error) {
           await this.$router.push('/').then();
         }
-        console.log(error);
       }
     },
+
+    checkFirstName() {
+      const errorsArrayFirstName = this.errors.firstName;
+      const validate = validName(this.firstName);
+      setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+    },
+
+    checkLastName() {
+      const errorsArraySecondName = this.errors.lastName;
+      const validate = validName(this.lastName);
+      setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+    },
+
     checkEmail() {
-      const data = {
-        email: this.email,
-      };
-      if (validEmail(this.email)) {
-        this.checkExistEmail(data);
-      }
-      this.isExistEmailMessage = this.getExistEmailMessage;
-      this.isFree = this.getExistEmailStatus === 'free';
+      const validate = validEmail(this.email);
+      if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
+      return validate;
+    },
+
+    checkPassword() {
+      const errorsArray = this.errors.password;
+      const validate = validPassword(this.password);
+      this.errors.password = setMessage(errorsArray, ERROR_MASSAGE_FOR_INVALID_PASSWORD, validate);
+    },
+
+    checkPasswordEquals() {
+      const errorsArray = this.errors.passwordConfirmation;
+      const isValid = this.password === this.passwordConfirmation;
+      const errorMessage = ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS;
+      this.errors.passwordConfirmation = setMessage(errorsArray, errorMessage, isValid);
     },
   },
 };
