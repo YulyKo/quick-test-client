@@ -9,10 +9,10 @@
                v-model.trim="firstName"
                @focusout="checkFirstName"
                class="text form__container_input"
-               :class="{error: !this.getLengthOfFirstNameErrors}"
+               :class="{'form__container_input--error': !this.getLengthOfFirstNameErrors}"
                required>
       </div>
-      <ul v-if="errors.firstName" class="error-list">
+      <ul v-if="errors.firstName" class="error-container">
         <li v-for="(error, id) in errors.firstName"
             :key="id"
             class="text text--error">{{ error }}</li>
@@ -27,10 +27,10 @@
                v-model.trim="lastName"
                @focusout="checkLastName"
                class="text form__container_input"
-               :class="{error: !this.getLengthOfLastNameErrors}"
+               :class="{'form__container_input--error': !this.getLengthOfLastNameErrors}"
                required>
       </div>
-      <ul v-if="errors.lastName" class="error-list">
+      <ul v-if="errors.lastName" class="error-container">
         <li v-for="(error, id) in errors.lastName"
             :key="id"
             class="text text--error">{{ error }}</li>
@@ -46,10 +46,10 @@
                @focusout="checkEmail"
                class="text form__container_input"
                autocomplete="on"
-               :class="{error: !this.getErrorMessageForEmail}"
+               :class="{'form__container_input--error': !this.getErrorMessageForEmail}"
                required>
       </div>
-      <ul v-if="errors.email" class="error-list">
+      <ul v-if="errors.email" class="error-container">
         <li class="text text--error">{{ errors.email }}</li>
       </ul>
     </div>
@@ -62,10 +62,10 @@
                id="password"
                class="text form__container_input"
                @focusout="checkPassword"
-               :class="{error: !this.getLengthOfPasswordErrors}"
+               :class="{'form__container_input--error': !this.getLengthOfPasswordErrors}"
                required>
       </div>
-      <ul v-if="errors.password" class="error-list">
+      <ul v-if="errors.password" class="error-container">
         <li v-for="(error, id) in errors.password"
             :key="id"
             class="text text--error">{{ error }}</li>
@@ -80,10 +80,10 @@
                v-model.trim="passwordConfirmation"
                @focusout="checkPasswordEquals"
                class="text form__container_input"
-               :class="{error: !this.getLengthOfConfirmPasswordErrors}"
+               :class="{'form__container_input--error': !this.getLengthOfConfirmPasswordErrors}"
                required>
       </div>
-      <ul v-if="errors.passwordConfirmation" class="error-list">
+      <ul v-if="errors.passwordConfirmation" class="error-container">
         <li v-for="(error, id) in errors.passwordConfirmation"
             :key="id"
             class="text text--error">{{ error }}</li>
@@ -120,11 +120,11 @@ export default {
   name: 'RegistrationForm',
   data() {
     return {
-      firstName: 'Ass',
-      lastName: 'Ass',
-      email: 'juliakotenko.forstudy@gmail.com',
-      password: '1qASDFGHJKL',
-      passwordConfirmation: '1qASDFGHJKL',
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      passwordConfirmation: '',
       errors: {
         firstName: [],
         lastName: [],
@@ -245,20 +245,4 @@ export default {
 <style lang="sass" scoped>
 @import '../../main.sass'
 
-.button--submit
-  background: #2ce971
-
-.disabled
-  background-color: #ef5b5b
-
-.error-list
-  flex-basis: 100%
-
-.text--error
-  margin-top: 1em
-  text-align: center
-  color: $red
-
-.error
-  border: 3px solid $red
 </style>

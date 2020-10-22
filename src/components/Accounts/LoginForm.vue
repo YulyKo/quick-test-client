@@ -9,9 +9,10 @@
                id="email"
                class="text form__container_input"
                @focusout="checkEmail"
-               autocomplete="on">
+               autocomplete="on"
+               :class="{'form__container_input--error': !this.checkErrorsOfEmail}">
       </div>
-      <span v-if="errors.email">{{ errors.email }}</span>
+      <span v-if="errors.email" class="error-container text text--error">{{ errors.email }}</span>
     </div>
     <div class="form__container">
       <label for="password"
@@ -20,9 +21,10 @@
         <input v-model="password"
                type="password"
                id="password"
-               class="text form__container_input">
+               class="text form__container_input"
+               :class="{'form__container_input--error': !this.checkErrorsOfForm}">
       </div>
-      <span v-if="errors.form">{{ errors.form }}</span>
+      <span v-if="errors.form" class="error-container text text--error">{{ errors.form }}</span>
     </div>
     <button type="submit"
             class="text form__button-submit"
@@ -81,13 +83,10 @@ export default {
     checkErrorsOfForm() {
       return this.errors.form.length === 0;
     },
-    checkValidForm() {
-      return !(this.checkErrorsOfEmail && this.checkErrorsOfForm);
-    },
   },
 };
 </script>
 
-<style>
-
+<style lang="sass" scoped>
+  @import '../../main.sass'
 </style>
