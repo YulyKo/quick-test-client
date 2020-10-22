@@ -91,7 +91,8 @@
     </div>
     <div>
       <button type="submit"
-              class="text form__button-submit" :disabled="checkErrors"
+              class="text form__button-submit"
+              :disabled="checkErrors"
       >Sign up</button>
     </div>
   </form>

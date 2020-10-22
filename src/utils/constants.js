@@ -9,6 +9,7 @@ const ERROR_MESSAGE_FOR_INVALID_EMAIL = 'Пошта введена не коре
 const ERROR_MESSAGE_FOR_EXISTED_EMAIL = 'Аккаунт із такою поштою існує';
 const ERROR_MASSAGE_FOR_INVALID_PASSWORD = 'Пароль має містити дещо більше';
 const ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS = 'Паролі не однакові';
+const ERROR_MESSAGE_FOR_LOGIN_FORM = 'Невірні дані';
 
 module.exports = {
   REGISTRATION_URL,
@@ -20,4 +21,5 @@ module.exports = {
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
+  ERROR_MESSAGE_FOR_LOGIN_FORM,
 };

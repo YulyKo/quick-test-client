@@ -7,8 +7,11 @@
         <input v-model="email"
                type="text"
                id="email"
-               class="text form__container_input">
+               class="text form__container_input"
+               @focusout="checkEmail"
+               autocomplete="on">
       </div>
+      <span v-if="errors.email">{{ errors.email }}</span>
     </div>
     <div class="form__container">
       <label for="password"
@@ -19,20 +22,31 @@
                id="password"
                class="text form__container_input">
       </div>
+      <span v-if="errors.form">{{ errors.form }}</span>
     </div>
     <button type="submit"
-            class="text form__button-submit">Login</button>
+            class="text form__button-submit"
+            :disabled="!checkErrorsOfEmail">Login</button>
   </form>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import {
+  ERROR_MESSAGE_FOR_LOGIN_FORM,
+  ERROR_MESSAGE_FOR_INVALID_EMAIL,
+} from '@/utils/constants';
+import { validEmail } from '@/utils/validations';
 
 export default {
   data() {
     return {
       email: '',
       password: '',
+      errors: {
+        email: '',
+        form: '',
+      },
     };
   },
   methods: {
@@ -47,13 +61,28 @@ export default {
       try {
         await this.loginAction(data).then(() => {
           this.$router.push('/home');
-        }).catch((error) => { console.log(error); });
-      } catch (error) {
-        if (error) {
-          await this.$router.push('/');
-        }
-        console.log(error);
-      }
+        }).catch((error) => { this.setError(error); });
+      } catch (error) { console.error(error); }
+    },
+    setError(error) {
+      if (error) this.errors.form = ERROR_MESSAGE_FOR_LOGIN_FORM;
+      else this.errors.form = '';
+    },
+    checkEmail() {
+      const validate = validEmail(this.email);
+      if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
+      else this.errors.email = '';
+    },
+  },
+  computed: {
+    checkErrorsOfEmail() {
+      return this.errors.email.length === 0;
+    },
+    checkErrorsOfForm() {
+      return this.errors.form.length === 0;
+    },
+    checkValidForm() {
+      return !(this.checkErrorsOfEmail && this.checkErrorsOfForm);
     },
   },
 };
