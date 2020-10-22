@@ -2,7 +2,7 @@
   <form @submit.prevent="login" method="post" class="form">
     <div class="form__container">
       <label for="email"
-             class="text form__container_label">Email</label>
+             class="text form__container_label">Пошта</label>
       <div class="input_wrapper">
         <input v-model="email"
                type="text"
@@ -10,25 +10,29 @@
                class="text form__container_input"
                @focusout="checkEmail"
                autocomplete="on"
-               :class="{'form__container_input--error': !this.checkErrorsOfEmail}">
+               :class="{'form__container_input--error': !this.checkErrorsOfEmail}"
+               autofocus>
       </div>
       <span v-if="errors.email" class="error-container text text--error">{{ errors.email }}</span>
     </div>
     <div class="form__container">
       <label for="password"
-             class="text form__container_label">Password</label>
+             class="text form__container_label">Пароль</label>
       <div class="input_wrapper">
         <input v-model="password"
-               type="password"
+               :type="passwordFieldType"
                id="password"
                class="text form__container_input"
                :class="{'form__container_input--error': !this.checkErrorsOfForm}">
+        <button
+          class="text input_wrapper__visibility"
+          @click="switchVisibility">Показати/Сховати</button>
       </div>
       <span v-if="errors.form" class="error-container text text--error">{{ errors.form }}</span>
     </div>
     <button type="submit"
             class="text form__button-submit"
-            :disabled="!checkErrorsOfEmail">Login</button>
+            :disabled="!checkErrorsOfEmail">Увійти</button>
   </form>
 </template>
 
@@ -49,6 +53,7 @@ export default {
         email: '',
         form: '',
       },
+      passwordFieldType: 'password',
     };
   },
   methods: {
@@ -74,6 +79,9 @@ export default {
       const validate = validEmail(this.email);
       if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
       else this.errors.email = '';
+    },
+    switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
     },
   },
   computed: {

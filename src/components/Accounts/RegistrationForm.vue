@@ -2,7 +2,7 @@
   <form @submit.prevent="register" class="form">
     <div class="form__container">
       <label for="firstName"
-             class="text form__container_label">First Name</label>
+             class="text form__container_label">Ім'я *</label>
       <div class="input_wrapper">
         <input id="firstName"
                type="text"
@@ -10,7 +10,8 @@
                @focusout="checkFirstName"
                class="text form__container_input"
                :class="{'form__container_input--error': !this.getLengthOfFirstNameErrors}"
-               required>
+               required
+               autofocus>
       </div>
       <ul v-if="errors.firstName" class="error-container">
         <li v-for="(error, id) in errors.firstName"
@@ -20,7 +21,7 @@
     </div>
     <div class="form__container">
       <label for="lastName"
-             class="text form__container_label">Last Name</label>
+             class="text form__container_label">Прізвище *</label>
       <div class="input_wrapper">
         <input id="lastName"
                type="text"
@@ -38,7 +39,7 @@
     </div>
     <div class="form__container">
       <label for="email"
-             class="text form__container_label">E-Mail Address</label>
+             class="text form__container_label">Пошта *</label>
       <div class="input_wrapper">
         <input v-model.trim="email"
                type="email"
@@ -55,15 +56,18 @@
     </div>
     <div class="form__container">
       <label for="password"
-             class="text form__container_label">Password</label>
+             class="text form__container_label">Пароль *</label>
       <div class="input_wrapper">
         <input v-model.trim="password"
-               type="password"
+               :type="this.passwordFieldType"
                id="password"
                class="text form__container_input"
                @focusout="checkPassword"
                :class="{'form__container_input--error': !this.getLengthOfPasswordErrors}"
                required>
+        <button
+          class="text input_wrapper__visibility"
+          @click="switchVisibility">Показати/Сховати</button>
       </div>
       <ul v-if="errors.password" class="error-container">
         <li v-for="(error, id) in errors.password"
@@ -73,15 +77,18 @@
     </div>
     <div class="form__container">
       <label for="password-confirm"
-             class="text form__container_label">Confirm Password</label>
+             class="text form__container_label">Підтвердження пароля *</label>
       <div class="input_wrapper">
         <input id="password-confirm"
-               type="password"
+               :type="this.passwordConfirmationFieldType"
                v-model.trim="passwordConfirmation"
                @focusout="checkPasswordEquals"
                class="text form__container_input"
                :class="{'form__container_input--error': !this.getLengthOfConfirmPasswordErrors}"
                required>
+        <button
+          class="text input_wrapper__visibility"
+          @click="switchVisibilityForConfirmation">Показати/Сховати</button>
       </div>
       <ul v-if="errors.passwordConfirmation" class="error-container">
         <li v-for="(error, id) in errors.passwordConfirmation"
@@ -93,7 +100,7 @@
       <button type="submit"
               class="text form__button-submit"
               :disabled="checkErrors"
-      >Sign up</button>
+      >Зареєструватися</button>
     </div>
   </form>
 </template>
@@ -132,6 +139,8 @@ export default {
         password: [],
         passwordConfirmation: [],
       },
+      passwordFieldType: 'password',
+      passwordConfirmationFieldType: 'password',
     };
   },
   computed: {
@@ -237,6 +246,14 @@ export default {
       const isValid = this.password === this.passwordConfirmation;
       const errorMessage = ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS;
       this.errors.passwordConfirmation = setMessage(errorsArray, errorMessage, isValid);
+    },
+
+    switchVisibility() {
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+    },
+
+    switchVisibilityForConfirmation() {
+      this.passwordConfirmationFieldType = this.passwordConfirmationFieldType === 'password' ? 'text' : 'password';
     },
   },
 };

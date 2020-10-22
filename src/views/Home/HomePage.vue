@@ -9,13 +9,13 @@
       <nav>
         <ul class="header__menu">
           <li>
-            <router-link class="link text" tag="a" to="/login">Login</router-link>
+            <router-link class="link text" tag="a" to="/login">Вхід</router-link>
           </li>
           <li>
             <router-link tag="a"
                          to="/registration"
                          class="header__menu_link link text">
-              Sign up</router-link>
+              Реєстрація</router-link>
           </li>
         </ul>
       </nav>

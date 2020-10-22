@@ -3,7 +3,7 @@
     <router-link
       class="page__nav_link link text"
       tag="a" :to="linkData.routLink">{{ linkData.name }}</router-link>
-    <router-link class="page__nav_link link text" tag="a" to="/">Home</router-link>
+    <router-link class="page__nav_link link text" tag="a" to="/">Домашня сторінка</router-link>
   </nav>
 </template>
 

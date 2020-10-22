@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       linkData: {
-        routLink: 'register',
+        routLink: 'registration',
         name: 'Реєстрація',
       },
     };
