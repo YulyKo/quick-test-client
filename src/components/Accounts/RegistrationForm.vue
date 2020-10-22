@@ -9,10 +9,13 @@
                v-model.trim="firstName"
                @focusout="checkFirstName"
                class="text form__container_input"
+               :class="{error: !this.getLengthOfFirstNameErrors}"
                required>
       </div>
-      <ul v-if="errors.firstName">
-        <li v-for="(error, id) in errors.firstName" :key="id">{{ error }}</li>
+      <ul v-if="errors.firstName" class="error-list">
+        <li v-for="(error, id) in errors.firstName"
+            :key="id"
+            class="text text--error">{{ error }}</li>
       </ul>
     </div>
     <div class="form__container">
@@ -24,10 +27,13 @@
                v-model.trim="lastName"
                @focusout="checkLastName"
                class="text form__container_input"
+               :class="{error: !this.getLengthOfLastNameErrors}"
                required>
       </div>
-      <ul v-if="errors.lastName">
-        <li v-for="(error, id) in errors.lastName" :key="id">{{ error }}</li>
+      <ul v-if="errors.lastName" class="error-list">
+        <li v-for="(error, id) in errors.lastName"
+            :key="id"
+            class="text text--error">{{ error }}</li>
       </ul>
     </div>
     <div class="form__container">
@@ -40,10 +46,11 @@
                @focusout="checkEmail"
                class="text form__container_input"
                autocomplete="on"
+               :class="{error: !this.getErrorMessageForEmail}"
                required>
       </div>
-      <ul v-if="errors.email">
-        <li>{{ errors.email }}</li>
+      <ul v-if="errors.email" class="error-list">
+        <li class="text text--error">{{ errors.email }}</li>
       </ul>
     </div>
     <div class="form__container">
@@ -55,10 +62,13 @@
                id="password"
                class="text form__container_input"
                @focusout="checkPassword"
+               :class="{error: !this.getLengthOfPasswordErrors}"
                required>
       </div>
-      <ul v-if="errors.password">
-        <li v-for="(error, id) in errors.password" :key="id">{{ error }}</li>
+      <ul v-if="errors.password" class="error-list">
+        <li v-for="(error, id) in errors.password"
+            :key="id"
+            class="text text--error">{{ error }}</li>
       </ul>
     </div>
     <div class="form__container">
@@ -70,15 +80,18 @@
                v-model.trim="passwordConfirmation"
                @focusout="checkPasswordEquals"
                class="text form__container_input"
+               :class="{error: !this.getLengthOfConfirmPasswordErrors}"
                required>
       </div>
-      <ul v-if="errors.passwordConfirmation">
-        <li v-for="(error, id) in errors.passwordConfirmation" :key="id">{{ error }}</li>
+      <ul v-if="errors.passwordConfirmation" class="error-list">
+        <li v-for="(error, id) in errors.passwordConfirmation"
+            :key="id"
+            class="text text--error">{{ error }}</li>
       </ul>
     </div>
     <div>
       <button type="submit"
-              class="text form__button-submit"
+              class="text form__button-submit" :disabled="checkErrors"
       >Sign up</button>
     </div>
   </form>
@@ -106,11 +119,11 @@ export default {
   name: 'RegistrationForm',
   data() {
     return {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      passwordConfirmation: '',
+      firstName: 'Ass',
+      lastName: 'Ass',
+      email: 'juliakotenko.forstudy@gmail.com',
+      password: '1qASDFGHJKL',
+      passwordConfirmation: '1qASDFGHJKL',
       errors: {
         firstName: [],
         lastName: [],
@@ -118,26 +131,33 @@ export default {
         password: [],
         passwordConfirmation: [],
       },
-      count: 0,
     };
   },
   computed: {
     ...mapGetters({
       getExistEmail: 'getExistEmail',
     }),
-    getExistEmailStatus() {
-      return this.getExistEmail.status;
+    getLengthOfFirstNameErrors() {
+      return this.errors.firstName.length === 0;
+    },
+    getLengthOfLastNameErrors() {
+      return this.errors.lastName.length === 0;
+    },
+    getErrorMessageForEmail() {
+      return this.errors.email.length === 0;
+    },
+    getLengthOfPasswordErrors() {
+      return this.errors.password.length === 0;
+    },
+    getLengthOfConfirmPasswordErrors() {
+      return this.errors.passwordConfirmation.length === 0;
     },
     checkErrors() {
-      const lengthOfFirstNameErrors = this.errors.firstName.length;
-      const lengthIfLastNameErrors = this.errors.lastName.length;
-      const lengthOfPasswordErrors = this.errors.password.length;
-      const lengthOfConfirmPasswordErrors = this.errors.passwordConfirmation.length;
-      return ((lengthOfConfirmPasswordErrors === 0
-        && lengthOfPasswordErrors === 0
-        && this.errors.email
-        && lengthIfLastNameErrors === 0
-        && lengthOfFirstNameErrors === 0));
+      return (!(this.getLengthOfFirstNameErrors
+      && this.getLengthOfLastNameErrors
+      && this.getErrorMessageForEmail
+      && this.getLengthOfPasswordErrors
+      && this.getLengthOfConfirmPasswordErrors));
     },
   },
   methods: {
@@ -149,7 +169,6 @@ export default {
     register() {
       this.localCheckExistEmail();
       this.checkFormBeforeSendingNewTeacherToAPI();
-      this.count += 1;
     },
 
     async localCheckExistEmail() {
@@ -169,14 +188,17 @@ export default {
         email: this.email,
         password: this.password,
       };
-      if (this.checkErrors) this.sendNewTeacherToAPI(data);
+      const errors = this.checkErrors;
+      if (!errors) {
+        this.sendNewTeacherToAPI(data);
+      }
     },
 
     async sendNewTeacherToAPI(data) {
       try {
         await this.registration(data).then(() => {
           this.$router.push('/home').then();
-        }).catch((error) => { console.log(error); });
+        }).catch((error) => { console.error(error); });
       } catch (error) {
         if (error) {
           await this.$router.push('/').then();
@@ -199,6 +221,7 @@ export default {
     checkEmail() {
       const validate = validEmail(this.email);
       if (!validate) this.errors.email = ERROR_MESSAGE_FOR_INVALID_EMAIL;
+      else this.errors.email = '';
       return validate;
     },
 
@@ -226,4 +249,15 @@ export default {
 
 .disabled
   background-color: #ef5b5b
+
+.error-list
+  flex-basis: 100%
+
+.text--error
+  margin-top: 1em
+  text-align: center
+  color: $red
+
+.error
+  border: 3px solid $red
 </style>

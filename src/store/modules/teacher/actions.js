@@ -78,7 +78,6 @@ const checkExistEmail = ({ commit }, userEmail) => new Promise((resolve, reject)
   };
   axios.post(CHECK_EMAIL_URL, data)
     .then((response) => {
-      console.log(response.data);
       commit('setExistEmail', response.data);
       resolve(response);
     }).catch((err) => reject(err));
