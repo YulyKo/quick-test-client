@@ -4,23 +4,27 @@
          alt="Quick Test logo"
         class="page__logo">
     <loginForm/>
-    <nav class="page__nav">
-      <router-link
-        class="page__nav_link link text"
-        tag="a"
-        to="/registration">Register</router-link>
-      <router-link class="page__nav_link link text" tag="a" to="/">Home</router-link>
-    </nav>
+    <navbar :linkData="this.linkData" />
   </main>
 </template>
 
 <script>
 import LoginFrom from '@/components/Accounts/LoginForm.vue';
+import NavbarVue from '../../components/Accounts/Navbar.vue';
 
 export default {
   name: 'LoginPage',
   components: {
     loginForm: LoginFrom,
+    navbar: NavbarVue,
+  },
+  data() {
+    return {
+      linkData: {
+        routLink: 'register',
+        name: 'Реєстрація',
+      },
+    };
   },
 };
 </script>

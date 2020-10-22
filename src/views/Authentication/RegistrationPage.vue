@@ -4,20 +4,27 @@
          src="@/assets/images/logo.png"
          alt="Quick Test logo">
     <registerForm></registerForm>
-    <nav class="page__nav">
-      <router-link class="page__nav_link link text" tag="a" to="/login">Login</router-link>
-      <router-link class="page__nav_link link text" tag="a" to="/">Home</router-link>
-    </nav>
+    <navbar :linkData="this.linkData" />
   </main>
 </template>
 
 <script>
 import RegistrationForm from '@/components/Accounts/RegistrationForm.vue';
+import NavbarVue from '../../components/Accounts/Navbar.vue';
 
 export default {
   name: 'RegistrationPage',
   components: {
     registerForm: RegistrationForm,
+    navbar: NavbarVue,
+  },
+  data() {
+    return {
+      linkData: {
+        routLink: 'login',
+        name: 'Вхід',
+      },
+    };
   },
 };
 </script>
