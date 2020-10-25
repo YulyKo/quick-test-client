@@ -99,7 +99,7 @@
     <div>
       <button type="submit"
               class="text form__button-submit"
-              :disabled="checkErrors"
+              :disabled="!getExisitingErrors"
       >Зареєструватися</button>
     </div>
   </form>
@@ -147,6 +147,9 @@ export default {
     ...mapGetters({
       getExistEmail: 'getExistEmail',
     }),
+    getExistEmailStatus() {
+      return this.getExistEmail.status;
+    },
     getLengthOfFirstNameErrors() {
       return this.errors.firstName.length === 0;
     },
@@ -162,12 +165,12 @@ export default {
     getLengthOfConfirmPasswordErrors() {
       return this.errors.passwordConfirmation.length === 0;
     },
-    checkErrors() {
-      return (!(this.getLengthOfFirstNameErrors
+    getExisitingErrors() {
+      return (this.getLengthOfFirstNameErrors
       && this.getLengthOfLastNameErrors
       && this.getErrorMessageForEmail
       && this.getLengthOfPasswordErrors
-      && this.getLengthOfConfirmPasswordErrors));
+      && this.getLengthOfConfirmPasswordErrors);
     },
   },
   methods: {
@@ -182,13 +185,18 @@ export default {
     },
 
     async localCheckExistEmail() {
-      if (this.checkEmail()) {
+      const validate = this.checkEmail();
+      if (validate) {
         const thisEmail = this.email;
         await this.checkExistEmail(thisEmail);
         const status = this.getExistEmailStatus;
-        if (status === 'exist') this.errors.email = ERROR_MESSAGE_FOR_EXISTED_EMAIL;
-        else this.errors.email = '';
+        this.setStautusForEmail(status);
       }
+    },
+
+    setStautusForEmail(status) {
+      if (status === 'exist') this.errors.email = ERROR_MESSAGE_FOR_EXISTED_EMAIL;
+      else this.errors.email = '';
     },
 
     checkFormBeforeSendingNewTeacherToAPI() {
@@ -198,7 +206,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      const errors = this.checkErrors;
+      const errors = this.getExisitingErrors;
       if (!errors) {
         this.sendNewTeacherToAPI(data);
       }
@@ -206,11 +214,11 @@ export default {
 
     async sendNewTeacherToAPI(data) {
       try {
-        await this.registration(data).then(() => {
-          this.$router.push('/home').then();
-        }).catch((error) => { console.error(error); });
+        await this.registration(data);
+        await this.$router.push('/home');
       } catch (error) {
         if (error) {
+          console.error(error.message);
           await this.$router.push('/').then();
         }
       }
