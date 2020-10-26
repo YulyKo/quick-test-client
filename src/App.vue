@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="page grid-container">
-    <div class="main-container">
+  <div id="app" class="grid-container">
+    <div class="page">
       <router-view/>
     </div>
   </div>
@@ -8,26 +8,26 @@
 
 <script>
 
-import { API_URL } from '@/utils';
-
-console.log(API_URL);
-export default {};
+export default {
+  methods: {},
+  created() {},
+};
 </script>
 
 <style lang="sass">
 @import 'main.sass'
-.page
-  background-color: #F9FCFB
+
+body
+  background-color: $white
 
 .grid-container
   display: grid
-  grid-template-columns: .5fr 2.7fr .5fr
+  grid-template-columns: .5fr 3.7fr .5fr
   grid-template-rows: 1fr
   gap: 0 0
-  grid-template-areas: '. main-container .'
-  background-color: $white
+  grid-template-areas: '. page .'
 
-.main-container
-  grid-area: main-container
+.page
+  grid-area: page
 
 </style>
