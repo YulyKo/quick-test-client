@@ -207,7 +207,7 @@ export default {
         password: this.password,
       };
       const errors = this.getExisitingErrors;
-      if (!errors) {
+      if (errors) {
         this.sendNewTeacherToAPI(data);
       }
     },
@@ -219,7 +219,6 @@ export default {
       } catch (error) {
         if (error) {
           console.error(error.message);
-          await this.$router.push('/').then();
         }
       }
     },

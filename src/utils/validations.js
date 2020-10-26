@@ -12,7 +12,7 @@ function validEmail(email) {
 
 function validPassword(password) {
   let isValid = false;
-  const regLowerCaseUppercaseNumber = new RegExp('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$');
+  const regLowerCaseUppercaseNumber = new RegExp('^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*|(?=.*\\d)(?=.*[а-я])(?=.*[А-Я])(?!.*\\s).*)$');
   if (regLowerCaseUppercaseNumber.test(password)) {
     isValid = true;
   } else if (password === '' || !password) {
