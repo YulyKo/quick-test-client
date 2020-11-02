@@ -4,7 +4,7 @@ import {
   LOGIN_URL,
   REFRESH_TOKEN_URL,
   REGISTRATION_URL,
-} from '@/utils/constants';
+} from '@/utils/index';
 
 const login = ({ commit }, loggedTeacher) => new Promise((resolve, reject) => {
   commit('authRequest');

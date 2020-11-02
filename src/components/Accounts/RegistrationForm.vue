@@ -121,7 +121,7 @@ import {
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_INVALID_NAME,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
-} from '@/utils/constants';
+} from '@/utils/index';
 
 export default {
   name: 'RegistrationForm',
