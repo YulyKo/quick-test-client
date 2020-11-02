@@ -18,7 +18,8 @@ export default {
 @import 'main.sass'
 
 body
-  background-color: $white
+  // background-color: $white
+  background: linear-gradient(118.47deg, #E9EDF0 0.61%, #E9EDF0 100%)
 
 .grid-container
   display: grid
