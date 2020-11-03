@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import HomePage from '@/views/Home/HomePage.vue';
 import TeacherPanel from '@/views/TeacherHome/TeacherPanel.vue';
 import RegistrationPage from '@/views/Authentication/RegistrationPage.vue';
-import store from '@/store/index';
 import LoginPage from '@/views/Authentication/LoginPage.vue';
 
 Vue.use(VueRouter);
@@ -45,10 +44,10 @@ const router = new VueRouter({
   routes,
 });
 
-const { isLoggedIn } = store.getters;
-if (isLoggedIn) {
+const token = Vue.$cookies.get('token');
+if (token) {
   router.push('/home').then();
-} else if (isLoggedIn === false) {
+} else {
   router.push('/').then();
 }
 
