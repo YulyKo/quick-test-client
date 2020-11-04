@@ -1,14 +1,17 @@
 import Vue from 'vue';
+import VueCookie from 'vue-cookie';
 import Axios from 'axios';
+import VueRouter from 'vue-router';
+import VueAxios from 'vue-axios';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import './main.sass';
 
-Vue.use(Axios);
-Vue.prototype.$ajax = Axios;
-Vue.config.productionTip = false;
+Vue.use(VueRouter);
+Vue.use(VueCookie);
+Vue.use(VueAxios, Axios);
 
 const app = new Vue({
   router,

@@ -66,8 +66,9 @@
                :class="{'form__container_input--error': !this.getLengthOfPasswordErrors}"
                required>
         <button
+          type="button"
           class="text input_wrapper__visibility"
-          @click="switchVisibility">Показати/Сховати</button>
+          @click.stop="switchVisibility">Показати/Сховати</button>
       </div>
       <ul v-if="errors.password" class="error-container">
         <li v-for="(error, id) in errors.password"
@@ -87,8 +88,9 @@
                :class="{'form__container_input--error': !this.getLengthOfConfirmPasswordErrors}"
                required>
         <button
+          type="button"
           class="text input_wrapper__visibility"
-          @click="switchVisibilityForConfirmation">Показати/Сховати</button>
+          @click.stop="switchVisibilityForConfirmation">Показати/Сховати</button>
       </div>
       <ul v-if="errors.passwordConfirmation" class="error-container">
         <li v-for="(error, id) in errors.passwordConfirmation"

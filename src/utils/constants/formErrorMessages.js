@@ -5,7 +5,7 @@ const ERROR_MASSAGE_FOR_INVALID_PASSWORD = 'Пароль має містити �
 const ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS = 'Паролі не однакові';
 const ERROR_MESSAGE_FOR_LOGIN_FORM = 'Невірні дані';
 
-exports.module = {
+export default {
   ERROR_MESSAGE_FOR_INVALID_NAME,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,

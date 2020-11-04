@@ -1,17 +1,14 @@
-import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HomePage from '@/views/Home/HomePage.vue';
 import TeacherPanel from '@/views/TeacherHome/TeacherPanel.vue';
 import RegistrationPage from '@/views/Authentication/RegistrationPage.vue';
-import store from '@/store/index';
 import LoginPage from '@/views/Authentication/LoginPage.vue';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     component: HomePage,
+    name: 'home',
     meta: {
       requiresAuth: true,
     },
@@ -20,19 +17,20 @@ const routes = [
     path: '/login',
     component: LoginPage,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: '/registration',
     component: RegistrationPage,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: '/home',
     component: TeacherPanel,
+    name: 'teacherPanel',
     meta: {
       requiresAuth: true,
     },
@@ -44,12 +42,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
-const { isLoggedIn } = store.getters;
-if (isLoggedIn) {
-  router.push('/home').then();
-} else if (isLoggedIn === false) {
-  router.push('/').then();
-}
 
 export default router;

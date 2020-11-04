@@ -3,7 +3,9 @@
     <router-link
       class="page__nav_link link text"
       tag="a" :to="linkData.routLink">{{ linkData.name }}</router-link>
-    <router-link class="page__nav_link link text" tag="a" to="/">Домашня сторінка</router-link>
+    <router-link
+      class="page__nav_link link text"
+      tag="a" to="/">Домашня сторінка</router-link>
   </nav>
 </template>
 
@@ -22,4 +24,10 @@ export default {
     justify-content: space-around
     &_link
       padding: 2vh
+
+ @media (min-width: 0px) and (max-width: 755px)
+    .page__nav
+      justify-content: space-between !important
+      &_link
+        padding: 0
 </style>

@@ -1,7 +1,7 @@
 import api from './api';
 import formErrorMessages from './formErrorMessages';
 
-exports.module = {
+export default {
   api,
   formErrorMessages,
 };
