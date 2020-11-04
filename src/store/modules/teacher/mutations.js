@@ -21,10 +21,15 @@ const setExistEmail = (state, data) => {
   state.existEmail.message = data.message;
 };
 
+const setToken = (state, token) => {
+  state.token = token;
+};
+
 export default {
   authError,
   authRequest,
   authSuccess,
   logout,
   setExistEmail,
+  setToken,
 };

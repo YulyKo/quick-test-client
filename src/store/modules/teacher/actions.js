@@ -12,20 +12,20 @@ const login = ({ commit }, loggedTeacher) => new Promise((resolve, reject) => {
   axios.post(LOGIN_URL, loggedTeacher)
     .then((resp) => {
       const { token } = resp.data;
-      Vue.$cookies.set('token', token);
+      Vue.cookie.set('token', token);
       axios.defaults.headers.common.Authorization = token;
       commit('authSuccess', token);
       resolve(resp);
     }).catch((error) => {
       commit('authError');
-      Vue.$cookies.remove('token');
+      Vue.cookies.delete('token');
       reject(error);
     });
 });
 
 const logout = ({ commit }) => new Promise((resolve) => {
   commit('logout');
-  Vue.$cookies.remove('token');
+  Vue.cookie.delete('token');
   delete axios.defaults.headers.common.Authorization;
   resolve();
 });
@@ -34,12 +34,12 @@ const registration = ({ commit }, registerTeacher) => new Promise((resolve, reje
   commit('authRequest');
   axios.post(REGISTRATION_URL, registerTeacher).then((response) => {
     const { token } = response.data;
-    Vue.$cookies.set('token', token);
+    Vue.cookie.set('token', token);
     commit('authSuccess', token);
     resolve(response);
   }).catch((error) => {
     commit('authError', error);
-    Vue.$cookies.remove('token');
+    Vue.cookie.delete('token');
     reject(error);
   });
 });
@@ -54,7 +54,7 @@ const getNewToken = ({ commit }, oldToken, originalRequest) => new Promise(() =>
   }).then((response) => {
     const { token } = response.data;
     commit('AuthSuccess', token);
-    this.$cookies.set('token', token);
+    Vue.cookie.set('token', token);
     axios.defaults.headers.common.Authorization = token;
     thisOriginalRequest.headers.Authorization = token;
     return axios(thisOriginalRequest);
@@ -84,10 +84,15 @@ const checkExistEmail = ({ commit }, userEmail) => new Promise((resolve, reject)
     }).catch((err) => reject(err));
 });
 
+const setTokenFromCookies = ({ commit }, token) => {
+  commit('setToken', token);
+};
+
 export default {
   login,
   logout,
   registration,
   refreshToken,
   checkExistEmail,
+  setTokenFromCookies,
 };
