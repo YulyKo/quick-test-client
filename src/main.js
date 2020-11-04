@@ -2,6 +2,8 @@ import VueCookie from 'vue-cookie';
 import Vue from 'vue';
 import Axios from 'axios';
 import VueRouter from 'vue-router';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -11,8 +13,7 @@ import './main.sass';
 Vue.use(Axios);
 Vue.use(VueRouter);
 Vue.use(VueCookie);
-Vue.prototype.$ajax = Axios;
-Vue.config.productionTip = false;
+Vue.use(VueAxios, axios);
 
 const app = new Vue({
   router,

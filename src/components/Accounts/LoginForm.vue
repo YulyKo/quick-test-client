@@ -25,8 +25,9 @@
                class="text form__container_input"
                :class="{'form__container_input--error': !this.checkErrorsOfForm}">
         <button
+          type="button"
           class="text input_wrapper__visibility"
-          @click="switchVisibility">Показати/Сховати</button>
+          @click.stop="switchVisibility">Показати/Сховати</button>
       </div>
       <span v-if="errors.form" class="error-container text text--error">{{ errors.form }}</span>
     </div>
