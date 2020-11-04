@@ -217,7 +217,7 @@ export default {
     async sendNewTeacherToAPI(data) {
       try {
         await this.registration(data);
-        await this.$router.push('/home');
+        this.$router.push('/home');
       } catch (error) {
         if (error) {
           console.error(error.message);

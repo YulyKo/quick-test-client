@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueCookie from 'vue-cookie';
-import Axios from 'axios';
+import axios from 'axios';
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import App from './App.vue';
@@ -11,7 +11,7 @@ import './main.sass';
 
 Vue.use(VueRouter);
 Vue.use(VueCookie);
-Vue.use(VueAxios, Axios);
+Vue.use(VueAxios, axios);
 
 const app = new Vue({
   router,
