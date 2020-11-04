@@ -8,7 +8,16 @@
 
 <script>
 
-export default {};
+export default {
+  beforeCreate() {
+    const token = this.$cookie.get('token');
+    if (token != null) {
+      this.$router.push('/home');
+    } else {
+      this.$router.push('/');
+    }
+  },
+};
 </script>
 
 <style lang="sass">
