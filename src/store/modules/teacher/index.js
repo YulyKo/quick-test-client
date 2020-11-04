@@ -3,7 +3,7 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-  token: localStorage.getItem('token') || '',
+  token: '',
   status: '',
   existEmail: {
     status: '',

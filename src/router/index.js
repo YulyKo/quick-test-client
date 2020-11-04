@@ -3,15 +3,13 @@ import VueRouter from 'vue-router';
 import HomePage from '@/views/Home/HomePage.vue';
 import TeacherPanel from '@/views/TeacherHome/TeacherPanel.vue';
 import RegistrationPage from '@/views/Authentication/RegistrationPage.vue';
-import store from '@/store/index';
 import LoginPage from '@/views/Authentication/LoginPage.vue';
-
-Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
     component: HomePage,
+    name: 'home',
     meta: {
       requiresAuth: true,
     },
@@ -20,19 +18,20 @@ const routes = [
     path: '/login',
     component: LoginPage,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: '/registration',
     component: RegistrationPage,
     meta: {
-      requiresAuth: true,
+      requiresAuth: false,
     },
   },
   {
     path: '/home',
     component: TeacherPanel,
+    name: 'teacherPanel',
     meta: {
       requiresAuth: true,
     },
@@ -45,11 +44,15 @@ const router = new VueRouter({
   routes,
 });
 
-const { isLoggedIn } = store.getters;
-if (isLoggedIn) {
-  router.push('/home').then();
-} else if (isLoggedIn === false) {
-  router.push('/').then();
-}
+router.afterEach((to, from, next) => {
+  const token = Vue.cookie.get('token');
+  if (to.matched.some((record) => record.meta.auth)) {
+    if (token) {
+      next({ name: 'teacherPanel' });
+    } else if (!token || '') {
+      next({ name: 'home' }).then();
+    }
+  }
+});
 
 export default router;
