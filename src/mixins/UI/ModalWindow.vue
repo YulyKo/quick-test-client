@@ -1,10 +1,8 @@
 <template>
   <section>
     <h2 class="text title">{{ title }}</h2>
-    <!-- here use component with slot logic. to inclute form stucture like switch case  -->
-    <!-- OR -->
-    <!-- add name to html-structure and call them in parrent component like: -->
-    <!-- <temlplate v-slot:name_of_slot> -->
+    <h2>Create User Form</h2>
+    <UserForm />
     <button @click="$emit('close')">
             OK
     </button>
@@ -12,8 +10,13 @@
 </template>
 
 <script>
+import UserFromVue from '@/components/Forms/UserFrom.vue';
+
 export default {
   props: ['title', 'visible'],
+  components: {
+    UserForm: UserFromVue,
+  },
 };
 </script>
 

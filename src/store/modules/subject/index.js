@@ -3,7 +3,7 @@ import mutations from './mutations';
 import actions from './actions';
 
 const state = {
-  courses: null,
+  courses: String,
 };
 
 export default {
