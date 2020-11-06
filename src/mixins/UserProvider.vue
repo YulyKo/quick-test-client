@@ -1,6 +1,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
+const COURSE = {};
+
 export default {
   name: 'CoursesProvider',
   methods: {
@@ -15,7 +17,7 @@ export default {
   },
   provide: {
     fetch: (id) => Promise.resolve(this.courses.find((course) => course.id === id)),
-    post: (course) => this.addCourse(course) && Promise.resolve({ success: true }),
+    post: (course) => COURSE = course && Promise.resolve({ success: true }),
   },
   render() {
     return this.$slots.default;

@@ -6,8 +6,9 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators';
-import UserProviderVue from '@/mixins/UserProvider.vue';
-
+// import UserProviderVue from '@/mixins/UserProvider.vue';
+import FormDirector from '@/mixins/builders/FormDirector';
+import FormBuilder from '@/mixins/builders/FormBuilder';
 import FormFactory from './FormFactory.vue';
 import FormInput from '../FormElements/FormInput.vue';
 
@@ -15,7 +16,8 @@ export default {
   name: 'UserForm',
   components: {
     FormFactory,
-    UserProvider: UserProviderVue,
+    // UserProvider: UserProviderVue,
+    UserProvider: new FormDirector(new FormBuilder()).UserProvider,
   },
   props: {
     // Passing an ID as a property makes
