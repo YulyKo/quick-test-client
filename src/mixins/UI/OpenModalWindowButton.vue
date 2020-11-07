@@ -1,7 +1,7 @@
 <template>
   <div>
     <button id="show-modal" @click="showModal = true">+</button>
-    <modal v-if="showModal" title="Hello" @close="showModal = false">
+    <modal v-if="showModal" title="Hello" @close="showModal = false" id="modalWindow">
     </modal>
   </div>
 </template>
