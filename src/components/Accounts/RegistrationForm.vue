@@ -113,7 +113,7 @@ import { mapActions, mapGetters } from 'vuex';
 import {
   setMessage,
   validEmail,
-  validName,
+  validTeacherName,
   validPassword,
 } from '@/utils/validations';
 
@@ -227,13 +227,13 @@ export default {
 
     checkFirstName() {
       const errorsArrayFirstName = this.errors.firstName;
-      const validate = validName(this.firstName);
+      const validate = validTeacherName(this.firstName);
       setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
     checkLastName() {
       const errorsArraySecondName = this.errors.lastName;
-      const validate = validName(this.lastName);
+      const validate = validTeacherName(this.lastName);
       setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
