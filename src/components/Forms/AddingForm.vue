@@ -1,21 +1,23 @@
 <template>
   <form @submit.prevent="submit">
-    <label for="name" class="text">Name</label>
-    <div class="input_wrapper">
-      <input v-model="name"
-        type="text" name="name"
-        id="name" class="text">
-    </div>
+    <label for="name"
+         class="text form__container_label">Введіть назву</label>
+    <form-text-input id="name"
+            v-model="name"></form-text-input>
     <button type="submit">Додати</button>
   </form>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import FormTextInputVue from './formElements/FormTextInput.vue';
 
 export default {
   name: 'AddingForm',
   props: ['actionName'],
+  components: {
+    formTextInput: FormTextInputVue,
+  },
   computed: {
     getActionName() {
       return this.actionName;
