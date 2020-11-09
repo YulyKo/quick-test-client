@@ -1,24 +1,25 @@
 <template>
-  <section>
+  <section id="modalWindow">
     <h2 class="text title">{{ title }}</h2>
-    <h2>Create User Form</h2>
-    <adding-form :actionName="actionName"></adding-form>
-    <button @click="$emit('close')">X</button>
+    <slot></slot>
+    <button @click="closeWindow">X</button>
   </section>
 </template>
 
 <script>
-import AddingFormVue from '@/components/Forms/AddingForm.vue';
+import { mapMutations } from 'vuex';
 
 export default {
-  props: ['title', 'visible'],
-  components: {
-    addingForm: AddingFormVue,
-  },
+  props: ['title'],
   data() {
     return {
       actionName: 'postCourseToAPI',
     };
+  },
+  methods: {
+    ...mapMutations({
+      closeWindow: 'hideModalWindow',
+    }),
   },
 };
 </script>

@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'AddingForm',
   props: ['actionName'],
@@ -30,16 +32,16 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+      closeWindow: 'hideModalWindow',
+    }),
     submit() {
       const action = this.getActionName;
       const data = {
         name: this.name,
       };
       this.$store.dispatch(action, data);
-    },
-    closeWindow() {
-      const modalWindowDOM = document.getElementById('modalWindow');
-      modalWindowDOM.style.display = 'none';
+      this.closeWindow();
     },
   },
 };
