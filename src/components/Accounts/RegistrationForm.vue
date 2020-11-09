@@ -121,7 +121,7 @@ import {
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
-  ERROR_MESSAGE_FOR_INVALID_NAME,
+  ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
 } from '@/utils/index';
 
@@ -228,13 +228,13 @@ export default {
     checkFirstName() {
       const errorsArrayFirstName = this.errors.firstName;
       const validate = validName(this.firstName);
-      setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+      setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
     checkLastName() {
       const errorsArraySecondName = this.errors.lastName;
       const validate = validName(this.lastName);
-      setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+      setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
     checkEmail() {
