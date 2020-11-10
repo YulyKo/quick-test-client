@@ -113,8 +113,8 @@ import { mapActions, mapGetters } from 'vuex';
 import {
   setMessage,
   validEmail,
-  validTeacherName,
   validPassword,
+  validTeacherName,
 } from '@/utils/validations';
 
 import {

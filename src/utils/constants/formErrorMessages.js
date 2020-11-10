@@ -5,15 +5,17 @@ const ERROR_MASSAGE_FOR_INVALID_PASSWORD = 'Пароль має містити �
 const ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS = 'Паролі не однакові';
 const ERROR_MESSAGE_FOR_LOGIN_FORM = 'Невірні дані';
 const ERROR_MESSAGE_FOR_INVALID_NAME = 'Ім\'я має не припустимі символи';
-const ERROR_MESSAGE_FOR_SO_LONG_NAME = 'Ім\'я надто довге';
+const ERROR_MESSAGE_FOR_VERY_LONG_NAME = 'Ім\'я надто довге';
+const ERROR_MESSAGE_FOR_VERY_SHOT_NAME = 'Ім\'я надто коротке';
 
-export default {
+module.exports = {
   ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
-  ERROR_MESSAGE_FOR_INVALID_NAME,
   ERROR_MESSAGE_FOR_LOGIN_FORM,
-  ERROR_MESSAGE_FOR_SO_LONG_NAME,
+  ERROR_MESSAGE_FOR_INVALID_NAME,
+  ERROR_MESSAGE_FOR_VERY_LONG_NAME,
+  ERROR_MESSAGE_FOR_VERY_SHOT_NAME,
 };

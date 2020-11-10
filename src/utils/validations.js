@@ -32,6 +32,17 @@ function validTeacherName(name) {
   return isValid;
 }
 
+function validName(name) {
+  console.log('validName');
+  let isValid = false;
+  const regName = new RegExp('^([а-яА-Я]{1,23}|[a-zA-Z]{1,23})$');
+  console.log(`${name} : name`);
+  if (regName.test(name)) {
+    isValid = true;
+  }
+  return isValid;
+}
+
 function cleanErrorArray(array, message) {
   const index = array.indexOf(message);
   if (index !== -1) {
@@ -53,6 +64,7 @@ module.exports = {
   validEmail,
   validPassword,
   validTeacherName,
+  validName,
   setMessage,
   cleanErrorArray,
 };

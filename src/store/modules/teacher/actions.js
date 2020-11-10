@@ -18,7 +18,7 @@ const login = ({ commit }, loggedTeacher) => new Promise((resolve, reject) => {
       resolve(resp);
     }).catch((error) => {
       commit('authError');
-      Vue.cookies.delete('token');
+      Vue.cookie.delete('token');
       reject(error);
     });
 });

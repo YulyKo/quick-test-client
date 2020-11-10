@@ -1,21 +1,35 @@
 <template>
-  <div class="input_wrapper">
-    <input id="password-confirm"
-           v-model="inputData"
-           :type="this.inputFieldType"
-           class="text form__container_input"
-           :class="{'form__container_input--error': !this.getLengthOfErrors}"
-           required>
+  <div>
+    <div class="input_wrapper">
+      <input
+            v-model="inputData"
+            :type="this.inputFieldType"
+            class="text form__container_input"
+            :class="{'form__container_input--error': !this.valid}"
+            required>
+    </div>
+    <form-error-messages :errors="this.errors"></form-error-messages>
   </div>
 </template>
 
 <script>
+// import {
+//   validName,
+//   setMessage,
+//   ERROR_MESSAGE_FOR_SO_LONG_NAME,
+// } from '@/utils/index';
+import FormErrorMessagesVue from './FormErrorMessages.vue';
+
+// ERROR_MESSAGE_FOR_INVALID_NAME,
+
 export default {
   name: 'FormTextInput',
-  props: ['value'],
+  props: ['value', 'inputFieldType', 'valid'],
+  components: {
+    formErrorMessages: FormErrorMessagesVue,
+  },
   data() {
     return {
-      inputFieldType: 'text',
       errors: [],
     };
   },
@@ -23,21 +37,13 @@ export default {
     getLengthOfErrors() {
       return true;
     },
-    inputListeners() {
-      const vm = this;
-      return {
-        ...this.$listeners,
-        input(event) {
-          vm.$emit('input', event.target.value);
-        },
-      };
-    },
     inputData: {
       get() {
         return this.value;
       },
       set(val) {
         this.$emit('input', val);
+        this.$emit('focusout', val);
       },
     },
   },
@@ -48,7 +54,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-</style>
