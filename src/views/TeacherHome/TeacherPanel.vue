@@ -2,8 +2,10 @@
   <main>
     <logoutButton/>
     <h1>Welcome to teacher panel!</h1>
-    <add-course>
-      <adding-form actionName='postCourseToAPI'></adding-form>
+    <add-course modalWindowTitle='Введіть назву курсу'>
+      <adding-form
+                  actionName='postCourseToAPI'
+                  labelName="ім'я"></adding-form>
     </add-course>
     <coursesList />
   </main>
@@ -25,7 +27,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>

@@ -1,9 +1,12 @@
 <template>
   <form @submit.prevent="submit">
-    <label for="name"
-         class="text form__container_label">Введіть назву</label>
-    <form-text-input id="name" inputFieldType="text" :valid="this.validNameInput"
-            v-model="name"></form-text-input>
+    <form-label :labelFor="name" :labelName="this.labelName"></form-label>
+    <form-text-input
+            id="name"
+            inputFieldType="text"
+            :valid="this.validNameInput"
+            v-model="name">
+    </form-text-input>
     <form-error-messages :errors="this.errors"></form-error-messages>
     <button type="submit">Додати</button>
   </form>
@@ -22,13 +25,15 @@ import {
 } from '@/utils/constants/formErrorMessages';
 import FormTextInputVue from './formElements/FormTextInput.vue';
 import FormErrorMessagesVue from './formElements/FormErrorMessages.vue';
+import FormLabelVue from './formElements/FormLabel.vue';
 
 export default {
   name: 'AddingForm',
-  props: ['actionName'],
+  props: ['actionName', 'labelName'],
   components: {
     formTextInput: FormTextInputVue,
     formErrorMessages: FormErrorMessagesVue,
+    formLabel: FormLabelVue,
   },
   computed: {
     getActionName() {

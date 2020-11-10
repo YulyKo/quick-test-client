@@ -1,6 +1,9 @@
 <template>
   <label :for="labelFor"
-         class="text form__container_label">{{ labelName }}</label>
+         class="text form__container_label">
+      {{ labelName }}
+    <slot></slot>
+  </label>
 </template>
 
 <script>

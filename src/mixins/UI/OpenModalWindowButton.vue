@@ -1,7 +1,7 @@
 <template>
   <div>
     <button id="show-modal" @click="showWindow">+</button>
-    <modal v-if="getModalWindowState" title="Hello">
+    <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
       <slot></slot>
     </modal>
   </div>
@@ -9,11 +9,10 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-// import AddingCourseVue from '../../components/Forms/AddingCourse.vue';
 import ModalWindowVue from './ModalWindow.vue';
 
 export default {
-  props: ['Component'],
+  props: ['Component', 'modalWindowTitle'],
   components: {
     modal: ModalWindowVue,
   },
