@@ -23,6 +23,10 @@ import {
   ERROR_MESSAGE_FOR_VERY_LONG_NAME,
   ERROR_MESSAGE_FOR_INVALID_NAME,
 } from '@/utils/constants/formErrorMessages';
+import {
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+} from '@/utils/constants/';
 import FormTextInputVue from './formElements/FormTextInput.vue';
 import FormErrorMessagesVue from './formElements/FormErrorMessages.vue';
 import FormLabelVue from './formElements/FormLabel.vue';
@@ -81,15 +85,16 @@ export default {
       this.closeWindow();
     },
     checkInvalidInputName(validate) {
-      if (!validate || this.name.length < 3 || this.name.length > 10) {
+      if (!validate || this.name.length < MIN_NAME_LENGTH
+                    || this.name.length > MAX_NAME_LENGTH) {
         this.validNameInput = false;
       } else this.validNameInput = true;
     },
     checkLengthInputName(errorsArray) {
-      if (this.name.length < 3) {
+      if (this.name.length < MIN_NAME_LENGTH) {
         setMessage(errorsArray, ERROR_MESSAGE_FOR_VERY_SHOT_NAME, false);
       } else setMessage(errorsArray, ERROR_MESSAGE_FOR_VERY_SHOT_NAME, true);
-      if (this.name.length > 10) {
+      if (this.name.length > MAX_NAME_LENGTH) {
         setMessage(errorsArray, ERROR_MESSAGE_FOR_VERY_LONG_NAME, false);
       } else setMessage(errorsArray, ERROR_MESSAGE_FOR_VERY_LONG_NAME, true);
     },
