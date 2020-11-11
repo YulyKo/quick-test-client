@@ -33,10 +33,8 @@ function validTeacherName(name) {
 }
 
 function validName(name) {
-  console.log('validName');
   let isValid = false;
   const regName = new RegExp('^([а-яА-Я]{1,23}|[a-zA-Z]{1,23})$');
-  console.log(`${name} : name`);
   if (regName.test(name)) {
     isValid = true;
   }
