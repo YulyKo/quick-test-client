@@ -42,7 +42,7 @@ import { mapActions } from 'vuex';
 import {
   ERROR_MESSAGE_FOR_LOGIN_FORM,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
-} from '@/utils/constants';
+} from '@/utils/index';
 import { validEmail } from '@/utils/validations';
 
 export default {
@@ -90,6 +90,7 @@ export default {
       return this.errors.email.length === 0;
     },
     checkErrorsOfForm() {
+      console.log(this.errors);
       return this.errors.form.length === 0;
     },
   },

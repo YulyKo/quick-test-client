@@ -113,17 +113,17 @@ import { mapActions, mapGetters } from 'vuex';
 import {
   setMessage,
   validEmail,
-  validName,
   validPassword,
+  validTeacherName,
 } from '@/utils/validations';
 
 import {
   ERROR_MASSAGE_FOR_INVALID_PASSWORD,
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS,
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
-  ERROR_MESSAGE_FOR_INVALID_NAME,
+  ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
-} from '@/utils/constants';
+} from '@/utils/index';
 
 export default {
   name: 'RegistrationForm',
@@ -217,7 +217,7 @@ export default {
     async sendNewTeacherToAPI(data) {
       try {
         await this.registration(data);
-        await this.$router.push('/home');
+        this.$router.push('/home');
       } catch (error) {
         if (error) {
           console.error(error.message);
@@ -227,14 +227,14 @@ export default {
 
     checkFirstName() {
       const errorsArrayFirstName = this.errors.firstName;
-      const validate = validName(this.firstName);
-      setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+      const validate = validTeacherName(this.firstName);
+      setMessage(errorsArrayFirstName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
     checkLastName() {
       const errorsArraySecondName = this.errors.lastName;
-      const validate = validName(this.lastName);
-      setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_NAME, validate);
+      const validate = validTeacherName(this.lastName);
+      setMessage(errorsArraySecondName, ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME, validate);
     },
 
     checkEmail() {

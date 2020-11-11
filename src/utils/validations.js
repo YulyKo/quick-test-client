@@ -21,13 +21,22 @@ function validPassword(password) {
   return isValid;
 }
 
-function validName(name) {
+function validTeacherName(name) {
   let isValid = false;
   const regName = new RegExp('^([А-Я]{1}[а-я]{1,23}|[A-Z]{1}[a-z]{1,23})$');
   if (regName.test(name)) {
     isValid = true;
   } else if (name === '' || !name) {
     isValid = false;
+  }
+  return isValid;
+}
+
+function validName(name) {
+  let isValid = false;
+  const regName = new RegExp('^([а-яА-Я]{1,23}|[a-zA-Z]{1,23})$');
+  if (regName.test(name)) {
+    isValid = true;
   }
   return isValid;
 }
@@ -52,6 +61,7 @@ function setMessage(array, message, isValid) {
 module.exports = {
   validEmail,
   validPassword,
+  validTeacherName,
   validName,
   setMessage,
   cleanErrorArray,

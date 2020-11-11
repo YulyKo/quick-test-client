@@ -1,5 +1,5 @@
 const validations = require('./validations');
-const constants = require('./constants');
+const constants = require('./constants/index');
 
 module.exports = {
   constants,

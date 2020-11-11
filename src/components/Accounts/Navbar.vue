@@ -12,7 +12,12 @@
 <script>
 export default {
   name: 'Navbar',
-  props: ['linkData'],
+  props: {
+    linkData: {
+      routLink: String,
+      name: String,
+    },
+  },
 };
 </script>
 
