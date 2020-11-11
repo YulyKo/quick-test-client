@@ -1,12 +1,12 @@
 <template>
   <form @submit.prevent="submit">
     <form-label :labelFor="name" :labelName="this.labelName"></form-label>
-    <form-text-input
+    <form-input
             id="name"
             inputFieldType="text"
             :valid="this.validNameInput"
             v-model="name">
-    </form-text-input>
+    </form-input>
     <form-button type="submit" textButton="Додати"></form-button>
     <form-error-messages :errors="this.errors"></form-error-messages>
   </form>
@@ -27,7 +27,7 @@ import {
   MIN_NAME_LENGTH,
   MAX_NAME_LENGTH,
 } from '@/utils/constants/index';
-import FormTextInputVue from '@/mixins/UI/formElements/FormTextInput.vue';
+import FormInputVue from '@/mixins/UI/formElements/FormInput.vue';
 import FormErrorMessagesVue from '@/mixins/UI/formElements/FormErrorMessages.vue';
 import FormLabelVue from '@/mixins/UI/formElements/FormLabel.vue';
 import FormButtonVue from '@/mixins/UI/formElements/FormButton.vue';
@@ -39,7 +39,7 @@ export default {
     labelName: String,
   },
   components: {
-    formTextInput: FormTextInputVue,
+    formInput: FormInputVue,
     formErrorMessages: FormErrorMessagesVue,
     formLabel: FormLabelVue,
     formButton: FormButtonVue,
