@@ -7,8 +7,8 @@
             :valid="this.validNameInput"
             v-model="name">
     </form-text-input>
+    <form-button type="submit" textButton="Додати"></form-button>
     <form-error-messages :errors="this.errors"></form-error-messages>
-    <button type="submit">Додати</button>
   </form>
 </template>
 
@@ -26,6 +26,7 @@ import {
 import FormTextInputVue from './formElements/FormTextInput.vue';
 import FormErrorMessagesVue from './formElements/FormErrorMessages.vue';
 import FormLabelVue from './formElements/FormLabel.vue';
+import FormButtonVue from './formElements/FormButton.vue';
 
 export default {
   name: 'AddingForm',
@@ -34,6 +35,7 @@ export default {
     formTextInput: FormTextInputVue,
     formErrorMessages: FormErrorMessagesVue,
     formLabel: FormLabelVue,
+    formButton: FormButtonVue,
   },
   computed: {
     getActionName() {

@@ -15,9 +15,6 @@ export default {
   name: 'FormTextInput',
   props: ['value', 'inputFieldType', 'valid'],
   computed: {
-    getLengthOfErrors() {
-      return true;
-    },
     inputData: {
       get() {
         return this.value;
