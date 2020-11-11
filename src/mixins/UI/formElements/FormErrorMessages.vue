@@ -13,10 +13,3 @@ export default {
   props: ['errors'],
 };
 </script>
-
-<style>
-.form-inline-message {
-  font-size: smaller;
-  color: red;
-}
-</style>
