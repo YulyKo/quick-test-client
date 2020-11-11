@@ -7,7 +7,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'button-add',
+  name: 'buttonAdd',
   props: {
     name: String,
   },
