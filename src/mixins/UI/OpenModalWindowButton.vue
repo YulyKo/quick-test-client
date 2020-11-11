@@ -1,26 +1,38 @@
 <template>
   <div>
-    <button id="show-modal" @click="showModal = true">+</button>
-    <modal v-if="showModal" title="Hello" @close="showModal = false">
+    <button id="show-modal" @click="showWindow">+</button>
+    <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
+      <slot></slot>
     </modal>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex';
 import ModalWindowVue from './ModalWindow.vue';
 
 export default {
+  props: {
+    modalWindowTitle: String,
+  },
   components: {
     modal: ModalWindowVue,
   },
   data() {
     return {
-      showModal: false,
+      show: false,
     };
+  },
+  computed: {
+    ...mapGetters({
+      getModalWindowState: 'getModalWindowState',
+    }),
+  },
+  methods: {
+    ...mapMutations(['showModalWindow']),
+    showWindow() {
+      this.showModalWindow();
+    },
   },
 };
 </script>
-
-<style>
-
-</style>

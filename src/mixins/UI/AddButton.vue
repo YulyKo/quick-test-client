@@ -7,8 +7,10 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'button-add',
-  props: ['dataType', 'name'],
+  name: 'buttonAdd',
+  props: {
+    name: String,
+  },
   computed: {
     getDataName() { return this.name; },
   },

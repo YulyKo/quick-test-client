@@ -90,6 +90,7 @@ export default {
       return this.errors.email.length === 0;
     },
     checkErrorsOfForm() {
+      console.log(this.errors);
       return this.errors.form.length === 0;
     },
   },

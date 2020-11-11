@@ -1,28 +1,27 @@
 <template>
-  <section>
+  <section id="modalWindow">
     <h2 class="text title">{{ title }}</h2>
-    <h2>Create User Form</h2>
-    <UserForm />
-    <button @click="$emit('close')">
-            OK
-    </button>
+    <slot></slot>
+    <button @click="closeWindow">X</button>
   </section>
 </template>
 
 <script>
-import UserFromVue from '@/components/Forms/UserFrom.vue';
+import { mapMutations } from 'vuex';
 
 export default {
-  props: ['title', 'visible'],
-  components: {
-    UserForm: UserFromVue,
+  props: {
+    title: String,
+  },
+  data() {
+    return {
+      actionName: 'postCourseToAPI',
+    };
+  },
+  methods: {
+    ...mapMutations({
+      closeWindow: 'hideModalWindow',
+    }),
   },
 };
 </script>
-
-<style lang="sass" scoped>
-.display
-  display: block
-.undisplay
-  display: none
-</style>
