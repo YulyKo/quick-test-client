@@ -2,7 +2,7 @@
   <div class="input_wrapper">
     <input
           v-model="inputData"
-          :type="this.inputFieldType"
+          :type="inputFieldType"
           class="text form__container_input"
           :class="{'form__container_input--error': !this.valid}"
           required>
@@ -15,7 +15,7 @@ export default {
   name: 'FormTextInput',
   props: {
     value: String,
-    inputFieldData: String,
+    inputFieldType: String,
     valid: Boolean,
   },
   computed: {
