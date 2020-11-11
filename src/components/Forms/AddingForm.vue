@@ -26,11 +26,11 @@ import {
 import {
   MIN_NAME_LENGTH,
   MAX_NAME_LENGTH,
-} from '@/utils/constants/';
-import FormTextInputVue from './formElements/FormTextInput.vue';
-import FormErrorMessagesVue from './formElements/FormErrorMessages.vue';
-import FormLabelVue from './formElements/FormLabel.vue';
-import FormButtonVue from './formElements/FormButton.vue';
+} from '@/utils/constants/index';
+import FormTextInputVue from '@/mixins/UI/formElements/FormTextInput.vue';
+import FormErrorMessagesVue from '@/mixins/UI/formElements/FormErrorMessages.vue';
+import FormLabelVue from '@/mixins/UI/formElements/FormLabel.vue';
+import FormButtonVue from '@/mixins/UI/formElements/FormButton.vue';
 
 export default {
   name: 'AddingForm',
