@@ -12,7 +12,9 @@ import { mapGetters, mapMutations } from 'vuex';
 import ModalWindowVue from './ModalWindow.vue';
 
 export default {
-  props: ['Component', 'modalWindowTitle'],
+  props: {
+    modalWindowTitle: String,
+  },
   components: {
     modal: ModalWindowVue,
   },

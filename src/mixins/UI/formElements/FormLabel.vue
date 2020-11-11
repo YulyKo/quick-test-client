@@ -9,6 +9,9 @@
 <script>
 export default {
   name: 'FormLabel',
-  props: ['labelFor', 'labelName'],
+  props: {
+    labelFor: String,
+    labelName: String,
+  },
 };
 </script>

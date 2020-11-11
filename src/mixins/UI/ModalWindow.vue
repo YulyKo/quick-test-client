@@ -10,7 +10,9 @@
 import { mapMutations } from 'vuex';
 
 export default {
-  props: ['title'],
+  props: {
+    title: String,
+  },
   data() {
     return {
       actionName: 'postCourseToAPI',

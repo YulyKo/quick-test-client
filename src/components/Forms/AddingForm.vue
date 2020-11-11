@@ -34,7 +34,10 @@ import FormButtonVue from '@/mixins/UI/formElements/FormButton.vue';
 
 export default {
   name: 'AddingForm',
-  props: ['actionName', 'labelName'],
+  props: {
+    actionName: String,
+    labelName: String,
+  },
   components: {
     formTextInput: FormTextInputVue,
     formErrorMessages: FormErrorMessagesVue,

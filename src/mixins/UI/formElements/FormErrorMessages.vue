@@ -10,6 +10,8 @@
 <script>
 export default {
   name: 'FormErrorMessages',
-  props: ['errors'],
+  props: {
+    errors: Array,
+  },
 };
 </script>

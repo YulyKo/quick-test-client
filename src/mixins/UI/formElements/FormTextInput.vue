@@ -13,7 +13,11 @@
 
 export default {
   name: 'FormTextInput',
-  props: ['value', 'inputFieldType', 'valid'],
+  props: {
+    value: String,
+    inputFieldData: String,
+    valid: Boolean,
+  },
   computed: {
     inputData: {
       get() {
