@@ -4,7 +4,7 @@ import {
   LOGIN_URL,
   REFRESH_TOKEN_URL,
   REGISTRATION_URL,
-} from '@/utils/index';
+} from '@/utils/constants/api';
 import Vue from 'vue';
 
 const login = ({ commit }, loggedTeacher) => new Promise((resolve, reject) => {

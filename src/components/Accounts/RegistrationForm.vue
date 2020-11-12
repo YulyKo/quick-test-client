@@ -123,7 +123,7 @@ import {
   ERROR_MESSAGE_FOR_INVALID_EMAIL,
   ERROR_MESSAGE_FOR_INVALID_TEACHER_NAME,
   ERROR_MESSAGE_FOR_EXISTED_EMAIL,
-} from '@/utils/index';
+} from '@/utils/constants/formErrorMessages';
 
 export default {
   name: 'RegistrationForm',
@@ -215,9 +215,10 @@ export default {
     },
 
     async sendNewTeacherToAPI(data) {
+      const pop = this;
       try {
         await this.registration(data);
-        this.$router.push('/home');
+        pop.$router.push('/home');
       } catch (error) {
         if (error) {
           console.error(error.message);
