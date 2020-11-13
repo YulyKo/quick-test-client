@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <button id="show-modal" @click="showWindow">+</button>
+  <div class="header__modal">
+    <button id="show-modal"
+            type="button"
+            @click="showWindow"
+            class="text button-add header__modal_button">+ курс</button>
     <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
       <slot></slot>
     </modal>
@@ -36,3 +39,21 @@ export default {
   },
 };
 </script>
+
+<style lang="sass" scoped>
+@import '@/main'
+
+.header__modal
+  &_button
+    margin-left: -1rem
+    padding-right: 2rem
+    height: 7vh
+    width: 12vh
+    border-bottom-left-radius: 100px
+    border-top-left-radius: 100px
+    -webkit-transform: rotate(270deg)
+    -moz-transform: rotate(270deg)
+    -ms-transform: rotate(270deg)
+    -o-transform: rotate(270deg)
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=18)
+</style>

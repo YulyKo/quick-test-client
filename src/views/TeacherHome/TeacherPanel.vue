@@ -1,12 +1,14 @@
 <template>
   <main>
-    <logoutButton/>
+    <header class="header">
+      <add-course modalWindowTitle='Введіть назву курсу'>
+        <adding-form
+                      actionName='postCourseToAPI'
+                      labelName="ім'я"></adding-form>
+      </add-course>
+      <logoutButton/>
+    </header>
     <h1>Welcome to teacher panel!</h1>
-    <add-course modalWindowTitle='Введіть назву курсу'>
-      <adding-form
-                  actionName='postCourseToAPI'
-                  labelName="ім'я"></adding-form>
-    </add-course>
     <coursesList />
   </main>
 </template>
@@ -27,3 +29,14 @@ export default {
   },
 };
 </script>
+
+<style lang="sass" scoped>
+@import '@/main'
+
+.header
+  margin-bottom: 2em
+  height: $header-height
+  width: 100%
+  display: flex
+  justify-content: space-between
+</style>
