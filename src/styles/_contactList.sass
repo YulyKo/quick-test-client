@@ -1,0 +1,113 @@
+// bem with oocss
+.button
+  margin-top: 0
+  padding: .5em 1em
+  display: block
+  border: none
+  // border-radius: 5px
+  color: $white
+  background-color: $blue
+  border-bottom-left-radius: 100px
+  border-bottom-right-radius: 100px
+  &-del
+    background-color: $red
+
+.link
+  display: block
+  &-auth
+  &-course
+    text-align: center
+    padding-bottom: 2em
+    padding-top: 2em
+  &:hover ~ .list__card
+      background-color: $first-light-blue
+
+.list
+  width: 100%
+  &__card
+    margin-bottom: 3rem
+    margin-left: auto
+    margin-right: auto
+    width: 100%
+    border: 3px solid $blue
+    border-radius: 10px
+    box-sizing: border-box
+    &_nav
+      margin-top: -2px
+      width: 100%
+      display: flex
+      justify-content: center
+
+.list-courses
+  display: flex
+  flex-wrap: wrap
+  &__card-course
+    &_item-course
+
+      // 
+      // margin-top: 3rem
+      // width: calc(100% - 6rem)
+
+@media (min-width: 0px) and (max-width: 755px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 756px) and (max-width: 1007px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 1008px) and (max-width: 1259px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 1260px) and (max-width: 1511px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 1512px) and (max-width: 1763px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 1764px) and (max-width: 2015px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 2016px) and (max-width: 2267px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 2268px) and (max-width: 5119px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
+@media (min-width: 5120px)
+  .list-courses
+    &__card-course
+      &_item-course
+  .list
+    &__card
+      &_nav
