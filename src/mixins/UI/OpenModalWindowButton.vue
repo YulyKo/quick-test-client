@@ -4,9 +4,10 @@
             type="button"
             @click="showWindow"
             class="text button-add header__modal_button">+ курс</button>
-    <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
-      <slot></slot>
-    </modal>
+    <div class="header__modal_background-block"></div>
+      <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
+        <slot></slot>
+      </modal>
   </div>
 </template>
 
@@ -56,4 +57,13 @@ export default {
     -ms-transform: rotate(270deg)
     -o-transform: rotate(270deg)
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=18)
+  // &_background-block
+  //   position: fixed
+  //   top: 0
+  //   left: 0
+  //   width: 100vw
+  //   height: 100vh
+  //   background-color: rgba(128,128,128,0.5)
+  //   display: none
+
 </style>

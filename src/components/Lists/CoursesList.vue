@@ -3,8 +3,8 @@
     <div v-for="(course, id) in courses" :key="id"
         class="list__card">
       <div class="list__card_nav">
-        <form-button type="button" clases="button">Редагувати</form-button>
-        <form-button textButton="Видалити" clases="button button-del"></form-button>
+        <form-button type="button" classes="button">Редагувати</form-button>
+        <form-button textButton="Видалити" classes="button button-del"></form-button>
       </div>
       <router-link tag="a" to="/"
           class="link link-course"
