@@ -1,5 +1,5 @@
 <template>
-  <button class="button text title"
+  <button class="button-add text title"
           @click="addData()">+</button>
 </template>
 
@@ -27,7 +27,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-</style>

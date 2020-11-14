@@ -1,5 +1,5 @@
 <template>
-  <button :type="type">
+  <button :type="type" :class="classes">
     {{ textButton }}
     <slot></slot>
   </button>
@@ -11,6 +11,11 @@ export default {
   props: {
     type: String,
     textButton: String,
+    classes: String,
   },
 };
 </script>
+
+<style lang="sass" scoped>
+@import '@/main.sass'
+</style>

@@ -1,14 +1,19 @@
 <template>
-  <form @submit.prevent="submit">
-    <form-label :labelFor="name" :labelName="this.labelName"></form-label>
+  <form @submit.prevent="submit" class="form">
+    <form-label :labelFor="name"
+                :labelName="this.labelName"></form-label>
     <form-input
             id="name"
             inputFieldType="text"
             :valid="this.validNameInput"
             v-model="name">
     </form-input>
-    <form-button type="submit" textButton="Додати"></form-button>
-    <form-error-messages :errors="this.errors"></form-error-messages>
+    <form-error-messages
+                  :errors="this.errors"
+                  classes="text form__button-submit"></form-error-messages>
+    <form-button type="submit"
+                  textButton="Додати"
+                  classes="text form__button-submit"></form-button>
   </form>
 </template>
 
