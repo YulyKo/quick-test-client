@@ -2,11 +2,9 @@
   <main>
     <header class="header">
       <add-course modalWindowTitle='Введіть назву курсу'>
-        <template #buttonName>+ курс</template>
         <adding-form
                       actionName='postCourseToAPI'
-                      labelName="ім'я"
-                      ></adding-form>
+                      labelName="ім'я"></adding-form>
       </add-course>
       <logoutButton/>
     </header>

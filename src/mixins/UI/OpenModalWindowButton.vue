@@ -3,8 +3,7 @@
     <button id="show-modal"
             type="button"
             @click="showWindow"
-            class="text button-add header__modal_button">
-            <slot #buttonName></slot></button>
+            class="text button-add header__modal_button">+ курс</button>
     <div class="header__modal_background-block"></div>
       <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
         <slot></slot>
@@ -19,7 +18,6 @@ import ModalWindowVue from './ModalWindow.vue';
 export default {
   props: {
     modalWindowTitle: String,
-    classesForButton: String,
   },
   components: {
     modal: ModalWindowVue,

@@ -3,15 +3,6 @@
     <div v-for="(course, id) in courses" :key="id"
         class="list__card">
       <div class="list__card_nav">
-        <modal-button
-          modalWindowTitle='Введіть нову назву курсу'
-          classesForButton="button"
-          >
-          <template #buttonName>Редагувати</template>
-          <editing-form
-            actionName='updateCourseNameInAPI'
-            labelName="ім'я"></editing-form>
-        </modal-button>
         <!-- <form-button type="button" classes="button">Редагувати</form-button> -->
         <delete-button
           classes="button button-del"
@@ -29,14 +20,10 @@
 <script>
 import { mapGetters } from 'vuex';
 import DeleteButtonVue from '../../mixins/UI/formElements/DeleteButton.vue';
-import OpenModalWindowButtonVue from '../../mixins/UI/OpenModalWindowButton.vue';
-import EditingFormVue from '../Forms/EditingForm.vue';
 
 export default {
   components: {
     deleteButton: DeleteButtonVue,
-    editingForm: EditingFormVue,
-    modalButton: OpenModalWindowButtonVue,
   },
   computed: {
     ...mapGetters({
