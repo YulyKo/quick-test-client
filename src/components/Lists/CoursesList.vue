@@ -3,8 +3,12 @@
     <div v-for="(course, id) in courses" :key="id"
         class="list__card">
       <div class="list__card_nav">
-        <form-button type="button" classes="button">Редагувати</form-button>
-        <form-button textButton="Видалити" classes="button button-del"></form-button>
+        <!-- <form-button type="button" classes="button">Редагувати</form-button> -->
+        <delete-button
+          classes="button button-del"
+          type="button"
+          :id="course.id"
+          actionName="deleteCourse">Видалити</delete-button>
       </div>
       <router-link tag="a" to="/"
           class="link link-course"
@@ -14,12 +18,12 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import FormButtonVue from '@/mixins/UI/formElements/FormButton.vue';
+import { mapGetters } from 'vuex';
+import DeleteButtonVue from '../../mixins/UI/formElements/DeleteButton.vue';
 
 export default {
   components: {
-    formButton: FormButtonVue,
+    deleteButton: DeleteButtonVue,
   },
   computed: {
     ...mapGetters({
@@ -27,9 +31,6 @@ export default {
     }),
   },
   methods: {
-    ...mapActions({
-      getAllCoursesAction: 'getAllCoursesFromAPI',
-    }),
   },
   beforeCreate() {
     this.$store.dispatch('getAllCoursesFromAPI');

@@ -31,7 +31,19 @@ const postCourseToAPI = ({ commit }, courseName) => new Promise((resolve, reject
     });
 });
 
+const deleteCourseFormAPI = ({ commit }, id) => new Promise(() => {
+  const token = Vue.cookie.get('token');
+  axios.delete(`${urls.COURSES_URL}/${+id}`, { headers: HEADER_TOKEN(token) })
+    .then(() => {
+      commit('deleteCourse', id);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+
 export default {
   getAllCoursesFromAPI,
   postCourseToAPI,
+  deleteCourseFormAPI,
 };
