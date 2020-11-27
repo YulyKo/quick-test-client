@@ -1,5 +1,5 @@
 const setAllCourses = (state, courses) => { state.courses = courses; };
-const addCourse = (state, course) => { state.courses.push(course); };
+const addCourse = (state, course) => { state.courses.unshift(course); };
 const deleteCourse = (state, id) => {
   const { courses } = state;
   for (let index = 0; index < courses.length; index += 1) {
