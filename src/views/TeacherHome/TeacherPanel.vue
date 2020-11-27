@@ -1,7 +1,7 @@
 <template>
   <main>
     <header class="header">
-      <add-course modalWindowTitle="Введіть назву курсу"
+      <add-course modalWindowTitle='Введіть назву курсу'
       buttonClasses="text button-add header__modal_button">
         <template v-slot:buttonName>+ курс</template>
         <adding-form
