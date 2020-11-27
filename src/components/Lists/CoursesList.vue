@@ -3,7 +3,8 @@
     <div v-for="(course, id) in courses" :key="id"
         class="list__card">
       <div class="list__card_nav">
-        <edit-button>
+        <edit-button
+        buttonClasses="button button-edit">
           <template v-slot:buttonName>Редагувати</template>
         </edit-button>
         <!-- <form-button type="button" classes="button">Редагувати</form-button> -->
