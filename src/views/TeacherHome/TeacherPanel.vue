@@ -2,6 +2,7 @@
   <main>
     <header class="header">
       <add-course modalWindowTitle='Введіть назву курсу'>
+        <template v-slot:buttonName>+ курс</template>
         <adding-form
                       actionName='postCourseToAPI'
                       labelName="ім'я"></adding-form>

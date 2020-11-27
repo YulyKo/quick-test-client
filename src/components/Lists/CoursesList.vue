@@ -3,6 +3,9 @@
     <div v-for="(course, id) in courses" :key="id"
         class="list__card">
       <div class="list__card_nav">
+        <edit-button>
+          <template v-slot:buttonName>Редагувати</template>
+        </edit-button>
         <!-- <form-button type="button" classes="button">Редагувати</form-button> -->
         <delete-button
           classes="button button-del"
@@ -19,11 +22,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import DeleteButtonVue from '../../mixins/UI/formElements/DeleteButton.vue';
+import DeleteButtonVue from '@/mixins/UI/formElements/DeleteButton.vue';
+import OpenModalWindowButtonVue from '@/mixins/UI/OpenModalWindowButton.vue';
 
 export default {
   components: {
     deleteButton: DeleteButtonVue,
+    editButton: OpenModalWindowButtonVue,
   },
   computed: {
     ...mapGetters({

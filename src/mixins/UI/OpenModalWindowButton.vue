@@ -3,7 +3,9 @@
     <button id="show-modal"
             type="button"
             @click="showWindow"
-            class="text button-add header__modal_button">+ курс</button>
+            class="text button-add header__modal_button">
+            <slot name="buttonName"></slot>
+            </button>
     <div class="header__modal_background-block"></div>
       <modal v-if="getModalWindowState" :title="this.modalWindowTitle">
         <slot></slot>
