@@ -4,15 +4,10 @@
         class="list__card">
       <div class="list__card_nav">
         <edit-button
-        buttonClasses="button button-edit"
-        modalWindowTitle='Веддіть нову назву курсу'>
+        buttonClasses="button button-edit">
           <template v-slot:buttonName>Редагувати</template>
-          <editing-form
-                      actionName='putCourseToAPI'
-                      labelName="ім'я"
-                      :oldName="course.name"
-                      :id="id"></editing-form>
         </edit-button>
+        <!-- <form-button type="button" classes="button">Редагувати</form-button> -->
         <delete-button
           classes="button button-del"
           type="button"
@@ -30,13 +25,11 @@
 import { mapGetters } from 'vuex';
 import DeleteButtonVue from '@/mixins/UI/formElements/DeleteButton.vue';
 import OpenModalWindowButtonVue from '@/mixins/UI/OpenModalWindowButton.vue';
-import EditingFormVue from '../Forms/EditingForm.vue';
 
 export default {
   components: {
     deleteButton: DeleteButtonVue,
     editButton: OpenModalWindowButtonVue,
-    editingForm: EditingFormVue,
   },
   computed: {
     ...mapGetters({
