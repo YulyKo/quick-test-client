@@ -4,11 +4,11 @@
         class="list__card">
       <div class="list__card_nav">
         <edit-button
-        buttonClasses="button button-edit"
-        modalWindowTitle='Веддіть нову назву курсу'>
+                    buttonClasses="button button-edit"
+                    modalWindowTitle='Веддіть нову назву курсу'>
           <template v-slot:buttonName>Редагувати</template>
           <editing-form
-                      actionName='putCourseToAPI'
+                      actionName="putCourseNameInAPI"
                       labelName="ім'я"
                       :oldName="course.name"
                       :id="id"></editing-form>

@@ -32,10 +32,10 @@ import {
   MIN_NAME_LENGTH,
   MAX_NAME_LENGTH,
 } from '@/utils/constants/index';
-import FormErrorMessagesVue from '../../mixins/UI/formElements/FormErrorMessages.vue';
-import FormInputVue from '../../mixins/UI/formElements/FormInput.vue';
-import FormButtonVue from '../../mixins/UI/formElements/FormButton.vue';
-import FormLabelVue from '../../mixins/UI/formElements/FormLabel.vue';
+import FormErrorMessagesVue from '@/mixins/UI/formElements/FormErrorMessages.vue';
+import FormInputVue from '@/mixins/UI/formElements/FormInput.vue';
+import FormButtonVue from '@/mixins/UI/formElements/FormButton.vue';
+import FormLabelVue from '@/mixins/UI/formElements/FormLabel.vue';
 
 export default {
   name: 'EditingForm',
@@ -58,6 +58,22 @@ export default {
       validNameInput: true,
     };
   },
+  computed: {
+    getActionName() {
+      return this.actionName;
+    },
+    getId() {
+      return this.id;
+    },
+    getName() {
+      return {
+        name: this.name,
+      };
+    },
+    checkErrors() {
+      return this.errors.length === 0;
+    },
+  },
   methods: {
     ...mapMutations({
       closeWindow: 'hideModalWindow',
@@ -75,7 +91,9 @@ export default {
     },
     saveDataToState() {
       const action = this.getActionName;
-      this.$store.dispatch(action, this.name, this.id);
+      const id = this.getId;
+      this.$store.dispatch(action, this.name, id);
+      console.log(`aftter dispatch : id | ${id}`);
       this.closeWindow();
     },
     checkInvalidInputName(validate) {
