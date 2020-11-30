@@ -42,25 +42,8 @@ const deleteCourseFormAPI = ({ commit }, id) => new Promise(() => {
     });
 });
 
-const putNewCorseName = ({ commit }, data) => new Promise(() => {
-  console.log(Object.keys(data));
-  const token = Vue.cookie.get('token');
-  const courseName = {
-    name: data.name,
-  };
-  console.log(courseName);
-  axios.put(`${urls.COURSES_URL}/${data.id}`, courseName, { headers: HEADER_TOKEN(token) })
-    .then(() => {
-      commit('updateCourseName', data.name, data.id);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-});
-
 export default {
   getAllCoursesFromAPI,
   postCourseToAPI,
   deleteCourseFormAPI,
-  putNewCorseName,
 };

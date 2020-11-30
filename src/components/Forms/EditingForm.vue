@@ -58,14 +58,6 @@ export default {
       validNameInput: true,
     };
   },
-  computed: {
-    getActionName() {
-      return this.actionName;
-    },
-    getName() {
-      return this.name;
-    },
-  },
   methods: {
     ...mapMutations({
       closeWindow: 'hideModalWindow',
@@ -83,12 +75,7 @@ export default {
     },
     saveDataToState() {
       const action = this.getActionName;
-      console.log(action);
-      const data = {
-        name: this.name,
-        id: this.id,
-      };
-      this.$store.dispatch(action, data);
+      this.$store.dispatch(action, this.name, this.id);
       this.closeWindow();
     },
     checkInvalidInputName(validate) {
