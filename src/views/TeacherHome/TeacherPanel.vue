@@ -1,13 +1,9 @@
 <template>
   <main>
     <header class="header">
-      <add-course modalWindowTitle='Введіть назву курсу'
-      buttonClasses="text button-add header__modal_button">
-        <template v-slot:buttonName>+ курс</template>
-        <adding-form
-                      actionName='postCourseToAPI'
-                      labelName="ім'я"></adding-form>
-      </add-course>
+      <modalWindow buttonName="+ курс" title="Введіть назву нового курсу">
+        <adding-form></adding-form>
+      </modalWindow>
       <logoutButton/>
     </header>
     <h1>Welcome to teacher panel!</h1>
@@ -18,16 +14,16 @@
 <script>
 import LogOut from '@/components/Accounts/LogOut.vue';
 import CoursesListVue from '@/components/Lists/CoursesList.vue';
-import OpenModalWindowButtonVue from '@/mixins/UI/OpenModalWindowButton.vue';
-import AddingForm from '@/components/Forms/AddingForm.vue';
+import ModalWindowVue from '../../mixins/UI/ModalWindow.vue';
+import AddingFormVue from '../../components/Forms/AddingForm.vue';
 
 export default {
   name: 'TeacherPanel',
   components: {
     logoutButton: LogOut,
     coursesList: CoursesListVue,
-    addCourse: OpenModalWindowButtonVue,
-    addingForm: AddingForm,
+    modalWindow: ModalWindowVue,
+    addingForm: AddingFormVue,
   },
 };
 </script>
