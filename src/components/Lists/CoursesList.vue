@@ -8,10 +8,10 @@
         modalWindowTitle='Веддіть нову назву курсу'>
           <template v-slot:buttonName>Редагувати</template>
           <editing-form
-                      actionName='putCourseToAPI'
+                      actionName='putNewCorseName'
                       labelName="ім'я"
                       :oldName="course.name"
-                      :id="id"></editing-form>
+                      :id="course.id"></editing-form>
         </edit-button>
         <delete-button
           classes="button button-del"
