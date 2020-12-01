@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import teacher from './modules/teacher';
-import courses from './modules/subject';
+import courses from './modules/course';
 import modalWindow from './modules/modalWindow';
 
 Vue.use(Vuex);

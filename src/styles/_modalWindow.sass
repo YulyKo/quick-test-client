@@ -1,0 +1,42 @@
+.modal
+  display: block
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  &-window
+    @extend .modal
+    width: 60%
+    height: 20rem
+    z-index: 2
+    padding: 2rem
+    background-color: $gray-light
+    border: 3px solid $gray
+    border-radius: $card-border-radius
+
+.title--modal
+  margin: 2.5rem 0 2.5rem
+.vm-title
+  @extend .title
+  text-align: center
+  margin: 0
+.vm-btn-close
+  @extend .button
+  @extend .button-close
+  &::after
+    @extend .text, .text--white
+    content: 'Скасувати'
+
+.vm-content
+  height: 100%
+  > .form
+    height: calc( 100% - 8vh )
+    display: flex
+    flex-direction: column
+    justify-content: center
+
+.vm-titlebar
+  display: flex
+  height: 8vh
+  flex-direction: column-reverse
+  justify-content: space-between
