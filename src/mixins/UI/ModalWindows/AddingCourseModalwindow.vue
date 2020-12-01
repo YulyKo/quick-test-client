@@ -1,11 +1,11 @@
 <template>
   <section id="modalWindow">
-    <button  @click="showModal=true" class="button-add text title">{{ buttonName }}</button>
+    <button  @click="showModal=true" class="button-add text title">+ курс</button>
     <Modal v-model="showModal"
            @close="closeWindow()"
            :title="title"
            modalClass="modal-window">
-           <slot></slot>
+           
     </Modal>
   </section>
 </template>

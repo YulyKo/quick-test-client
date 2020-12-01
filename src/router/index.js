@@ -3,6 +3,7 @@ import HomePage from '@/views/Home/HomePage.vue';
 import TeacherPanel from '@/views/TeacherHome/TeacherPanel.vue';
 import RegistrationPage from '@/views/Authentication/RegistrationPage.vue';
 import LoginPage from '@/views/Authentication/LoginPage.vue';
+import AddingCourseWindow from '@/views/Course/AddingCourseWindow.vue';
 
 const routes = [
   {
@@ -34,6 +35,13 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+    children: [
+      {
+        path: 'add',
+        name: 'Add course',
+        component: AddingCourseWindow,
+      },
+    ],
   },
 ];
 
