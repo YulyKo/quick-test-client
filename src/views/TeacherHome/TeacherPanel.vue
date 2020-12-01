@@ -1,8 +1,9 @@
 <template>
   <main>
-    <router-view />
     <header class="header">
-      <router-link to='/home/add'>+ курс</router-link>
+      <modalWindow buttonName="+ курс" title="Введіть назву нового курсу">
+        <adding-form></adding-form>
+      </modalWindow>
       <logoutButton/>
     </header>
     <h1>Welcome to teacher panel!</h1>
@@ -13,12 +14,16 @@
 <script>
 import LogOut from '@/components/Accounts/LogOut.vue';
 import CoursesListVue from '@/components/Lists/CoursesList.vue';
+import ModalWindowVue from '../../mixins/UI/ModalWindow.vue';
+import AddingFormVue from '../../components/Forms/AddingForm.vue';
 
 export default {
   name: 'TeacherPanel',
   components: {
     logoutButton: LogOut,
     coursesList: CoursesListVue,
+    modalWindow: ModalWindowVue,
+    addingForm: AddingFormVue,
   },
 };
 </script>

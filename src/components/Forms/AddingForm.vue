@@ -85,12 +85,12 @@ export default {
       if (this.validNameInput) this.saveDataToState();
     },
     saveDataToState() {
-      // const action = this.getActionName;
-      // const data = {
-      //   name: this.name,
-      // };
-      // this.$store.dispatch(action, data);
-      this.$emit('close');
+      const action = this.getActionName;
+      const data = {
+        name: this.name,
+      };
+      this.$store.dispatch(action, data);
+      this.closeWindow();
     },
     checkInvalidInputName(validate) {
       if (!validate || this.name.length < MIN_NAME_LENGTH

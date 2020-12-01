@@ -2,8 +2,7 @@
   <section id="modalWindow">
     <button  @click="showModal=true" class="button-add text title">{{ buttonName }}</button>
     <Modal v-model="showModal"
-           @close="closeWindow()"
-           :title="title"
+           title="Pollhgjh Jgyufh"
            modalClass="modal-window">
            <slot></slot>
     </Modal>
@@ -11,6 +10,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -24,10 +24,9 @@ export default {
     };
   },
   methods: {
-    closeWindow() {
-      this.showModal = false;
-      console.log('hid');
-    },
+    ...mapMutations({
+      closeWindow: 'hideModalWindow',
+    }),
   },
 };
 </script>
