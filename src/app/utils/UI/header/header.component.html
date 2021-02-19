@@ -1,11 +1,13 @@
-<header>
-  <a routerLink="">
-    <img src="#" alt="logo">
+<header class="page__header" id="page_header">
+  <a class="header_link--logo" routerLink="">
+    <img class="logo" src="../../../../assets/logo.png" alt="logo">
   </a>
-  <menu>
-    <ul>
-      <li> <a routerLink="/help">Допомога</a></li>
-      <li> <a routerLink="/auth">Вхід/Реєстрація</a></li>
-    </ul>
-  </menu>
+  <button 
+    (click)="changeMenuVisibility()"
+    class="btn--header"
+    type="button">>></button>
+  <ul class="header_menu" id="header_menu">
+    <li><a class="header_link--text" routerLink="/help">Допомога</a></li>
+    <li><a class="header_link--text" routerLink="/auth">Вхід/Реєстрація</a></li>
+  </ul>
 </header>
