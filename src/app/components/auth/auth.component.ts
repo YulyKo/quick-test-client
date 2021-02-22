@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth',
@@ -9,14 +7,9 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthComponent implements OnInit {
 
-  type: string;
-
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(
-      switchMap(params => params.getAll('type')))
-      .subscribe(data => this.type = '' + data);
   }
 
 }
