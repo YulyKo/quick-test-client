@@ -5,6 +5,7 @@ import { RegistrationComponent } from 'src/app/components/auth/registration/regi
 import { LoginViewComponent } from 'src/app/views/auth/login-view/login-view.component';
 import { RegisterViewComponent } from 'src/app/views/auth/register-view/register-view.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     RegisterViewComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService]
 })

@@ -16,7 +16,7 @@ import { WebsiteModule } from './website/website.module';
     AuthModule,
     WebsiteModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

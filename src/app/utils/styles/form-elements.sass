@@ -1,13 +1,15 @@
 @import './common'
 
+// _ - block
+// __ - element
+// -- - modifier
+
 $element-radius: 100px
 
 // for iPhone X
 .input
   @extend .text
   display: block
-  border: 2px solid $blue
-  border-radius: $element-radius
   padding: 0.95rem 1.7em
   width: calc(100% - 1.7em*2)
   &:focus
@@ -15,6 +17,12 @@ $element-radius: 100px
     outline: none
   &::placeholder
     color: #333
+  &_text
+    @extend .input
+    border: 2px solid $blue
+    border-radius: $element-radius
+    &--error
+      border: 2px solid $red
 
 .label
   @extend .text

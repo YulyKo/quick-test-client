@@ -1,11 +1,30 @@
-<form class="form">
+<form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <label class="label" for="">Ім'я</label>
-  <input class="input" type="text" name="name" id="" placeholder="Павло Іванович">
+  <input formControlName="name"
+         [ngClass]="{'input__text--error': submited && getFormControls() === 'INVALID'}"
+         class="input"
+         type="text"
+         name="name"
+         placeholder="Павло Іванович">
+   <span
+         class="text"
+         *ngIf="submited && getFormControls() === 'INVALID'"
+         style="color: red">Error</span>
   <label class="label" for="">E-mail</label>
-  <input class="input" type="email" name="email" id="" placeholder="pavloivanovich@mail.com">
+  <input formControlName="email"
+         class="input__text"
+         type="email"
+         name="email"
+         placeholder="pavloivanovich@mail.com">
   <label class="label" for="">Пароль</label>
-  <input class="input" type="password" placeholder="Пароль">
+  <input formControlName="password"
+         class="input__text"
+         type="password"
+         placeholder="Пароль">
   <label class="label" for="">Повторіть пароль</label>
-  <input class="input" type="password" placeholder="Повторiть пароль">
+  <input formControlName="repeatPassword"
+         class="input__text"
+         type="password"
+         placeholder="Повторiть пароль">
   <button class="btn--submit" type="submit">Зареєеструватись</button>
 </form>
