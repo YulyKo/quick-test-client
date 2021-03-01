@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
 import { Patterns } from 'src/app/utils/Patterns';
 
@@ -44,11 +44,13 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm.controls.name);
   }
 
-  checkErrorOfFields(): string {
-    const nameField = this.registrationForm.controls.name;
+  checkErrorOfFields(nameField: AbstractControl): string {
+    // const nameField = this.registrationForm.controls.name;
     if (nameField.value === '') {
       return ErrorsMessages.ERROR_MESSAGE_FOR_REQUIRED_FIELD;
     } else if (nameField.status === 'INVALID') {
+      console.log('invalid');
+      
       return ErrorsMessages.ERROR_MESSAGE_FOR_INVALID_MENTOR_NAME;
     }
     return '';
@@ -58,9 +60,9 @@ export class RegistrationComponent implements OnInit {
   //   return this.registrationForm.controls.name.status;
   // }
   
-  getEmailFieldStatus(): string {
-    return this.registrationForm.controls.email.status;
-  }
+  // getEmailFieldStatus(): string {
+  //   return this.registrationForm.controls.email.status;
+  // }
 
   getPasswordFieldStatus(): string {
     return this.registrationForm.controls.password.status;

@@ -1,31 +1,27 @@
 <form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-  <label class="label" for="">Ім'я</label>
+  <label class="label" for="">Ім'я *</label>
   <input formControlName="name"
-         [ngClass]="{'input_text--error': submited && checkErrorOfFields() !== ''}"
+         [ngClass]="{'input_text--error': submited && checkErrorOfFields(this.registrationForm.controls.name) !== ''}"
          class="input_text"
          type="text"
          name="name"
          placeholder="Павло Іванович">
   <span
         class="text"
-        *ngIf="submited && checkErrorOfFields() !== ''"
-        style="color: red">{{ checkErrorOfFields() }}</span>
-  <label class="label" for="">E-mail</label>
+        *ngIf="submited && checkErrorOfFields(this.registrationForm.controls.name) !== ''"
+        style="color: red">{{ checkErrorOfFields(this.registrationForm.controls.name) }}</span>
+  <label class="label" for="">E-mail *</label>
   <input formControlName="email"
-         [ngClass]="{'input_text--error': submited && getEmailFieldStatus() === 'INVALID'}"
+         [ngClass]="{'input_text--error': submited && checkErrorOfFields(this.registrationForm.controls.email) !== ''}"
          class="input_text"
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
   <span
         class="text"
-        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
-        style="color: red">Error</span>
-  <span
-        class="text"
-        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
-        style="color: red">Error</span>
-  <label class="label" for="">Пароль</label>
+        *ngIf="submited && checkErrorOfFields(this.registrationForm.controls.email) !== ''"
+        style="color: red">{{ checkErrorOfFields(this.registrationForm.controls.email) }}</span>
+  <label class="label" for="">Пароль *</label>
   <input formControlName="password"
          class="input_text"
          type="password"
