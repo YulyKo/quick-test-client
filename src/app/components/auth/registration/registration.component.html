@@ -1,30 +1,48 @@
 <form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
   <label class="label" for="">Ім'я</label>
   <input formControlName="name"
-         [ngClass]="{'input__text--error': submited && getFormControls() === 'INVALID'}"
-         class="input"
+         [ngClass]="{'input_text--error': submited && checkErrorOfFields() !== ''}"
+         class="input_text"
          type="text"
          name="name"
          placeholder="Павло Іванович">
-   <span
-         class="text"
-         *ngIf="submited && getFormControls() === 'INVALID'"
-         style="color: red">Error</span>
+  <span
+        class="text"
+        *ngIf="submited && checkErrorOfFields() !== ''"
+        style="color: red">{{ checkErrorOfFields() }}</span>
   <label class="label" for="">E-mail</label>
   <input formControlName="email"
-         class="input__text"
+         [ngClass]="{'input_text--error': submited && getEmailFieldStatus() === 'INVALID'}"
+         class="input_text"
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
+  <span
+        class="text"
+        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
+        style="color: red">Error</span>
+  <span
+        class="text"
+        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
+        style="color: red">Error</span>
   <label class="label" for="">Пароль</label>
   <input formControlName="password"
-         class="input__text"
+         class="input_text"
          type="password"
          placeholder="Пароль">
+  <span
+        class="text"
+        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
+        style="color: red">Error</span>
   <label class="label" for="">Повторіть пароль</label>
   <input formControlName="repeatPassword"
-         class="input__text"
+         [ngClass]="{'input_text--error': submited && getRepeatPasswordFieldStatus() === 'INVALID'}"
+         class="input_text"
          type="password"
          placeholder="Повторiть пароль">
+  <span
+        class="text"
+        *ngIf="submited && getRepeatPasswordFieldStatus() === 'INVALID'"
+        style="color: red">Error</span>
   <button class="btn--submit" type="submit">Зареєеструватись</button>
 </form>

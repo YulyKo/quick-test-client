@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms'
-import { Constants } from 'src/app/utils/constants';
+import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
+import { Patterns } from 'src/app/utils/Patterns';
 
 @Component({
   selector: 'app-registration',
@@ -20,14 +20,18 @@ export class RegistrationComponent implements OnInit {
             Validators.required,
             Validators.minLength(2),
             Validators.maxLength(20),
-            Validators.pattern(Constants.NAME_PATTERN)
+            Validators.pattern(Patterns.NAME_PATTERN)
           ]],
         email: ['', [
           Validators.required,
           Validators.email
         ]],
-        password: ['', [ Validators.pattern(Constants.PASSWORD_PATTERN) ]],
-        repeatPassword: ['', [ Validators.pattern(Constants.PASSWORD_PATTERN) ]],
+        password: ['', [ 
+          Validators.required,
+          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
+        repeatPassword: ['', [
+          Validators.required,
+          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
       }
     );
    }
@@ -36,11 +40,33 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submited = true;
-    console.log(this.registrationForm.controls);
     console.log(this.registrationForm.value);
+    console.log(this.registrationForm.controls.name);
   }
 
-  getFormControls(): string {
-    return this.registrationForm.controls.name.status;
+  checkErrorOfFields(): string {
+    const nameField = this.registrationForm.controls.name;
+    if (nameField.value === '') {
+      return ErrorsMessages.ERROR_MESSAGE_FOR_REQUIRED_FIELD;
+    } else if (nameField.status === 'INVALID') {
+      return ErrorsMessages.ERROR_MESSAGE_FOR_INVALID_MENTOR_NAME;
+    }
+    return '';
+  }
+
+  // getNameFieldStatus(): string {
+  //   return this.registrationForm.controls.name.status;
+  // }
+  
+  getEmailFieldStatus(): string {
+    return this.registrationForm.controls.email.status;
+  }
+
+  getPasswordFieldStatus(): string {
+    return this.registrationForm.controls.password.status;
+  }
+
+  getRepeatPasswordFieldStatus(): string {
+    return this.registrationForm.controls.repeatPassword.status;
   }
 }
