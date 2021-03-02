@@ -6,6 +6,7 @@ import { LoginViewComponent } from 'src/app/views/auth/login-view/login-view.com
 import { RegisterViewComponent } from 'src/app/views/auth/register-view/register-view.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorMessageComponent } from 'src/app/utils/UI/error-message/error-message.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegistrationComponent,
     LoginViewComponent,
     RegisterViewComponent,
+    ErrorMessageComponent,
+
   ],
   imports: [
     CommonModule,
