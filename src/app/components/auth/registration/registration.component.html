@@ -28,10 +28,13 @@
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
-  <div *ngIf="submited">
+  <div *ngIf="submited && this.form.controls.email.status === 'INVALID'" class="form_errors-c">
     <app-error-message
          *ngIf="this.form.controls.email.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.email.errors.email"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_EMAIL }}"></app-error-message>
   </div>
 
   <label class="label" for="">Пароль *</label>
