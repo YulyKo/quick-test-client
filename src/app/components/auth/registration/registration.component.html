@@ -43,10 +43,17 @@
          class="input_text"
          type="password"
          placeholder="Пароль">
-  <div *ngIf="submited">
+  <div *ngIf="submited && this.form.controls.password.status === 'INVALID'"
+       class="form_errors-c">
     <app-error-message
         *ngIf="this.form.controls.password.errors.required"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.pattern"
+        message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_PASSWORD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.minlength"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHOT_PASSWORD }}"></app-error-message>
   </div>
 
   <label class="label" for="">Повторіть пароль</label>
