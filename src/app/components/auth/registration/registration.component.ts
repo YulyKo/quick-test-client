@@ -9,16 +9,18 @@ import { Patterns } from 'src/app/utils/Patterns';
   styleUrls: []
 })
 export class RegistrationComponent implements OnInit {
-  registrationForm: FormGroup;
+  form: FormGroup;
 
   submited = false;
 
+  ERRORS = ErrorsMessages;
+
   constructor(private formBuilder: FormBuilder) {
-    this.registrationForm = this.formBuilder.group(
+    this.form = this.formBuilder.group(
       {
         name: ['', [
             Validators.required,
-            Validators.minLength(2),
+            Validators.minLength(3),
             Validators.maxLength(20),
             Validators.pattern(Patterns.NAME_PATTERN)
           ]],
@@ -28,9 +30,13 @@ export class RegistrationComponent implements OnInit {
         ]],
         password: ['', [ 
           Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
           Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
         repeatPassword: ['', [
           Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20),
           Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
       }
     );
@@ -40,35 +46,8 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submited = true;
-    console.log(this.registrationForm.value);
-    console.log(this.registrationForm.controls.name);
+    console.log(this.form.value);
+    console.log(this.form.controls);
   }
 
-  checkErrorOfFields(nameField: AbstractControl): string {
-    // const nameField = this.registrationForm.controls.name;
-    if (nameField.value === '') {
-      return ErrorsMessages.ERROR_MESSAGE_FOR_REQUIRED_FIELD;
-    } else if (nameField.status === 'INVALID') {
-      console.log('invalid');
-      
-      return ErrorsMessages.ERROR_MESSAGE_FOR_INVALID_MENTOR_NAME;
-    }
-    return '';
-  }
-
-  // getNameFieldStatus(): string {
-  //   return this.registrationForm.controls.name.status;
-  // }
-  
-  // getEmailFieldStatus(): string {
-  //   return this.registrationForm.controls.email.status;
-  // }
-
-  getPasswordFieldStatus(): string {
-    return this.registrationForm.controls.password.status;
-  }
-
-  getRepeatPasswordFieldStatus(): string {
-    return this.registrationForm.controls.repeatPassword.status;
-  }
 }

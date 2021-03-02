@@ -1,44 +1,53 @@
-<form class="form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <label class="label" for="">Ім'я *</label>
   <input formControlName="name"
-         [ngClass]="{'input_text--error': submited && checkErrorOfFields(this.registrationForm.controls.name) !== ''}"
+         [ngClass]="{'input_text--error': submited && this.form.controls.name.status === 'INVALID'}"
          class="input_text"
          type="text"
          name="name"
          placeholder="Павло Іванович">
-  <span
-        class="text"
-        *ngIf="submited && checkErrorOfFields(this.registrationForm.controls.name) !== ''"
-        style="color: red">{{ checkErrorOfFields(this.registrationForm.controls.name) }}</span>
+  <div *ngIf="submited">
+    <app-error-message
+         *ngIf="this.form.controls.name.errors.required"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  </div>
+
   <label class="label" for="">E-mail *</label>
   <input formControlName="email"
-         [ngClass]="{'input_text--error': submited && checkErrorOfFields(this.registrationForm.controls.email) !== ''}"
+         [ngClass]="{'input_text--error': submited && this.form.controls.email.errors}"
          class="input_text"
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
-  <span
-        class="text"
-        *ngIf="submited && checkErrorOfFields(this.registrationForm.controls.email) !== ''"
-        style="color: red">{{ checkErrorOfFields(this.registrationForm.controls.email) }}</span>
+  <div *ngIf="submited">
+    <app-error-message
+         *ngIf="this.form.controls.email.errors.required"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  </div>
+
   <label class="label" for="">Пароль *</label>
   <input formControlName="password"
+         [ngClass]="{'input_text--error': submited && this.form.controls.password.status === 'INVALID'}"
          class="input_text"
          type="password"
          placeholder="Пароль">
-  <span
-        class="text"
-        *ngIf="submited && getPasswordFieldStatus() === 'INVALID'"
-        style="color: red">Error</span>
+  <div *ngIf="submited">
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.required"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  </div>
+
   <label class="label" for="">Повторіть пароль</label>
   <input formControlName="repeatPassword"
-         [ngClass]="{'input_text--error': submited && getRepeatPasswordFieldStatus() === 'INVALID'}"
+         [ngClass]="{'input_text--error': submited && this.form.controls.repeatPassword.status === 'INVALID'}"
          class="input_text"
          type="password"
          placeholder="Повторiть пароль">
-  <span
-        class="text"
-        *ngIf="submited && getRepeatPasswordFieldStatus() === 'INVALID'"
-        style="color: red">Error</span>
-  <button class="btn--submit" type="submit">Зареєеструватись</button>
+  <div *ngIf="submited">
+    <app-error-message
+         *ngIf="this.form.controls.repeatPassword.errors.required"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  </div>
+
+  <button class="btn--submit" type="submit">Зареєеструватися</button>
 </form>
