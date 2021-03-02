@@ -6,10 +6,19 @@
          type="text"
          name="name"
          placeholder="Павло Іванович">
-  <div *ngIf="submited">
+  <div *ngIf="submited && this.form.controls.name.status === 'INVALID'" class="form_errors-c">
     <app-error-message
          *ngIf="this.form.controls.name.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.name.errors.pattern"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_MENTOR_NAME }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.name.errors.minlength"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_MENTOR_NAME }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.name.errors.maxlength "
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_MENTOR_NAME }}"></app-error-message>
   </div>
 
   <label class="label" for="">E-mail *</label>
