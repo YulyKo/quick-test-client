@@ -41,7 +41,7 @@
   <input formControlName="password"
          [ngClass]="{'input_text--error': submited && this.form.controls.password.status === 'INVALID'}"
          class="input_text"
-         type="password"
+         type="text"
          placeholder="Пароль">
   <div *ngIf="submited && this.form.controls.password.status === 'INVALID'"
        class="form_errors-c">
@@ -60,7 +60,7 @@
   <input formControlName="repeatPassword"
          [ngClass]="{'input_text--error': submited && this.form.controls.repeatPassword.status === 'INVALID'}"
          class="input_text"
-         type="password"
+         type="text"
          placeholder="Повторiть пароль">
   <div *ngIf="submited">
     <app-error-message

@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
         password: ['', [ 
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
+          Validators.pattern(new RegExp(Patterns.PASSWORD_PATTERN)) ]],
         repeatPassword: ['', [
           Validators.required,
           Validators.minLength(8),
@@ -45,7 +45,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.submited = true;
     console.log(this.form.value);
-    console.log(this.form.controls);
+    console.log(this.form.controls.password.errors.pattern);
   }
 
 }
