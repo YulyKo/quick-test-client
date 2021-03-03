@@ -41,7 +41,7 @@
   <input formControlName="password"
          [ngClass]="{'input_text--error': submited && this.form.controls.password.status === 'INVALID'}"
          class="input_text"
-         type="text"
+         type="password"
          placeholder="Пароль">
   <div *ngIf="submited && this.form.controls.password.status === 'INVALID'"
        class="form_errors-c">

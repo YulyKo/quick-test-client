@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
         password: ['', [ 
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(new RegExp(Patterns.PASSWORD_PATTERN)) ]],
+          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
         repeatPassword: ['', [
           Validators.required,
           Validators.minLength(8),
