@@ -32,12 +32,14 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(20),
-          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
-        repeatPassword: ['', [
+          Validators.pattern(Patterns.PASSWORD_PATTERN)
+        ]],
+        confirmPassword: ['', [
           Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(20),
-          Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
+        ]],
+      },
+      {
+        validator: this.confirmPasswordValidation('password', 'confirmPassword')
       }
     );
    }
@@ -47,7 +49,19 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.submited = true;
     console.log(this.form.value);
-    console.log(this.form.controls.password.errors.pattern);
+    console.log(this.form.controls.confirmPassword);
+  }
+
+  confirmPasswordValidation(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      let control = formGroup.controls[controlName];
+      let matchingControl = formGroup.controls[matchingControlName];
+      if ( control.value !== matchingControl.value ) {
+        matchingControl.setErrors({ confirmPasswordValidation: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
   }
 
 }

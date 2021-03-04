@@ -41,7 +41,7 @@
   <input formControlName="password"
          [ngClass]="{'input_text--error': submited && this.form.controls.password.status === 'INVALID'}"
          class="input_text"
-         type="password"
+         type="text"
          placeholder="Пароль">
   <div *ngIf="submited && this.form.controls.password.status === 'INVALID'"
        class="form_errors-c">
@@ -59,16 +59,19 @@
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
 
-  <label class="label" for="">Повторіть пароль</label>
-  <input formControlName="repeatPassword"
-         [ngClass]="{'input_text--error': submited && this.form.controls.repeatPassword.status === 'INVALID'}"
+  <label class="label" for="">Повторіть пароль *</label>
+  <input formControlName="confirmPassword"
+         [ngClass]="{'input_text--error': submited && this.form.controls.confirmPassword.errors !== null}"
          class="input_text"
          type="text"
          placeholder="Повторiть пароль">
-  <div *ngIf="submited">
+  <div *ngIf="submited && this.form.controls.confirmPassword.errors !== null">
     <app-error-message
-         *ngIf="this.form.controls.repeatPassword.errors.required"
+         *ngIf="this.form.controls.confirmPassword.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.confirmPassword.errors.confirmPasswordValidation"
+         message="{{ ERRORS.ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS }}"></app-error-message>
   </div>
 
   <button class="btn--submit" type="submit">Зареєструватися</button>
