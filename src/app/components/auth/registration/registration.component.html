@@ -54,6 +54,9 @@
     <app-error-message
         *ngIf="this.form.controls.password.errors.minlength"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHOT_PASSWORD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.maxlength"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
 
   <label class="label" for="">Повторіть пароль</label>
@@ -68,5 +71,5 @@
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
   </div>
 
-  <button class="btn--submit" type="submit">Зареєеструватися</button>
+  <button class="btn--submit" type="submit">Зареєструватися</button>
 </form>

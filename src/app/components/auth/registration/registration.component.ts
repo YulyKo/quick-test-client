@@ -31,10 +31,12 @@ export class RegistrationComponent implements OnInit {
         password: ['', [ 
           Validators.required,
           Validators.minLength(8),
+          Validators.maxLength(20),
           Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
         repeatPassword: ['', [
           Validators.required,
           Validators.minLength(8),
+          Validators.maxLength(20),
           Validators.pattern(Patterns.PASSWORD_PATTERN) ]],
       }
     );
