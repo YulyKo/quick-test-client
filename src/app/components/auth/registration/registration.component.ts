@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
 import { Patterns } from 'src/app/utils/Patterns';
 
@@ -15,7 +16,10 @@ export class RegistrationComponent implements OnInit {
 
   ERRORS = ErrorsMessages;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) {
     this.form = this.formBuilder.group(
       {
         name: ['', [
@@ -48,8 +52,12 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submited = true;
-    console.log(this.form.value);
-    console.log(this.form.controls.confirmPassword);
+    if (this.form.status === 'VALID') {
+      console.log('this.form');
+      // http req here
+      // check exist emeil
+      // this.authService.checkEmail('eeee@eee.ee');
+    }
   }
 
   confirmPasswordValidation(controlName: string, matchingControlName: string) {

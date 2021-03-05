@@ -7,6 +7,7 @@ import { RegisterViewComponent } from 'src/app/views/auth/register-view/register
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from 'src/app/utils/UI/error-message/error-message.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ErrorMessageComponent } from 'src/app/utils/UI/error-message/error-mess
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [AuthService]
 })
