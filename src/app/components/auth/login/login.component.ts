@@ -7,11 +7,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: []
 })
 export class LoginComponent implements OnInit {
-  from: FormGroup;
+  form: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) { }
+  constructor(private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      email: [''],
+      password: ['']
+    });
+  }
 
   ngOnInit(): void {}
 
