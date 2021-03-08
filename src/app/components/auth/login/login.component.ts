@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
 import { Patterns } from 'src/app/utils/Patterns';
 
@@ -11,8 +13,8 @@ import { Patterns } from 'src/app/utils/Patterns';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
-  
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder, private authServce: AuthService) {
     this.form = this.formBuilder.group({
       email: ['', [
         Validators.required,
@@ -29,4 +31,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onSubmit(): void {
+    console.log('loggedin');
+    const user = this.getUser();
+    console.log(user);
+  }
+  
+  getUser(): User {
+    const user = new User();
+    user.setEmail(this.form.controls.email.value);
+    user.setPassword(this.form.controls.password.value);
+    return user;
+  }
 }
