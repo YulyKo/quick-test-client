@@ -27,10 +27,7 @@ export class AuthService {
       });
   }
 
-  async login(user: User) {
-    await this.http.post(`${this.AUTH_API_URL}/login`, user)
-      .subscribe((res) => {
-        console.log(res);
-      })
+  login(user: User) {
+    return this.http.post<User>(`${this.AUTH_API_URL}/login`, user);
   }
 }

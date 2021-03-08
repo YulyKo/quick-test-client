@@ -32,9 +32,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    console.log('loggedin');
     const user = this.getUser();
-    this.authServce.login(user);
+    this.authServce.login(user)
+      .subscribe((res) => {
+        user.setAccessToken(res.access_token);
+        console.log(user);
+      });
   }
   
   getUser(): User {
