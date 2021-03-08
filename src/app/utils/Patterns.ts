@@ -1,7 +1,18 @@
 export enum Patterns {
   NAME_PATTERN = `[А-Я'ЇІЄ]{1}[а-я'їіє]{1,20} [А-Я'ЇІЄ]{1}[а-я'їіє]{1,20}'?-?[а-яА-Я'їіє'ЇІЄ]{1,20}`,
-  PASSWORD_PATTERN = '[a-zA-Z 0-9_!@#$%*+]*',
+  PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}',
 }
+// PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,}',
+// PASSWORD_PATTERN = '((?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,})',
+// PASSWORD_PATTERN = '((?=.*[a-z]*)(?=.*[A-Z]*)(?=.*\d*).{3,})',
+
+// ***
+// PASSWORD_PATTERN_LOWERCASE_LETTERS = '((([a-z])|([а-я])).{1,})',
+// PASSWORD_PATTERN_UPPERCASE_LETTERS = '((([A-Z])|([А-Я])).{1,})',
+// PASSWORD_PATTERN_NUMBERS = '(\d.{1,})',
+// ***
+
+// PASSWORD_PATTERN = '[a-zA-Z 0-9_!@#$%*+]*', last work
 // PASSWORD_PATTERN = '^([\w*+!@#$^]){8,}$',
 // PASSWORD_PATTERN = '^[\w*+!@#$^]{8,}$',
 // PASSWORD_PATTERN = '^(?=.*[a-z])(?=.*[A-Z]).{8,}$', - work
