@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
           ]],
         email: ['', [
           Validators.required,
-          Validators.email
+          Validators.pattern(Patterns.EMAIL_PATTERN)
         ]],
         password: ['', [ 
           Validators.required,
@@ -76,5 +76,4 @@ export class RegistrationComponent implements OnInit {
       }
     }
   }
-
 }

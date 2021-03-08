@@ -33,7 +33,7 @@
          *ngIf="this.form.controls.email.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
     <app-error-message
-         *ngIf="this.form.controls.email.errors.email"
+         *ngIf="this.form.controls.email.errors.pattern"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_EMAIL }}"></app-error-message>
   </div>
 
