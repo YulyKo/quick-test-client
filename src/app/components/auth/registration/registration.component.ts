@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
 import { Patterns } from 'src/app/utils/Patterns';
@@ -54,9 +55,13 @@ export class RegistrationComponent implements OnInit {
     this.submited = true;
     if (this.form.status === 'VALID') {
       console.log('this.form');
-      // http req here
-      // check exist emeil
       // this.authService.checkEmail('eeee@eee.ee');
+      const user = new User();
+      user.setName(this.form.value.name);
+      user.setPassword(this.form.value.password);
+      user.setEmail(this.form.value.email);
+      console.log(user);
+      this.authService.register(user);
     }
   }
 
