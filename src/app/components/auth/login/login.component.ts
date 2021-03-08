@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
     const user = this.getUser();
     this.authServce.login(user)
       .subscribe((res) => {
-        user.setAccessToken(res.access_token);
+        user.setAccessToken(res.accessToken);
         console.log(user);
       });
   }
-  
+
   getUser(): User {
     const user = new User();
     user.setEmail(this.form.controls.email.value);

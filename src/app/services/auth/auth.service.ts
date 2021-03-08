@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { environment } from 'src/environments/environment';
 
@@ -20,14 +21,14 @@ export class AuthService {
   //     .subscribe((responce) => console.log(responce));
   // }
 
-  async register(user: User) {
+  async register(user: User): Promise<void> {
     await this.http.post(`${this.AUTH_API_URL}/registration`, user)
       .subscribe((res: Response) => {
         console.log(res);
       });
   }
 
-  login(user: User) {
+  login(user: User): Observable<User> {
     return this.http.post<User>(`${this.AUTH_API_URL}/login`, user);
   }
 }

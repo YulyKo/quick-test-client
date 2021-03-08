@@ -17,10 +17,8 @@ export class RegistrationComponent implements OnInit {
 
   ERRORS = ErrorsMessages;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService
-    ) {
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService) {
     this.form = this.formBuilder.group(
       {
         name: ['', [
@@ -33,7 +31,7 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.pattern(Patterns.EMAIL_PATTERN)
         ]],
-        password: ['', [ 
+        password: ['', [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(20),
@@ -49,31 +47,37 @@ export class RegistrationComponent implements OnInit {
     );
    }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    const r = this.confirmPasswordValidation('password', 'confirmPassword');
+    console.log(typeof r);
+  }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submited = true;
     if (this.form.status === 'VALID') {
-      console.log('this.form');
       // this.authService.checkEmail('eeee@eee.ee');
-      const user = new User();
-      user.setName(this.form.value.name);
-      user.setPassword(this.form.value.password);
-      user.setEmail(this.form.value.email);
-      console.log(user);
+      const user = this.setUserData();
       this.authService.register(user);
     }
   }
 
-  confirmPasswordValidation(controlName: string, matchingControlName: string) {
+  setUserData(): User {
+    const user = new User();
+    user.setName(this.form.value.name);
+    user.setPassword(this.form.value.password);
+    user.setEmail(this.form.value.email);
+    return user;
+  }
+
+  confirmPasswordValidation(controlName: string, matchingControlName: string): any {
     return (formGroup: FormGroup) => {
-      let control = formGroup.controls[controlName];
-      let matchingControl = formGroup.controls[matchingControlName];
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
       if ( control.value !== matchingControl.value ) {
         matchingControl.setErrors({ confirmPasswordValidation: true });
       } else {
         matchingControl.setErrors(null);
       }
-    }
+    };
   }
 }
