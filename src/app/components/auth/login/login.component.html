@@ -1,7 +1,16 @@
-<form class="form">
-  <label class="label" for="">E-mail</label>
-  <input class="input __text" type="email" name="email" id=""  placeholder="pavloivanovich@mail.com">
-  <label class="label" for="">Пароль</label>
-  <input class="input __text" type="password" placeholder="Пароль">
+<form class="form">  
+  <label class="label" for="">E-mail *</label>
+  <input formControlName="email"
+         class="input_text"
+         type="email"
+         name="email"
+         placeholder="pavloivanovich@mail.com">
+
+  <label class="label" for="">Пароль *</label>
+  <input formControlName="password"
+         class="input_text"
+         type="text"
+         placeholder="Пароль">
+
   <button class="btn--submit" type="submit">Увійти</button>
 </form>
