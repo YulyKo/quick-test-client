@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     console.log('loggedin');
     const user = this.getUser();
-    console.log(user);
+    this.authServce.login(user);
   }
   
   getUser(): User {
