@@ -13,8 +13,9 @@ import { Patterns } from 'src/app/utils/Patterns';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
+  existEmail: boolean;
 
-  constructor(private formBuilder: FormBuilder, private authServce: AuthService) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
       email: ['', [
         Validators.required,
@@ -33,10 +34,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     const user = this.getUser();
-    this.authServce.login(user)
+    this.authService.login(user)
       .subscribe((res) => {
         user.setAccessToken(res.accessToken);
-        console.log(user);
       });
   }
 
@@ -45,5 +45,15 @@ export class LoginComponent implements OnInit {
     user.setEmail(this.form.controls.email.value);
     user.setPassword(this.form.controls.password.value);
     return user;
+  }
+
+  checkExistingEmail(email: string): void {
+    this.authService.checkEmail(email)
+    .subscribe(
+      () => { this.existEmail = false; },
+      (error) => {
+        error.status === 400 ? this.existEmail = true : console.error(error);
+      },
+    );
   }
 }

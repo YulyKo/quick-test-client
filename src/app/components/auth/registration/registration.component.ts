@@ -52,10 +52,10 @@ export class RegistrationComponent implements OnInit {
     this.checkExistingEmail(emailValue);
     // якщо пошти не існує в базі, то реєстрація доспуна
     if (this.form.status === 'VALID' && this.existEmail === false) {
-      // const user = this.setUserData();
-      // this.authService.register(user).subscribe(() => {
-      //   this.getAccessToken(user);
-      // });
+      const user = this.setUserData();
+      this.authService.register(user).subscribe(() => {
+        this.getAccessToken(user);
+      });
     }
   }
 
