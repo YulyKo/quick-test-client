@@ -12,10 +12,8 @@ import { Patterns } from 'src/app/utils/Patterns';
 })
 export class RegistrationComponent implements OnInit {
   form: FormGroup;
-
-  submited = false;
-
   ERRORS = ErrorsMessages;
+  existEmail: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService) {
@@ -26,7 +24,7 @@ export class RegistrationComponent implements OnInit {
             Validators.minLength(3),
             Validators.maxLength(20),
             Validators.pattern(Patterns.NAME_PATTERN)
-          ]],
+        ]],
         email: ['', [
           Validators.required,
           Validators.pattern(Patterns.EMAIL_PATTERN)
@@ -47,18 +45,35 @@ export class RegistrationComponent implements OnInit {
     );
    }
 
-  ngOnInit(): void {
-    const r = this.confirmPasswordValidation('password', 'confirmPassword');
-    console.log(typeof r);
-  }
+  ngOnInit(): void {  }
 
   onSubmit(): void {
-    this.submited = true;
-    if (this.form.status === 'VALID') {
-      // this.authService.checkEmail('eeee@eee.ee');
-      const user = this.setUserData();
-      this.authService.register(user);
+    const emailValue = this.form.controls.email.value;
+    this.checkExistingEmail(emailValue);
+    // якщо пошти не існує в базі, то реєстрація доспуна
+    if (this.form.status === 'VALID' && this.existEmail === false) {
+      // const user = this.setUserData();
+      // this.authService.register(user).subscribe(() => {
+      //   this.getAccessToken(user);
+      // });
     }
+  }
+
+  checkExistingEmail(email: string): void {
+    this.authService.checkEmail(email)
+    .subscribe(
+      () => { this.existEmail = false; },
+      (error) => {
+        error.status === 400 ? this.existEmail = true : console.error(error);
+      },
+    );
+  }
+
+  getAccessToken(user: User): void {
+    this.authService.login(user).subscribe((res) => {
+      user.setAccessToken(res.accessToken);
+      console.log(user);
+    });
   }
 
   setUserData(): User {

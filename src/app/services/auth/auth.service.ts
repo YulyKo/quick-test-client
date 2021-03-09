@@ -16,16 +16,12 @@ export class AuthService {
     return false;
   }
 
-  // async checkEmail(email: string) {
-  //   await this.http.head('https://quick-test-api-v3.herokuapp.com/auth/email/' + email)
-  //     .subscribe((responce) => console.log(responce));
-  // }
+  checkEmail(email: string): Observable<Object> {
+    return this.http.head('https://quick-test-api-v3.herokuapp.com/auth/email/' + email);
+  }
 
-  async register(user: User): Promise<void> {
-    await this.http.post(`${this.AUTH_API_URL}/registration`, user)
-      .subscribe((res: Response) => {
-        console.log(res);
-      });
+  register(user: User): Observable<User> {
+    return this.http.post<User>(`${this.AUTH_API_URL}/registration`, user);
   }
 
   login(user: User): Observable<User> {
