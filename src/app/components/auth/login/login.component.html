@@ -36,6 +36,21 @@
         *ngIf="this.form.controls.password.errors.maxlength"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
-
+  <!-- <span>
+    exist EMAIL:
+    {{ this.existEmail }}
+  </span>
+  <span>
+    exist user: 
+    {{ this.existUser }}
+  </span> -->
+  <div>
+    <app-error-message
+        *ngIf="this.existEmail === false"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_NOT_EXISTED_EMAIL }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.existUser === false"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_LOGIN_FORM }}"></app-error-message>
+  </div>
   <button class="btn--submit" type="submit">Увійти</button>
 </form>

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
   existEmail: boolean;
+  existUser: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
@@ -33,11 +34,25 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const user = this.getUser();
+    const email = this.form.controls.email.value;
+    this.checkExistingEmail(email);
+    // якщо пошта існує в базі, вхід доступний
+    if (this.form.status === 'VALID' && this.existEmail === true) {
+      const user = this.getUser();
+      this.loginUser(user);
+    }
+  }
+
+  loginUser(user: User): void {
     this.authService.login(user)
-      .subscribe((res) => {
-        user.setAccessToken(res.accessToken);
-      });
+      .subscribe(
+        (res) => {
+          user.setAccessToken(res.accessToken);
+          this.existUser = true;
+        },
+        // (error) => console.error(error)
+        (error) => error.status === 400 ? this.existUser = false : console.error('error')
+      );
   }
 
   getUser(): User {
@@ -49,11 +64,13 @@ export class LoginComponent implements OnInit {
 
   checkExistingEmail(email: string): void {
     this.authService.checkEmail(email)
-    .subscribe(
-      () => { this.existEmail = false; },
-      (error) => {
-        error.status === 400 ? this.existEmail = true : console.error(error);
-      },
-    );
+      .subscribe(
+        () => {
+          this.existEmail = false;
+        },
+        (error) => {
+          error.status === 400 ? this.existEmail = true : console.error(error);
+        },
+      );
   }
 }
