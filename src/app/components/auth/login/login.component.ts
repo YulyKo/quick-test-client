@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
           user.setAccessToken(res.accessToken);
           this.existUser = true;
         },
-        // (error) => console.error(error)
         (error) => error.status === 400 ? this.existUser = false : console.error('error')
       );
   }
@@ -65,9 +64,7 @@ export class LoginComponent implements OnInit {
   checkExistingEmail(email: string): void {
     this.authService.checkEmail(email)
       .subscribe(
-        () => {
-          this.existEmail = false;
-        },
+        () => { this.existEmail = false; },
         (error) => {
           error.status === 400 ? this.existEmail = true : console.error(error);
         },

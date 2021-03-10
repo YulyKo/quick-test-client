@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   checkEmail(email: string): Observable<object> {
-    return this.http.head('https://quick-test-api-v3.herokuapp.com/auth/email/' + email);
+    return this.http.head(`${this.AUTH_API_URL}/email/${email}`);
   }
 
   register(user: User): Observable<User> {

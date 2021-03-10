@@ -14,11 +14,7 @@ export class HeaderComponent implements OnInit{
 
 
   changeMenuVisibility(): void {
-    if (this.isOpen) {
-      this.closeMenu();
-    } else {
-      this.openMenu();
-    }
+    this.isOpen === true ? this.closeMenu() : this.openMenu()
   }
 
   openMenu(): void {

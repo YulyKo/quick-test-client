@@ -19,7 +19,7 @@
   <input formControlName="password"
          [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'}"
          class="input_text"
-         type="text"
+         type="password"
          placeholder="Пароль">
   <div *ngIf="this.form.controls.password.status === 'INVALID'"
        class="form_errors-c">
@@ -36,15 +36,9 @@
         *ngIf="this.form.controls.password.errors.maxlength"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
-  <!-- <span>
-    exist EMAIL:
-    {{ this.existEmail }}
-  </span>
-  <span>
-    exist user: 
-    {{ this.existUser }}
-  </span> -->
+
   <div>
+    <!-- common errors -->
     <app-error-message
         *ngIf="this.existEmail === false"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_NOT_EXISTED_EMAIL }}"></app-error-message>

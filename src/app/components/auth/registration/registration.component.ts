@@ -84,6 +84,7 @@ export class RegistrationComponent implements OnInit {
     return user;
   }
 
+  // lower magic
   confirmPasswordValidation(controlName: string, matchingControlName: string): any {
     return (formGroup: FormGroup) => {
       const control = formGroup.controls[controlName];
