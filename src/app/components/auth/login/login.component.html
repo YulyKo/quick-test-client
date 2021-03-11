@@ -40,7 +40,7 @@
   <div>
     <!-- common errors -->
     <app-error-message
-        *ngIf="this.existEmail === false"
+        *ngIf="this.existEmail === true"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_NOT_EXISTED_EMAIL }}"></app-error-message>
     <app-error-message
         *ngIf="this.existUser === false"

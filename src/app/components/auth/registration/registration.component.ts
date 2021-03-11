@@ -62,9 +62,9 @@ export class RegistrationComponent implements OnInit {
   checkExistingEmail(email: string): void {
     this.authService.checkEmail(email)
     .subscribe(
-      () => { this.existEmail = false; },
+      () => { this.existEmail = true; },
       (error) => {
-        error.status === 400 ? this.existEmail = true : console.error(error);
+        error.status === 400 ? this.existEmail = false : console.error(error);
       },
     );
   }
