@@ -6,19 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit{
+  isOpen = false;
 
   constructor() { }
 
   ngOnInit(): void {}
 
-  isOpen: boolean = false;
 
   changeMenuVisibility(): void {
-    if (this.isOpen) {
-      this.closeMenu();
-    } else {
-      this.openMenu();
-    }
+    this.isOpen === true ? this.closeMenu() : this.openMenu()
   }
 
   openMenu(): void {
