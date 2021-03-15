@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
         (res) => {
           user.setAccessToken(res.accessToken);
           this.existUser = true;
+          this.authService.setLoginStatus(true);
         },
         (error) => error.status === 400 ? this.existUser = false : console.error('error')
       );
