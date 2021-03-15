@@ -14,7 +14,7 @@ export class LoginViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToRegister(): void {
+  goToRegisterPage(): void {
     this.router.navigate(['../register'], {relativeTo: this.route});
   }
 }
