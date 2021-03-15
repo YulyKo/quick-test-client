@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['../auth-view.sass']
 })
 export class RegisterViewComponent implements OnInit {
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
