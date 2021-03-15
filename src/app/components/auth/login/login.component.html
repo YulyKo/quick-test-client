@@ -1,0 +1,50 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">  
+  <label class="label" for="">E-mail *</label>
+  <input formControlName="email"
+         [ngClass]="{'input_text--error': this.form.controls.email.errors}"
+         class="input_text"
+         type="email"
+         name="email"
+         placeholder="pavloivanovich@mail.com">
+  <div *ngIf="this.form.controls.email.status === 'INVALID'" class="form_errors-c">
+    <app-error-message
+         *ngIf="this.form.controls.email.errors.required"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+         *ngIf="this.form.controls.email.errors.pattern"
+         message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_EMAIL }}"></app-error-message>
+  </div>
+
+  <label class="label" for="">Пароль *</label>
+  <input formControlName="password"
+         [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'}"
+         class="input_text"
+         type="password"
+         placeholder="Пароль">
+  <div *ngIf="this.form.controls.password.status === 'INVALID'"
+       class="form_errors-c">
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.required"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.pattern"
+        message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_PASSWORD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.minlength"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHOT_PASSWORD }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.form.controls.password.errors.maxlength"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
+  </div>
+
+  <div>
+    <!-- common errors -->
+    <app-error-message
+        *ngIf="this.existEmail === true"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_NOT_EXISTED_EMAIL }}"></app-error-message>
+    <app-error-message
+        *ngIf="this.existUser === false"
+        message="{{ ERRORS.ERROR_MESSAGE_FOR_LOGIN_FORM }}"></app-error-message>
+  </div>
+  <button class="btn--submit" type="submit">Увійти</button>
+</form>
