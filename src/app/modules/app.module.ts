@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { AppComponent } from '../app.component';
+import { MentorPanelComponent } from '../components/mentor-panel/mentor-panel.component';
 import { HeaderComponent } from '../utils/UI/header/header.component';
+import { MentorPanelViewsComponent } from '../views/mentor-panel-views/mentor-panel-views.component';
 import { AuthModule } from './auth/auth.module';
 import { WebsiteModule } from './website/website.module';
 
@@ -16,7 +18,7 @@ import { WebsiteModule } from './website/website.module';
     AuthModule,
     WebsiteModule,
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
