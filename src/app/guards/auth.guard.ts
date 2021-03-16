@@ -10,7 +10,10 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
 
   constructor(private authServise: AuthService) {}
 
-  canDeactivate(component: unknown, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canDeactivate(
+    component: unknown, currentRoute: ActivatedRouteSnapshot,
+    currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot
+  ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     console.log('diactive');
     this.authServise.setLoginStatus(false);
     return this.checkLoginStatus();
