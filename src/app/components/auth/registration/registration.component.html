@@ -23,13 +23,13 @@
 
   <label class="label" for="">E-mail *</label>
   <input formControlName="email"
-         [ngClass]="{'input_text--error': this.form.controls.email.errors || this.existEmail}"
+         [ngClass]="{'input_text--error': this.form.controls.email.errors || this.existEmail === false}"
          class="input_text"
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
   <app-error-message
-      *ngIf="this.existEmail"
+      *ngIf="this.existEmail === false"
       message="{{ ERRORS.ERROR_MESSAGE_FOR_EXISTED_EMAIL }}"></app-error-message>
   <div *ngIf="this.form.controls.email.status === 'INVALID'" class="form_errors-c">
     <app-error-message

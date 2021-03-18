@@ -49,34 +49,45 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(): void {
     const emailValue = this.form.controls.email.value;
-    this.checkExistingEmail(emailValue);
-    // якщо пошти не існує в базі, то реєстрація доспуна
-    if (this.form.status === 'VALID' && this.existEmail === false) {
-      const user = this.setUserData();
-      this.authService.register(user).subscribe(() => {
-        this.getAccessToken(user);
-      });
-    }
+    setTimeout(() => {
+      this.checkExistingEmail(emailValue);
+    }, 1000);
+
   }
 
+  // true - існує ; false - НЕ існує
   checkExistingEmail(email: string): void {
     this.authService.checkEmail(email)
-    .subscribe(
-      () => {
-        this.existEmail = true;
-        this.authService.setLoginStatus(true);
-      },
-      (error) => {
-        error.status === 400 ? this.existEmail = false : console.error(error);
-      },
-    );
+      .subscribe(
+        () => {
+          this.existEmail = true;
+          if (this.form.status === 'VALID') { this.registerUser(); }
+        },
+        (error) => {
+          error.status === 400 ? this.existEmail = false : console.error(error);
+        },
+      );
+  }
+
+  registerUser(): void {
+    setTimeout(() => {
+      const user = this.setUserData();
+      this.authService.register(user).subscribe(
+        () => this.getAccessToken(user),
+        (error) => console.error(error)
+      );
+    }, 1000);
   }
 
   getAccessToken(user: User): void {
-    this.authService.login(user).subscribe((res) => {
-      user.setAccessToken(res.accessToken);
-      console.log(user);
-    });
+    setTimeout(() => {
+      this.authService.login(user).subscribe((res) => {
+        user.setAccessToken(res.accessToken);
+        this.authService.setLoginStatus(true);
+        console.log(user);
+        console.log(this.authService.getLoginStatus());
+      });
+    }, 1000);
   }
 
   setUserData(): User {
