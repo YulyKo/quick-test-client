@@ -6,7 +6,7 @@
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
-  <div *ngIf="this.form.controls.email.status === 'INVALID'" class="form_errors-c">
+  <div *ngIf="this.submited === true && this.form.controls.email.status === 'INVALID'" class="form_errors-c">
     <app-error-message
          *ngIf="this.form.controls.email.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
@@ -21,7 +21,7 @@
          class="input_text"
          type="password"
          placeholder="Пароль">
-  <div *ngIf="this.form.controls.password.status === 'INVALID'"
+  <div *ngIf="this.submited === true && this.form.controls.password.status === 'INVALID'"
        class="form_errors-c">
     <app-error-message
         *ngIf="this.form.controls.password.errors.required"
@@ -40,7 +40,7 @@
   <div>
     <!-- common errors -->
     <app-error-message
-        *ngIf="this.existEmail === true"
+        *ngIf="this.existEmail === false"
         message="{{ ERRORS.ERROR_MESSAGE_FOR_NOT_EXISTED_EMAIL }}"></app-error-message>
     <app-error-message
         *ngIf="this.existUser === false"

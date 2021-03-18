@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   ERRORS = ErrorsMessages;
   existEmail: boolean;
   existUser: boolean;
+  submited: boolean;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.form = this.formBuilder.group({
@@ -34,25 +35,23 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    this.submited = true;
     const email = this.form.controls.email.value;
     this.checkExistingEmail(email);
-    // якщо пошта існує в базі, вхід доступний
-    if (this.form.status === 'VALID' && this.existEmail === true) {
-      const user = this.getUser();
-      this.loginUser(user);
-    }
   }
 
   loginUser(user: User): void {
-    this.authService.login(user)
-      .subscribe(
-        (res) => {
-          user.setAccessToken(res.accessToken);
-          this.existUser = true;
-          this.authService.setLoginStatus(true);
-        },
-        (error) => error.status === 400 ? this.existUser = false : console.error('error')
-      );
+    setTimeout(() => {
+      this.authService.login(user)
+        .subscribe(
+          (res) => {
+            this.existUser = true;
+            user.setAccessToken(res.accessToken);
+            this.authService.setLoginStatus(true);
+          },
+          (error) => +error.status === 400 ? this.existUser = false : console.error('error')
+        )
+    }, 1000);
   }
 
   getUser(): User {
@@ -63,12 +62,17 @@ export class LoginComponent implements OnInit {
   }
 
   checkExistingEmail(email: string): void {
-    this.authService.checkEmail(email)
+    setTimeout(() => {
+      this.authService.checkEmail(email)
       .subscribe(
-        () => { this.existEmail = false; },
+        () => this.existEmail = false,
         (error) => {
-          error.status === 400 ? this.existEmail = true : console.error(error);
+          +error.status === 400 ? this.existEmail = true : console.log(error);
+          // пошта існує в базі, вхід доступний
+          const user = this.getUser();
+          this.loginUser(user);
         },
-      );
+      )
+    }, 1000);
   }
 }

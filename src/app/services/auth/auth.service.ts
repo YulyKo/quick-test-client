@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   AUTH_API_URL = `${environment.api}/auth`;
-  loginStatus: boolean;
+  loginStatus = false;
 
   constructor(private http: HttpClient) { }
 
