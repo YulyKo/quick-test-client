@@ -4,11 +4,16 @@ import { AuthGuard } from './guards/auth.guard';
 // import { ExitGuard } from './guards/exit.guard';
 import { LoginViewComponent } from './views/auth/login-view/login-view.component';
 import { RegisterViewComponent } from './views/auth/register-view/register-view.component';
-import { HomePageComponent } from './views/mentor-panel-views/home-page/home-page.component';
+import { HomeViewComponent } from './views/mentor-panel-views/home/home-view.component';
 import { WebsiteComponent } from './views/website/website.component';
 
 const routes: Routes = [
   { path: '', component: WebsiteComponent },
+  {
+    path: 'home',
+    component: HomeViewComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'auth',
     children: [
       {
@@ -21,12 +26,6 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'home',
-    component: HomePageComponent,
-    canActivate: [AuthGuard],
-    canDeactivate: [AuthGuard],
-  }
 ];
 
 @NgModule({
