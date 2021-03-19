@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
     LoginViewComponent,
     RegisterViewComponent,
     ErrorMessageComponent,
-
   ],
   imports: [
     CommonModule,
