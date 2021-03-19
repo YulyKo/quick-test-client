@@ -1,7 +1,8 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">  
   <label class="label" for="">E-mail *</label>
   <input formControlName="email"
-         [ngClass]="{'input_text--error': this.form.controls.email.errors}"
+         [ngClass]="{'input_text--error': this.form.controls.email.errors
+                        && this.submited === true}"
          class="input_text"
          type="email"
          name="email"
