@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanDeactivate } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, CanDeactivate, Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({
@@ -8,29 +7,21 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
 
-  constructor(private authServise: AuthService) {}
+  constructor(
+    private authServise: AuthService,
+    private router: Router,
+  ) {}
 
-  canDeactivate(
-    component: unknown, currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot
-  ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canDeactivate(): boolean {
     console.log('diactive');
-    this.authServise.setLoginStatus(false);
-    return this.checkLoginStatus();
+    return this.authServise.getLoginStatus() === false;
   }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.authServise.setLoginStatus(true);
-      return this.checkLoginStatus();
-  }
-
-  checkLoginStatus(): boolean {
-    if (this.authServise.getLoginStatus()) {
-      return true;
+  canActivate(): boolean {
+    if (this.authServise.getLoginStatus() === false) {
+      this.router.navigate(['auth/login']);
+      return false;
     }
-    window.alert('Ти не пройдеш!');
-    return false;
+    return true;
   }
 }
