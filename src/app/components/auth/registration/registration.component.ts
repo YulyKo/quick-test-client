@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
@@ -14,9 +15,11 @@ export class RegistrationComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
   existEmail: boolean;
+  submited: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     this.form = this.formBuilder.group(
       {
         name: ['', [
@@ -48,6 +51,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {  }
 
   onSubmit(): void {
+    this.submited = true;
     const emailValue = this.form.controls.email.value;
     setTimeout(() => {
       this.checkExistingEmail(emailValue);
@@ -85,7 +89,7 @@ export class RegistrationComponent implements OnInit {
         user.setAccessToken(res.accessToken);
         this.authService.setLoginStatus(true);
         console.log(user);
-        console.log(this.authService.getLoginStatus());
+        this.router.navigate(['/home']);
       });
     }, 1000);
   }

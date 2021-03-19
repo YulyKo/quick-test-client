@@ -1,12 +1,13 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label class="label" for="">Ім'я *</label>
+  <label class="label" for="name">Ім'я *</label>
   <input formControlName="name"
-         [ngClass]="{'input_text--error': this.form.controls.name.status === 'INVALID'}"
+         id="name"
+         [ngClass]="{'input_text--error': this.form.controls.name.status === 'INVALID' && this.submited === true}"
          class="input_text"
          type="text"
          name="name"
          placeholder="Павло Іванович">
-  <div *ngIf="this.form.controls.name.status === 'INVALID'" class="form_errors-c">
+  <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true" class="form_errors-c">
     <app-error-message
          *ngIf="this.form.controls.name.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
@@ -21,9 +22,10 @@
          message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_MENTOR_NAME }}"></app-error-message>
   </div>
 
-  <label class="label" for="">E-mail *</label>
+  <label class="label" for="email">E-mail *</label>
   <input formControlName="email"
-         [ngClass]="{'input_text--error': this.form.controls.email.errors || this.existEmail === false}"
+         id="email"
+         [ngClass]="{'input_text--error': (this.form.controls.email.errors || this.existEmail === false)  && this.submited === true}"
          class="input_text"
          type="email"
          name="email"
@@ -31,7 +33,7 @@
   <app-error-message
       *ngIf="this.existEmail === false"
       message="{{ ERRORS.ERROR_MESSAGE_FOR_EXISTED_EMAIL }}"></app-error-message>
-  <div *ngIf="this.form.controls.email.status === 'INVALID'" class="form_errors-c">
+  <div *ngIf="this.form.controls.email.status === 'INVALID' && this.submited === true" class="form_errors-c">
     <app-error-message
          *ngIf="this.form.controls.email.errors.required"
          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
@@ -40,13 +42,14 @@
          message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_EMAIL }}"></app-error-message>
   </div>
 
-  <label class="label" for="">Пароль *</label>
+  <label class="label" for="password">Пароль *</label>
   <input formControlName="password"
-         [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'}"
+         id="password"
+         [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'  && this.submited == true}"
          class="input_text"
          type="password"
          placeholder="Пароль">
-  <div *ngIf="this.form.controls.password.status === 'INVALID'"
+  <div *ngIf="this.form.controls.password.status === 'INVALID' && this.submited == true"
        class="form_errors-c">
     <app-error-message
         *ngIf="this.form.controls.password.errors.required"
@@ -62,9 +65,10 @@
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
 
-  <label class="label" for="">Повторіть пароль *</label>
+  <label class="label" for="confirmPassword">Повторіть пароль *</label>
   <input formControlName="confirmPassword"
-         [ngClass]="{'input_text--error': this.form.controls.confirmPassword.errors !== null}"
+         id="confirmPassword"
+         [ngClass]="{'input_text--error': this.form.controls.confirmPassword.errors !== null  && this.submited == true}"
          class="input_text"
          type="password"
          placeholder="Повторiть пароль">
