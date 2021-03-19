@@ -13,6 +13,10 @@
       <a class="header_link--text" routerLink="/auth/login">Вихід</a>
     </li>
     <li (click)="closeMenu()"
+        *ngIf="this.loginStatus === true">
+      <a class="header_link--text" routerLink="/home">Панель ментора</a>
+    </li>
+    <li (click)="closeMenu()"
         *ngIf="this.loginStatus === false">
       <a class="header_link--text" routerLink="/auth/login">Вхід</a>
     </li>
