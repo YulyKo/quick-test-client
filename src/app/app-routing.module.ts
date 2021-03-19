@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { MentorGuard } from './guards/mentor.guard';
 // import { ExitGuard } from './guards/exit.guard';
 import { LoginViewComponent } from './views/auth/login-view/login-view.component';
@@ -19,10 +20,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginViewComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'register',
         component: RegisterViewComponent,
+        canActivate: [AuthGuard],
       },
     ],
   },

@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
   existEmail: boolean;
-  submited: boolean = false;
+  submited = false;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,

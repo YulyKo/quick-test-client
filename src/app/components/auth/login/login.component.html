@@ -19,7 +19,7 @@
 
   <label class="label" for="password">Пароль *</label>
   <input formControlName="password"
-         [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'}"
+         [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID' && this.submited === true}"
          id="password"
          class="input_text"
          type="password"
