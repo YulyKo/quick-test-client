@@ -16,5 +16,4 @@ export class RegisterViewComponent implements OnInit {
   goToLoginPage(): void {
     this.router.navigate(['../login'], {relativeTo: this.route});
   }
-
 }

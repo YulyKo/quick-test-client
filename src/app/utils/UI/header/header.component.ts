@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit{
   isOpen = false;
+  loginStatus: boolean;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {}
-
 
   changeMenuVisibility(): void {
     this.isOpen === true ? this.closeMenu() : this.openMenu();
   }
 
   openMenu(): void {
+    this.loginStatus = this.authService.getLoginStatus();
     document.getElementById('page_header').style.backgroundColor = '#404040';
     document.getElementById('header_menu').style.display = 'flex';
     this.isOpen = true;
@@ -28,5 +30,4 @@ export class HeaderComponent implements OnInit{
     document.getElementById('header_menu').style.display = 'none';
     this.isOpen = false;
   }
-
 }

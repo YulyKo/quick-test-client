@@ -9,11 +9,16 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   AUTH_API_URL = `${environment.api}/auth`;
+  loginStatus = false;
 
   constructor(private http: HttpClient) { }
 
-  isLoggedIn(): boolean {
-    return false;
+  setLoginStatus(status: boolean): void {
+    this.loginStatus = status;
+  }
+
+  getLoginStatus(): boolean {
+    return this.loginStatus;
   }
 
   checkEmail(email: string): Observable<object> {

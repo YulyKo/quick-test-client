@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
@@ -14,9 +15,11 @@ export class RegistrationComponent implements OnInit {
   form: FormGroup;
   ERRORS = ErrorsMessages;
   existEmail: boolean;
+  submited = false;
 
   constructor(private formBuilder: FormBuilder,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     this.form = this.formBuilder.group(
       {
         name: ['', [
@@ -48,32 +51,47 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {  }
 
   onSubmit(): void {
+    this.submited = true;
     const emailValue = this.form.controls.email.value;
-    this.checkExistingEmail(emailValue);
-    // якщо пошти не існує в базі, то реєстрація доспуна
-    if (this.form.status === 'VALID' && this.existEmail === false) {
-      const user = this.setUserData();
-      this.authService.register(user).subscribe(() => {
-        this.getAccessToken(user);
-      });
-    }
+    setTimeout(() => {
+      this.checkExistingEmail(emailValue);
+    }, 1000);
+
   }
 
+  // true - існує ; false - НЕ існує
   checkExistingEmail(email: string): void {
     this.authService.checkEmail(email)
-    .subscribe(
-      () => { this.existEmail = true; },
-      (error) => {
-        error.status === 400 ? this.existEmail = false : console.error(error);
-      },
-    );
+      .subscribe(
+        () => {
+          this.existEmail = true;
+          if (this.form.status === 'VALID') { this.registerUser(); }
+        },
+        (error) => {
+          error.status === 400 ? this.existEmail = false : console.error(error);
+        },
+      );
+  }
+
+  registerUser(): void {
+    setTimeout(() => {
+      const user = this.setUserData();
+      this.authService.register(user).subscribe(
+        () => this.getAccessToken(user),
+        (error) => console.error(error)
+      );
+    }, 1000);
   }
 
   getAccessToken(user: User): void {
-    this.authService.login(user).subscribe((res) => {
-      user.setAccessToken(res.accessToken);
-      console.log(user);
-    });
+    setTimeout(() => {
+      this.authService.login(user).subscribe((res) => {
+        user.setAccessToken(res.accessToken);
+        this.authService.setLoginStatus(true);
+        console.log(user);
+        this.router.navigate(['/home']);
+      });
+    }, 1000);
   }
 
   setUserData(): User {
