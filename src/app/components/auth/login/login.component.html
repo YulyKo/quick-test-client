@@ -1,9 +1,10 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">  
-  <label class="label" for="">E-mail *</label>
+  <label class="label" for="email">E-mail *</label>
   <input formControlName="email"
          [ngClass]="{'input_text--error': this.form.controls.email.errors
                         && this.submited === true}"
          class="input_text"
+         id="email"
          type="email"
          name="email"
          placeholder="pavloivanovich@mail.com">
@@ -16,9 +17,10 @@
          message="{{ ERRORS.ERROR_MESSAGE_FOR_INVALID_EMAIL }}"></app-error-message>
   </div>
 
-  <label class="label" for="">Пароль *</label>
+  <label class="label" for="password">Пароль *</label>
   <input formControlName="password"
          [ngClass]="{'input_text--error': this.form.controls.password.status === 'INVALID'}"
+         id="password"
          class="input_text"
          type="password"
          placeholder="Пароль">

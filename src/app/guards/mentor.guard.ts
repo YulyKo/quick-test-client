@@ -3,9 +3,9 @@ import { CanActivate, CanDeactivate, Router, ActivatedRoute } from '@angular/rou
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
+export class MentorGuard implements CanActivate, CanDeactivate<unknown> {
 
   constructor(
     private authServise: AuthService,

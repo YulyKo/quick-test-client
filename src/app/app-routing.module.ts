@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+import { MentorGuard } from './guards/mentor.guard';
 // import { ExitGuard } from './guards/exit.guard';
 import { LoginViewComponent } from './views/auth/login-view/login-view.component';
 import { RegisterViewComponent } from './views/auth/register-view/register-view.component';
@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeViewComponent,
-    canActivate: [AuthGuard],
+    canActivate: [MentorGuard],
   },
   { path: 'auth',
     children: [
