@@ -20,14 +20,16 @@ export class HeaderComponent implements OnInit{
 
   openMenu(): void {
     this.loginStatus = this.authService.getLoginStatus();
-    document.getElementById('page_header').style.backgroundColor = '#404040';
+    document.getElementById('page_header').style.backgroundColor = '#5B82EF';
     document.getElementById('header_menu').style.display = 'flex';
+    document.getElementById('title--logo').style.color = '#FFF';
     this.isOpen = true;
   }
 
   closeMenu(): void {
     document.getElementById('page_header').style.backgroundColor = '#FFF';
     document.getElementById('header_menu').style.display = 'none';
+    document.getElementById('title--logo').style.color = '#404040';
     this.isOpen = false;
   }
 }
