@@ -15,6 +15,10 @@ const routes: Routes = [
     component: HomeViewComponent,
     canActivate: [MentorGuard],
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./modules/mentor-panel/mentor-panel.module').then(m => m.MentorPanelModule)
+  },
   { path: 'auth',
     children: [
       {
