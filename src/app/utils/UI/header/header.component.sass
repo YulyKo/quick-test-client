@@ -1,6 +1,7 @@
 @import '../../../../styles'
 
 .page__header
+  height: 80px
   display: flex
   flex-wrap: wrap
   align-items: center
@@ -21,19 +22,27 @@
   &_btn
     display: block
     border: none
+    height: 8rem
+    width: 4rem
     background-color: $text-color
-    transform: rotate(0.25turn)
-    padding: 1rem 1.5rem
-    border-radius: 0 50px 50px 0
+    border-radius: 0 0 50px 50px
     margin-top: -1rem
     margin-right: -0.3rem
+    z-index: 1
     // typography
     color: #F9FCFB
     font-size: 21px
+    > span
+      transform: rotate(0.25turn)
+      display: block
     &:focus
       outline: none
     &:hover
       background-color: $text-color
+    &:active
+      margin-bottom: -3rem
+      margin-top: -3rem
+      // height: 8rem
 
 .menu__link
   color: $white
@@ -76,10 +85,24 @@
 
 @media (min-width: 651px) and (max-width: 1007px)
   .page__header
-    width: calc(100% - (1.4rem * 2))
-    padding: 2rem 1.4rem
-  .header_menu
+    width: calc(100% - (1.8rem * 2))
+    padding: 0.8rem 1.8rem 0
+    height: 98px
+  .page__header_menu
+    padding-top: 0
+    padding-bottom: 0
     width: 87%
+    background: none
+    width: min-content
+    margin-left: 80vh
+    justify-content: flex-end
+  .menu__link
+    margin: 0
+  .page__header_btn
+    height: 4rem
+    margin-bottom: -1rem
+    margin-top: calc(-3rem + -3rem)
+
 @media (min-width: 1008px) and (max-width: 1259px)
   .page__header
     width: calc( 100% - (3rem * 2) )
