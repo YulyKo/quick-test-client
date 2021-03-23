@@ -10,7 +10,7 @@ const routes: Routes = [
     canActivate: [MentorGuard],
     // outlet: 'mentor',
   },
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
