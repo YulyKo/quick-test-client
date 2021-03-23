@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorMessageComponent } from 'src/app/utils/UI/error-message/error-message.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AuthRoutingModule,
   ],
   providers: [AuthService]
 })
