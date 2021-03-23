@@ -6,6 +6,7 @@ import { AppComponent } from '../app.component';
 import { HeaderComponent } from '../utils/UI/header/header.component';
 import { AuthModule } from './auth/auth.module';
 import { WebsiteModule } from './website/website.module';
+import { MentorPanelModule } from './mentor-panel/mentor-panel.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { WebsiteModule } from './website/website.module';
   imports: [
     AuthModule,
     WebsiteModule,
+    MentorPanelModule,
     BrowserModule,
     AppRoutingModule,
   ],
