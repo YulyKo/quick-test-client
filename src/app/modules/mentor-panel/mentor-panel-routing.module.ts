@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { MentorGuard } from 'src/app/guards/mentor.guard';
 import { RouterModule, Routes } from '@angular/router';
-import { MentorPanelViewsComponent } from 'src/app/views/mentor-panel-views/mentor-panel-views.component';
+import { MentorPanelViewComponent } from 'src/app/views/mentor-panel-views/mentor-panel-view.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: MentorPanelViewsComponent,
+    component: MentorPanelViewComponent,
     canActivate: [MentorGuard],
     // outlet: 'mentor',
   },
