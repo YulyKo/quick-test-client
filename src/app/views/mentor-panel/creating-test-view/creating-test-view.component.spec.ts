@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorPanelComponent } from './mentor-panel.component';
+import { CreatingTestViewComponent } from './creating-test-view.component';
 
-describe('MentorPanelComponent', () => {
-  let component: MentorPanelComponent;
-  let fixture: ComponentFixture<MentorPanelComponent>;
+describe('CreatingTestViewComponent', () => {
+  let component: CreatingTestViewComponent;
+  let fixture: ComponentFixture<CreatingTestViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MentorPanelComponent ]
+      declarations: [ CreatingTestViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MentorPanelComponent);
+    fixture = TestBed.createComponent(CreatingTestViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

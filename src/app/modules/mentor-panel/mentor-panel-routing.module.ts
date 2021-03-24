@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { MentorGuard } from 'src/app/guards/mentor.guard';
 import { RouterModule, Routes } from '@angular/router';
-import { MentorPanelViewComponent } from 'src/app/views/mentor-panel-views/mentor-panel-view.component';
+import { FolderViewComponent } from 'src/app/views/mentor-panel/folder-view/folder-view.component';
+import { CreatingTestViewComponent } from 'src/app/views/mentor-panel/creating-test-view/creating-test-view.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: MentorPanelViewComponent,
+    path: 'home/root',
     canActivate: [MentorGuard],
-    // outlet: 'mentor',
+    component: FolderViewComponent,
+    children: [],
+  },
+  {
+    path: 'home/new-question',
+    component: CreatingTestViewComponent,
   },
 ];
 
