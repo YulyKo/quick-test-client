@@ -5,7 +5,7 @@ import { WebsiteComponent } from '../views/website/website.component';
 const routes: Routes = [
   { path: '', component: WebsiteComponent },
   {
-    path: 'home',
+    path: 'home/root',
     loadChildren: () => import('./mentor-panel/mentor-panel.module').then(m => m.MentorPanelModule)
   },
   {

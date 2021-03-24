@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorPanelComponent } from './mentor-panel.component';
+import { FolderViewComponent } from './folder-view.component';
 
-describe('MentorPanelComponent', () => {
-  let component: MentorPanelComponent;
-  let fixture: ComponentFixture<MentorPanelComponent>;
+describe('FolderViewComponent', () => {
+  let component: FolderViewComponent;
+  let fixture: ComponentFixture<FolderViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MentorPanelComponent ]
+      declarations: [ FolderViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MentorPanelComponent);
+    fixture = TestBed.createComponent(FolderViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
