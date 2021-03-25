@@ -1,1 +1,21 @@
-<p>new-question-form works!</p>
+<!-- <form (submit)="rrr"> -->
+  <label for="name">Name</label>
+  <div>
+    <input type="'text'">
+  </div>
+  <label for="question">Text question</label>
+  <textarea name="question" id="question" cols="30" rows="10"></textarea>
+  <label for="">Choose type</label>
+  <select name="type" id="type">
+    <option value="one-form-any">One from any</option>
+    <option value="shot-text">Shot text</option>
+  </select>
+  <app-input-text *ngFor="let inputA of this.inputsAnswersArray" id="inputA"></app-input-text>
+  <div *ngFor="let inputA of this.inputsAnswersArray">
+    {{ inputA }} - input
+    <!-- <label [innerHtml]=inputA></label> -->
+  </div>
+  <!-- <input type="button" value="+" (click)="this.addInput()"> -->
+  <button type="button" (click)="this.addInput()">+</button>
+  <button type="submit">wer</button>
+<!-- </form> -->
