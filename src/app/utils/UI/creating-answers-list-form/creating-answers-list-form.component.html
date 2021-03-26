@@ -1,0 +1,13 @@
+<section>
+  <div class="flex">
+    <div class="flex-row" *ngFor="let inputA of this.inputsAnswersArray">
+      <app-input-text elementID="{{inputA}}"></app-input-text>
+      <button
+        *ngIf="this.inputsNumber >= 3"
+        (click)="this.delInput(inputA)"
+      >x</button>
+    </div>
+  </div>
+
+  <button class="button" type="button" (click)="this.addInput()">+</button>
+</section>

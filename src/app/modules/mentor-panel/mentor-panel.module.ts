@@ -5,6 +5,7 @@ import { CreatingQuestionViewComponent } from 'src/app/views/mentor-panel/creati
 import { FolderViewComponent } from 'src/app/views/mentor-panel/folder-view/folder-view.component';
 import { NewQuestionFormComponent } from 'src/app/components/mentor-panel/new-question-form/new-question-form.component';
 import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/input-text.component';
+import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/in
     FolderViewComponent,
     NewQuestionFormComponent,
     InputTextComponent,
+    CreatingAnswersListFormComponent,
   ],
   imports: [
     CommonModule,

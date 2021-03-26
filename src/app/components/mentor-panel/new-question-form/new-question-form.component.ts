@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/input-text.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 
 @Component({
   selector: 'app-new-question-form',
@@ -9,16 +9,18 @@ import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/in
 export class NewQuestionFormComponent {
 
   constructor() { }
-  inputsAnswersArray = [];
 
   // ngOnInit(): void {
   //   console.log(this.inputA);
   // }
-  private inputA = new InputTextComponent();
-  n = 0;
-  addInput(): void {
-    console.log(this.inputA);
-    const MAX_INPUTS_NUMBER = 5;
-    this.n < MAX_INPUTS_NUMBER ? this.inputsAnswersArray.push(this.n++) : console.log('більше варіантів нізя');
+
+  @ViewChild(CreatingAnswersListFormComponent) child;
+
+  message: string;
+
+  lor(): void {
+    this.message = this.child.message;
+    console.log(this.message);
+    console.log(this.child);
   }
 }

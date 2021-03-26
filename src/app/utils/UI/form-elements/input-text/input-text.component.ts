@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input-text',
@@ -8,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class InputTextComponent implements OnInit {
   labelText = 'Тут текст із parent form';
 
-  constructor() { }
+  @Input()
+  elementID: string;
 
-  ngOnInit(): void {
-  }
+  constructor() {}
+
+  ngOnInit(): void {}
 
 }

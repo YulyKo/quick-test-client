@@ -10,12 +10,8 @@
     <option value="one-form-any">One from any</option>
     <option value="shot-text">Shot text</option>
   </select>
-  <app-input-text *ngFor="let inputA of this.inputsAnswersArray" id="inputA"></app-input-text>
-  <div *ngFor="let inputA of this.inputsAnswersArray">
-    {{ inputA }} - input
-    <!-- <label [innerHtml]=inputA></label> -->
-  </div>
-  <!-- <input type="button" value="+" (click)="this.addInput()"> -->
-  <button type="button" (click)="this.addInput()">+</button>
-  <button type="submit">wer</button>
+  {{ message }}
+  <app-creating-answers-list-form></app-creating-answers-list-form>
+  <br>
+  <button type="submit" (click)="this.lor()">submit</button>
 <!-- </form> -->
