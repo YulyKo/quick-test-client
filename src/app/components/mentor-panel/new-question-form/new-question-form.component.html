@@ -1,17 +1,17 @@
-<!-- <form (submit)="rrr"> -->
-  <label for="name">Name</label>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <label for="name">Name *</label>
   <div>
-    <input type="'text'">
+    <input type="text" formControlName="name">
   </div>
-  <label for="question">Text question</label>
-  <textarea name="question" id="question" cols="30" rows="10"></textarea>
-  <label for="">Choose type</label>
-  <select name="type" id="type">
-    <option value="one-form-any">One from any</option>
-    <option value="shot-text">Shot text</option>
+  <label for="question">Text question *</label>
+  <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
+  <label for="">Choose type *</label>
+  <select name="type" id="type" formControlName="template">
+    <option value="close">One from any</option>
+    <option value="open">Shot text</option>
   </select>
   {{ message }}
   <app-creating-answers-list-form></app-creating-answers-list-form>
   <br>
-  <button type="submit" (click)="this.lor()">submit</button>
-<!-- </form> -->
+  <button type="submit">submit</button>
+</form>
