@@ -36,7 +36,6 @@ export class HeaderComponent implements OnInit{
     // document.getElementById('menu-btn').style.height = '4rem';
     document.getElementById('menu-btn').style.marginBottom = '-1rem';
     document.getElementById('menu-btn').style.marginTop = '-6rem';
-    // 
     // margin-bottom: -4rem;
     // margin-top: 6rem;
     this.isOpen = false;
