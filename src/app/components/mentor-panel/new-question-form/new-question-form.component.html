@@ -2,13 +2,17 @@
   <label for="name">Name *</label>
   <div>
     <input type="text" formControlName="name">
+    <!-- <app-input-text formControlName="name"></app-input-text> control name does not work -->
   </div>
   <label for="question">Text question *</label>
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
   <label for="">Choose type *</label>
-  <select name="type" id="type" formControlName="template">
-    <option value="close">One from any</option>
-    <option value="open">Shot text</option>
+  <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
+    <option value="button">Вибiр варiанту</option>
+    <!-- <option value="open">Коротка вiдповiдь</option> this for future-->
+    <option value="TRUE_FALSE">true/false</option>
+    <option value="YES_NO">так/ні</option>
+    <option value="FOR_AGAINST">за/проти</option>
   </select>
   {{ message }}
   <app-creating-answers-list-form></app-creating-answers-list-form>

@@ -1,13 +1,15 @@
 <section>
+  {{ template }}
   <div class="flex">
     <div class="flex-row" *ngFor="let inputA of this.inputsAnswersArray">
-      <app-input-text elementID="{{inputA}}"></app-input-text>
+      <app-input-text elementID="{{ inputA }}" isDisabled="{{ inputDisableStatus }}"></app-input-text>
       <button
+        id="delButton"
         *ngIf="this.inputsNumber >= 3"
         (click)="this.delInput(inputA)"
       >x</button>
     </div>
   </div>
 
-  <button class="button" type="button" (click)="this.addInput()">+</button>
+  <button id="plusButton" class="button" type="button" (click)="this.addInput()">+</button>
 </section>

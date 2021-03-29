@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
+import { Question } from 'src/app/models/Question';
+import { ITemplate } from 'src/app/models/ITemplate';
 
 @Component({
   selector: 'app-new-question-form',
@@ -8,10 +10,16 @@ import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answ
   styleUrls: ['./new-question-form.component.sass']
 })
 export class NewQuestionFormComponent implements OnInit {
+  
+  @ViewChild(CreatingAnswersListFormComponent) child;
+  // у майбутньому так буде передаватися formGroup for answers
+
+  message: string;
   form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private question: Question
   ) {
     this.form = this.formBuilder.group({
       name: ['', [
@@ -28,33 +36,30 @@ export class NewQuestionFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  @ViewChild(CreatingAnswersListFormComponent) child;
-
-  // у майбутньому так буде передаватися formGroup for answers
-  message: string;
-
-  lor(): void {
-    this.message = this.child.message;
-    console.log(this.message);
-    console.log(this.child);
+  changeTemplate(): void {
+    this.child.setTemplateByType(this.form.value.template);
   }
 
   onSubmit(): void {
-    // console.log(this.form.value);
     this.checkName();
+    console.log(this.question);
+    this.message = this.child.message;
+    console.log(this.child);
   }
 
   checkName(): void {
     let formNameField = this.form.value.name;
     let textField = this.form.value.text;
     if (formNameField === '' || textField.length > 20) {
-      formNameField = textField.slice(0, 20);
+      this.setDefaultName(textField);
     }
-    console.log(textField);
-    console.log(formNameField);
-    // formNameField буде запиуватися через клас Question
+  }
+
+  // formNameField записується через клас Question
+  setDefaultName(textField: string): void {
+    const defaultName = textField.slice(0, 20).toString();
+    this.question.name = defaultName;
   }
 }

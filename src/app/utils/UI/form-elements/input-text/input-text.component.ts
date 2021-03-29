@@ -11,6 +11,9 @@ export class InputTextComponent implements OnInit {
   @Input()
   elementID: string;
 
+  @Input()
+  inputDisablestatus: boolean;
+
   constructor() {}
 
   ngOnInit(): void {}
