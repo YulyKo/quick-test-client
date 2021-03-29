@@ -33,6 +33,7 @@ export class NewQuestionFormComponent implements OnInit {
 
   @ViewChild(CreatingAnswersListFormComponent) child;
 
+  // у майбутньому так буде передаватися formGroup for answers
   message: string;
 
   lor(): void {
@@ -47,14 +48,13 @@ export class NewQuestionFormComponent implements OnInit {
   }
 
   checkName(): void {
-    console.log(this.form.value);
-    
     let formNameField = this.form.value.name;
     let textField = this.form.value.text;
-    // if (formNameField === '' || textField.length > 20) {
-    //   formNameField = textField.slice(0, 20);
-    // }
+    if (formNameField === '' || textField.length > 20) {
+      formNameField = textField.slice(0, 20);
+    }
     console.log(textField);
     console.log(formNameField);
+    // formNameField буде запиуватися через клас Question
   }
 }
