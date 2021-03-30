@@ -1,7 +1,5 @@
-import { DomElementSchemaRegistry } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Answer } from 'src/app/models/Answer';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ITemplate } from 'src/app/models/ITemplate';
 import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
 
@@ -11,32 +9,77 @@ import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
   styleUrls: ['./creating-answers-list-form.component.sass']
 })
 export class CreatingAnswersListFormComponent implements OnInit {
-  inputsAnswersArray = [0, 1, ];
+  // inputsAnswersArray: {
+  //   id: number,
+  //   value: string,
+  //   isTrue: boolean,
+  // }[]
+
+  // this.inputsAnswersArray = [
+  //   {
+  //     id: 0,
+  //     value: '',
+  //     isTrue: true
+  //   },
+  //   {
+  //     id: 1,
+  //     value: '',
+  //     isTrue: false,
+  //   },
+  // ];
   private _message = 'Hola Mundo!';
   private _template: ITemplate;
   inputsNumber = 2;
   buttonPlus: HTMLElement;
-  buttonDel: HTMLElement;
   inputDisableStatus: boolean;
-  
-  constructor() {}
+  answersForm: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {
+    this.answersForm = this._formBuilder.group({
+      answersArray: this._formBuilder.array([]),
+    });
+  }
 
   ngOnInit(): void {
+    this.addAnswer();
+    this.addAnswer();
     this.buttonPlus = document.getElementById('plusButton');
-    this.buttonDel = document.getElementById('delButton');
   }
+
+  get answers(): FormArray {
+    return this.answersForm.get('answersArray') as FormArray;
+  };
 
   addInput(): void {
-    console.log(this.inputsNumber);
+    console.log('n = ', this.inputsNumber);
     const MAX_INPUTS_NUMBER = 5;
-    this.inputsNumber < MAX_INPUTS_NUMBER ? this.inputsAnswersArray.push(this.inputsNumber++) : console.log('більше варіантів нізя');
+    if (this.inputsNumber <= MAX_INPUTS_NUMBER) { 
+      this.addAnswer();
+    } else {
+      this.hideButtonPlus();
+    }
+    console.log(this.answersForm);
   }
 
-  delInput(inputA: number): void {
-    console.log(this.inputsNumber, 'del on');
+  newAnswer(): FormGroup {
+    return this._formBuilder.group({
+      value: '',
+      isTrue: false,
+    });
+  }
 
+  addAnswer(): void {
+    this.answers.push(this.newAnswer());
+  }
+
+  removeAnswer(id: number): void {
+    this.answers.removeAt(id);
+  }
+
+  delInput(id: number): void {
+    console.log(this.inputsNumber, 'del on');
     if (this.inputsNumber >= 3) {
-      this.inputsAnswersArray.splice(inputA, 1);
+      this.removeAnswer(id);
       this.inputsNumber -= 1;
     }
   }
@@ -52,19 +95,17 @@ export class CreatingAnswersListFormComponent implements OnInit {
     return this._template;
   }
   public set template(value: ITemplate) {
-    
     this._template = value;
   }
 
   setTemplateByType(typeName: string): void {
     switch (typeName) {
       case 'TRUE_FALSE':
+        this.template = TRUE_FALSE;
         // hide button +
-        // hide button del
+        this.hideButtonPlus();
         // set value to inputs by template
         // block inputs
-        this.template = TRUE_FALSE;
-        this.hideButtonPlus();
         this.blockInputs();
         break;
       case 'YES_NO':
@@ -86,10 +127,6 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   hideButtonPlus(): void {
     this.buttonPlus.style.display = 'none';
-  }
-  
-  hideButtonDel(): void {
-    this.buttonDel.style.display = 'none';
   }
 
   showButtonPlus(): void {
