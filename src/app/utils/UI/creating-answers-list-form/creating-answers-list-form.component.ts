@@ -9,44 +9,24 @@ import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
   styleUrls: ['./creating-answers-list-form.component.sass']
 })
 export class CreatingAnswersListFormComponent implements OnInit {
-  // this.inputsAnswersArray = [
-  //   {
-  //     id: 0,
-  //     value: '',
-  //     isTrue: true
-  //   },
-  //   {
-  //     id: 1,
-  //     value: '',
-  //     isTrue: false,
-  //   },
-  // ];
-  private _message = 'Hola Mundo!';
+  // private _message = 'Hola Mundo!';
   private _template: ITemplate;
+  private _answersForm: FormGroup;
   inputsNumber = 2;
   buttonPlus: HTMLElement;
   inputDisableStatus: boolean;
-  answersForm: FormGroup;
+
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({
-      idTrueAnswer: [0],
+      idTrueAnswer: [0, [Validators.required]],
       answersArray: this._formBuilder.array([]),
     });
-  }
-
-  click(): void {
-    console.log('id: ', this.answersForm.controls.idTrueAnswer.value,
-                typeof this.answersForm.controls.idTrueAnswer.value);
   }
 
   ngOnInit(): void {
     this.addAnswer();
     this.addAnswer();
     this.buttonPlus = document.getElementById('plusButton');
-    this.answers.controls.forEach((e: FormGroup) => {
-      console.log(e.controls.id.value);
-      
-    })
   }
 
   public get answers(): FormArray {
@@ -78,18 +58,25 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this.removeAnswer(id);
   }
 
-  public get message(): string {
-    return this._message;
-  }
-  public set message(value: string) {
-    this._message = value;
-  }
+  // public get message(): string {
+  //   return this._message;
+  // }
+  // public set message(value: string) {
+  //   this._message = value;
+  // }
 
   public get template(): ITemplate {
     return this._template;
   }
   public set template(value: ITemplate) {
     this._template = value;
+  }
+
+  public get answersForm(): FormGroup {
+    return this._answersForm;
+  }
+  public set answersForm(value: FormGroup) {
+    this._answersForm = value;
   }
 
   setTemplateByType(typeName: string): void {

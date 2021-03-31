@@ -14,7 +14,7 @@ export class NewQuestionFormComponent implements OnInit {
   @ViewChild(CreatingAnswersListFormComponent) child;
   // у майбутньому так буде передаватися formGroup for answers
 
-  message: string;
+  answersGroup: FormGroup;
   form: FormGroup;
 
   constructor(
@@ -46,8 +46,8 @@ export class NewQuestionFormComponent implements OnInit {
   onSubmit(): void {
     this.checkName();
     console.log(this.question);
-    this.message = this.child.message;
-    console.log(this.child);
+    this.form.controls.answers = this.child.answersForm;
+    console.log(this.form);
   }
 
   checkName(): void {
