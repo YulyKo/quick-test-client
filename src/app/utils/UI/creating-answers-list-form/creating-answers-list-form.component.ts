@@ -27,27 +27,40 @@ export class CreatingAnswersListFormComponent implements OnInit {
   buttonPlus: HTMLElement;
   inputDisableStatus: boolean;
   answersForm: FormGroup;
-
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({
-      idTrueAnswer: ['1'],
+      idTrueAnswer: [0],
       answersArray: this._formBuilder.array([]),
     });
+  }
+
+  click(): void {
+    console.log('id: ', this.answersForm.controls.idTrueAnswer.value,
+                typeof this.answersForm.controls.idTrueAnswer.value);
   }
 
   ngOnInit(): void {
     this.addAnswer();
     this.addAnswer();
     this.buttonPlus = document.getElementById('plusButton');
+    this.answers.controls.forEach((e: FormGroup) => {
+      console.log(e.controls.id.value);
+      
+    })
   }
 
   public get answers(): FormArray {
     return this.answersForm.get('answersArray') as FormArray;
   };
 
+  public get answersControls(): Array<FormControl> {
+    return this.answers.controls as Array<FormControl>;
+  }
+
   newAnswer(): FormGroup {
     return this._formBuilder.group({
       value: '',
+      id: this.answers.length,
     });
   }
 

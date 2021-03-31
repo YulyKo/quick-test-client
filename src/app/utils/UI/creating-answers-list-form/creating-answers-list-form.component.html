@@ -1,10 +1,13 @@
 <section [formGroup]="answersForm">
-  <div class="flex">
-    <div formArrayName="answersArray">
+  <div class="flex-row">
+    <div class="flex">
+      <div for="" *ngFor="let answer of answersControls">
+        <input class="d-block" type="radio" name="idTrueAnswer" value="{{answer.controls.id.value}}" formControlName="idTrueAnswer">
+      </div>
+    </div>
+    <div class="flex" formArrayName="answersArray">
       <div *ngFor="let answer of answers.controls; let id = index">
-        <input type="radio" value="{{ id }}" fromControlName="idTrueAnswer">
         <div [formGroupName]="id">
-          <!-- :id="{{ inputAnswer.id }}" -->
           <input type="text"
                  value="{{ value }}"
                  formControlName="value">
