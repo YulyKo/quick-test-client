@@ -1,15 +1,26 @@
-<section>
-  {{ template }}
+<section [formGroup]="answersForm">
   <div class="flex">
-    <div class="flex-row" *ngFor="let inputA of this.inputsAnswersArray">
-      <app-input-text elementID="{{ inputA }}" isDisabled="{{ inputDisableStatus }}"></app-input-text>
-      <button
-        id="delButton"
-        *ngIf="this.inputsNumber >= 3"
-        (click)="this.delInput(inputA)"
-      >x</button>
+    <div formArrayName="answersArray">
+      <div *ngFor="let answer of answers.controls; let id = index">
+        <input type="radio" value="{{ id }}" fromControlName="idTrueAnswer">
+        <div [formGroupName]="id">
+          <!-- :id="{{ inputAnswer.id }}" -->
+          <input type="text"
+                 value="{{ value }}"
+                 formControlName="value">
+          <button
+              type="button"
+              *ngIf="answers.length >= 3"
+              (click)="this.delInput(id)">x</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <button id="plusButton" class="button" type="button" (click)="this.addInput()">+</button>
+  <button
+    id="plusButton"
+    class="button"
+    type="button"
+    (click)="this.addAnswer()"
+    *ngIf="this.answers.length <= 4">+</button>
 </section>

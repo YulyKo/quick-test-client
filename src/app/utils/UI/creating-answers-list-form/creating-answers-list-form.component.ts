@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ITemplate } from 'src/app/models/ITemplate';
 import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
 
@@ -9,12 +9,6 @@ import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
   styleUrls: ['./creating-answers-list-form.component.sass']
 })
 export class CreatingAnswersListFormComponent implements OnInit {
-  // inputsAnswersArray: {
-  //   id: number,
-  //   value: string,
-  //   isTrue: boolean,
-  // }[]
-
   // this.inputsAnswersArray = [
   //   {
   //     id: 0,
@@ -36,6 +30,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({
+      idTrueAnswer: ['1'],
       answersArray: this._formBuilder.array([]),
     });
   }
@@ -46,25 +41,13 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this.buttonPlus = document.getElementById('plusButton');
   }
 
-  get answers(): FormArray {
+  public get answers(): FormArray {
     return this.answersForm.get('answersArray') as FormArray;
   };
-
-  addInput(): void {
-    console.log('n = ', this.inputsNumber);
-    const MAX_INPUTS_NUMBER = 5;
-    if (this.inputsNumber <= MAX_INPUTS_NUMBER) { 
-      this.addAnswer();
-    } else {
-      this.hideButtonPlus();
-    }
-    console.log(this.answersForm);
-  }
 
   newAnswer(): FormGroup {
     return this._formBuilder.group({
       value: '',
-      isTrue: false,
     });
   }
 
@@ -74,14 +57,12 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   removeAnswer(id: number): void {
     this.answers.removeAt(id);
+    console.log(this.answers);
+    
   }
 
   delInput(id: number): void {
-    console.log(this.inputsNumber, 'del on');
-    if (this.inputsNumber >= 3) {
-      this.removeAnswer(id);
-      this.inputsNumber -= 1;
-    }
+    this.removeAnswer(id);
   }
 
   public get message(): string {

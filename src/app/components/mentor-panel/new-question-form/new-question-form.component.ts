@@ -33,6 +33,7 @@ export class NewQuestionFormComponent implements OnInit {
       time: [''],
       template: [''],
       answerType: ['', [ Validators.required ]],
+      answers: [],
     });
   }
 
