@@ -1,7 +1,8 @@
+import { templateSourceUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ITemplate } from 'src/app/models/ITemplate';
-import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
+import { Answer } from 'src/app/models/Question/Answer';
+import { TEMPLATES } from 'src/app/utils/Templates';
 
 @Component({
   selector: 'app-creating-answers-list-form',
@@ -9,12 +10,9 @@ import { FOR_AGAINST, TRUE_FALSE, YES_NO } from '../../QuestionTemplates';
   styleUrls: ['./creating-answers-list-form.component.sass']
 })
 export class CreatingAnswersListFormComponent implements OnInit {
-  // private _message = 'Hola Mundo!';
-  private _template: ITemplate;
   private _answersForm: FormGroup;
-  inputsNumber = 2;
-  buttonPlus: HTMLElement;
-  inputDisableStatus: boolean;
+  buttonPlus: HTMLButtonElement;
+  templates = TEMPLATES;
 
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({
@@ -24,9 +22,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addAnswer();
-    this.addAnswer();
-    this.buttonPlus = document.getElementById('plusButton');
+    this.buttonPlus = document.getElementById('plusButton') as HTMLButtonElement;
   }
 
   public get answers(): FormArray {
@@ -37,39 +33,23 @@ export class CreatingAnswersListFormComponent implements OnInit {
     return this.answers.controls as Array<FormControl>;
   }
 
-  newAnswer(): FormGroup {
+  newAnswer(answer: Answer): FormGroup {
     return this._formBuilder.group({
-      value: '',
+      name: answer.name || 'Текст відповіді',
+      isTrue: answer.isTrue || false,
       id: this.answers.length,
     });
   }
 
-  addAnswer(): void {
-    this.answers.push(this.newAnswer());
+  addAnswer(defaultName: string, defaultIsTrue: boolean): void {
+    const answer = new Answer(defaultName, defaultIsTrue);
+    this.answers.push(this.newAnswer(answer));
+    this.checkPlusButtonVisibility();
   }
 
   removeAnswer(id: number): void {
     this.answers.removeAt(id);
-    console.log(this.answers);
-    
-  }
-
-  delInput(id: number): void {
-    this.removeAnswer(id);
-  }
-
-  // public get message(): string {
-  //   return this._message;
-  // }
-  // public set message(value: string) {
-  //   this._message = value;
-  // }
-
-  public get template(): ITemplate {
-    return this._template;
-  }
-  public set template(value: ITemplate) {
-    this._template = value;
+    this.checkPlusButtonVisibility();
   }
 
   public get answersForm(): FormGroup {
@@ -79,51 +59,63 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this._answersForm = value;
   }
 
-  setTemplateByType(typeName: string): void {
-    switch (typeName) {
-      case 'TRUE_FALSE':
-        this.template = TRUE_FALSE;
-        // hide button +
-        this.hideButtonPlus();
-        // set value to inputs by template
-        // block inputs
+  public switchTemplateByType(typeName: string): void {
+    this.clearAnswersArray();
+    // треба цей if оптимізувати
+    // що я можу зробити: 
+    //  1. винести в окрему ф-цію із swith || if/else
+    //  2. витягувати дані із класу Templates - вся логіка із додванням елементів форми підв'язана у цьому класі
+    // -------- //
+    // а ще треба вирішити за яким критерієм я буду перевіряти чому рівне typeName ібо рядків замало.
+    // Це потрібно опитимізувати
+
+    this.setFormElementsByTypeName(typeName);
+  }
+
+  setFormElementsByTypeName(typeName: string) {
+    const templates = TEMPLATES;
+    templates.forEach((template) => {
+      if (template.name === typeName) {
         this.blockInputs();
-        break;
-      case 'YES_NO':
-        this.template = YES_NO;
-        this.setTEmplateValueToForm();
-        this.hideButtonPlus();
-      case 'FOR_AGAINST':
-        this.template = FOR_AGAINST;
-        this.hideButtonPlus();
-      default:
-        // show button +
-        // set empty value to inputs
-        // unblock inputs
-        this.showButtonPlus();
+        this.hidePlusButton();
+        this.addAnswer(template.value1, true);
+        this.addAnswer(template.value2, false);
+      } else {
         this.unblockInputs();
-        break;
-    }
-  }
-
-  hideButtonPlus(): void {
-    this.buttonPlus.style.display = 'none';
-  }
-
-  showButtonPlus(): void {
-    this.buttonPlus.style.display = 'block';
+        this.showPlusButton();
+      }
+    });
   }
 
   blockInputs(): void {
-  // this.form.controls['name'].disable();
+    this.answersControls.forEach((e) => {
+      e.disable();
+    });
   }
 
   unblockInputs(): void {
-  // this.form.controls['name'].enable();
+    this.answersControls.forEach((e) => {
+      e.enable();
+    });
   }
 
-  setTEmplateValueToForm(): void {
-    // form.value.answer1 = this.template.value1 - or by loop
+  checkPlusButtonVisibility(): void {
+    const MAX_NUMBER_ANSWERS = 5;
+    if (this.answersControls.length < MAX_NUMBER_ANSWERS) {
+      this.showPlusButton();
+    } else this.hidePlusButton();
+
   }
 
+  hidePlusButton(): void {
+    this.buttonPlus.style.display = 'none';
+  }
+
+  showPlusButton(): void {
+    this.buttonPlus.style.display = 'block';
+  }
+
+  clearAnswersArray(): void {
+    this.answersForm.controls.answersArray = this._formBuilder.array([]);
+  }
 }

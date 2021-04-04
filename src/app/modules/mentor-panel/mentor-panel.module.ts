@@ -7,7 +7,8 @@ import { NewQuestionFormComponent } from 'src/app/components/mentor-panel/new-qu
 import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/input-text.component';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Question } from 'src/app/models/Question';
+import { Question } from 'src/app/models/Question/Question';
+import { EnumToArray } from 'src/app/utils/pipes/EnumToArray.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { Question } from 'src/app/models/Question';
     NewQuestionFormComponent,
     InputTextComponent,
     CreatingAnswersListFormComponent,
+    EnumToArray,
   ],
   imports: [
     CommonModule,

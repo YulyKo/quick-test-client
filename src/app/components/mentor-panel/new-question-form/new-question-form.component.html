@@ -8,13 +8,10 @@
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
   <label for="">Choose type *</label>
   <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
-    <option value="button">Вибiр варiанту</option>
-    <!-- <option value="open">Коротка вiдповiдь</option> this for future-->
-    <option value="TRUE_FALSE">true/false</option>
-    <option value="YES_NO">так/ні</option>
-    <option value="FOR_AGAINST">за/проти</option>
+    <option
+      *ngFor="let template of templates"
+      value="{{ template.name }}">{{ template.name }}</option>
   </select>
   <app-creating-answers-list-form></app-creating-answers-list-form>
-  <br>
   <button type="submit">submit</button>
 </form>

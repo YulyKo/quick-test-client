@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
-import { Question } from 'src/app/models/Question';
-import { ITemplate } from 'src/app/models/ITemplate';
+import { Question } from 'src/app/models/Question/Question';
+import { TEMPLATES } from 'src/app/utils/Templates';
 
 @Component({
   selector: 'app-new-question-form',
@@ -14,8 +14,8 @@ export class NewQuestionFormComponent implements OnInit {
   @ViewChild(CreatingAnswersListFormComponent) child;
   // у майбутньому так буде передаватися formGroup for answers
 
-  answersGroup: FormGroup;
   form: FormGroup;
+  templates = TEMPLATES;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +31,7 @@ export class NewQuestionFormComponent implements OnInit {
         Validators.maxLength(200),
       ]],
       time: [''],
-      template: [''],
+      template: [{}],
       answerType: ['', [ Validators.required ]],
       answers: [],
     });
@@ -40,7 +40,7 @@ export class NewQuestionFormComponent implements OnInit {
   ngOnInit(): void { }
 
   changeTemplate(): void {
-    this.child.setTemplateByType(this.form.value.template);
+    this.child.switchTemplateByType(this.form.value.template);
   }
 
   onSubmit(): void {
