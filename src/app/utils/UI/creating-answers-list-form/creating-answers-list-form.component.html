@@ -2,7 +2,7 @@
   <div class="flex-row">
     <div class="flex">
       <div for="" *ngFor="let answer of answersControls">
-        <input class="d-block" type="radio" name="idTrueAnswer" [value]="answer.controls.id.value" formControlName="idTrueAnswer" required>
+        <input (click)="this.setTrueAnswer(answer.controls.id.value)" class="d-block" type="radio" name="idTrueAnswer" [value]="answer.controls.id.value" formControlName="idTrueAnswer" required>
       </div>
     </div>
     <div class="flex" formArrayName="answersArray">

@@ -17,7 +17,11 @@ export class NewQuestionFormComponent implements OnInit {
   form: FormGroup;
   templates = TEMPLATES;
 
-  constructor(
+// TODO встановлення правильної відповіді
+// TODO формування об'єкту для передачі на бек
+// TODO set масиву відповідей до головної форми
+
+constructor(
     private formBuilder: FormBuilder,
     private question: Question
   ) {
@@ -33,20 +37,20 @@ export class NewQuestionFormComponent implements OnInit {
       time: [''],
       template: [{}],
       answerType: ['', [ Validators.required ]],
-      answers: [],
+      answers: this.formBuilder.array([]),
     });
   }
 
   ngOnInit(): void { }
 
   changeTemplate(): void {
-    this.child.switchTemplateByType(this.form.value.template);
+    this.child.changeTemplate(this.form.value.template);
   }
 
   onSubmit(): void {
     this.checkName();
     console.log(this.question);
-    this.form.controls.answers = this.child.answersForm;
+    this.form.controls.answers = this.child.answersForm.controls.answersArray;
     console.log(this.form);
   }
 

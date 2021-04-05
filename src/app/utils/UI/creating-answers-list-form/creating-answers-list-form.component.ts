@@ -1,6 +1,6 @@
 import { templateSourceUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Answer } from 'src/app/models/Question/Answer';
 import { TEMPLATES } from 'src/app/utils/Templates';
 
@@ -16,28 +16,30 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({
-      idTrueAnswer: [0, [Validators.required]],
-      answersArray: this._formBuilder.array([]),
+      idTrueAnswer: new FormControl(0, [Validators.required]),
+      answersArray: new FormArray([]), // FromArray <- FormGroup <- FormControl
     });
   }
 
   ngOnInit(): void {
     this.buttonPlus = document.getElementById('plusButton') as HTMLButtonElement;
+    this.hidePlusButton();
+    this.setTrueAnswer(0);
   }
 
   public get answers(): FormArray {
     return this.answersForm.get('answersArray') as FormArray;
   };
 
-  public get answersControls(): Array<FormControl> {
-    return this.answers.controls as Array<FormControl>;
+  public get answersControls(): Array<FormGroup> {
+    return this.answers.controls as Array<FormGroup>;
   }
 
   newAnswer(answer: Answer): FormGroup {
-    return this._formBuilder.group({
-      name: answer.name || 'Текст відповіді',
-      isTrue: answer.isTrue || false,
-      id: this.answers.length,
+    return new FormGroup({
+      name: new FormControl(answer.name || 'Текст відповіді'),
+      isTrue: new FormControl(answer.isTrue || false),
+      id: new FormControl(this.answers.length),
     });
   }
 
@@ -46,7 +48,6 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this.answers.push(this.newAnswer(answer));
     this.checkPlusButtonVisibility();
   }
-
   removeAnswer(id: number): void {
     this.answers.removeAt(id);
     this.checkPlusButtonVisibility();
@@ -59,32 +60,28 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this._answersForm = value;
   }
 
-  public switchTemplateByType(typeName: string): void {
+  public changeTemplate(typeName: string): void {
     this.clearAnswersArray();
-    // треба цей if оптимізувати
-    // що я можу зробити: 
-    //  1. винести в окрему ф-цію із swith || if/else
-    //  2. витягувати дані із класу Templates - вся логіка із додванням елементів форми підв'язана у цьому класі
-    // -------- //
-    // а ще треба вирішити за яким критерієм я буду перевіряти чому рівне typeName ібо рядків замало.
-    // Це потрібно опитимізувати
-
     this.setFormElementsByTypeName(typeName);
   }
 
   setFormElementsByTypeName(typeName: string) {
     const templates = TEMPLATES;
+    let temp: any;
     templates.forEach((template) => {
       if (template.name === typeName) {
-        this.blockInputs();
-        this.hidePlusButton();
         this.addAnswer(template.value1, true);
         this.addAnswer(template.value2, false);
-      } else {
-        this.unblockInputs();
-        this.showPlusButton();
+        temp = template;
       }
     });
+    if (temp.value1 === undefined) {
+      this.unblockInputs();
+      this.showPlusButton();
+    } else {
+      this.blockInputs();
+      this.hidePlusButton();
+    }
   }
 
   blockInputs(): void {
@@ -117,5 +114,14 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   clearAnswersArray(): void {
     this.answersForm.controls.answersArray = this._formBuilder.array([]);
+  }
+
+  setTrueAnswer(id: number): void {
+    this.answersControls.forEach((e: FormGroup) => {
+      console.log(typeof e);
+      +id === +e.value.id ?
+                    e.setValue({isTrue: true, name: e.value.name, id: e.value.id}) :
+                    e.setValue({isTrue: false, name: e.value.name, id: e.value.id});
+    });
   }
 }
