@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 import { Question } from 'src/app/models/Question/Question';
 import { TEMPLATES } from 'src/app/utils/Templates';
@@ -16,29 +16,28 @@ export class NewQuestionFormComponent implements OnInit {
 
   form: FormGroup;
   templates = TEMPLATES;
+  private question: Question;
 
-// TODO встановлення правильної відповіді
 // TODO формування об'єкту для передачі на бек
 // TODO set масиву відповідей до головної форми
 
 constructor(
-    private formBuilder: FormBuilder,
-    private question: Question
+    private formBuilder: FormBuilder
   ) {
-    this.form = this.formBuilder.group({
-      name: ['', [
+    this.form = new FormGroup({
+      name: new FormControl('', [
         Validators.maxLength(20),
-      ]],
-      text: ['', [
+      ]),
+      text: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(200),
-      ]],
-      time: [''],
-      template: [{}],
-      answerType: ['', [ Validators.required ]],
-      answers: this.formBuilder.array([]),
+      ]),
+      time: new FormControl(30),
+      template: new FormControl(),
+      answerType: new FormControl('', [ Validators.required ]),
     });
+    this.question = new Question();
   }
 
   ngOnInit(): void { }
@@ -49,9 +48,9 @@ constructor(
 
   onSubmit(): void {
     this.checkName();
+    this.setQuesion();
     console.log(this.question);
-    this.form.controls.answers = this.child.answersForm.controls.answersArray;
-    console.log(this.form);
+    // call method from service for post data
   }
 
   checkName(): void {
@@ -62,9 +61,23 @@ constructor(
     }
   }
 
-  // formNameField записується через клас Question
   setDefaultName(textField: string): void {
     const defaultName = textField.slice(0, 20).toString();
-    this.question.name = defaultName;
+    this.form.patchValue({name: defaultName});
+  }
+
+  setTemplate(): boolean {
+    let status: boolean;
+    this.form.value.template === 'Власне' ? status = false : status = true;
+    return status;
+  }
+
+  setQuesion(): void {
+    this.question._text = this.form.value.text;
+    this.question._name = this.form.value.name;
+    this.question._template = this.setTemplate();
+    this.question._time = this.form.value.time;
+    this.question._answerType = 'BUTTON';
+    this.question._answers = this.child.getAnswers();
   }
 }

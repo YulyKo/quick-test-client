@@ -1,9 +1,9 @@
 export class Answer {
-  private _id: string;
+  private _id?: string;
   private _name: string;
   private _isTrue: boolean = false;
-  private _created: Date;
-  private _updated: Date;
+  private _created?: Date;
+  private _updated?: Date;
 
   constructor(defaultName: string, defaultIsTrue: boolean) {
     this.name = defaultName;

@@ -2,7 +2,7 @@ import { templateSourceUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Answer } from 'src/app/models/Question/Answer';
-import { TEMPLATES } from 'src/app/utils/Templates';
+import { ITemplate, TEMPLATES } from 'src/app/utils/Templates';
 
 @Component({
   selector: 'app-creating-answers-list-form',
@@ -48,6 +48,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this.answers.push(this.newAnswer(answer));
     this.checkPlusButtonVisibility();
   }
+
   removeAnswer(id: number): void {
     this.answers.removeAt(id);
     this.checkPlusButtonVisibility();
@@ -67,7 +68,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   setFormElementsByTypeName(typeName: string) {
     const templates = TEMPLATES;
-    let temp: any;
+    let temp: ITemplate;
     templates.forEach((template) => {
       if (template.name === typeName) {
         this.addAnswer(template.value1, true);
@@ -75,6 +76,10 @@ export class CreatingAnswersListFormComponent implements OnInit {
         temp = template;
       }
     });
+    this.changeInputsAndButtonsVisibility(temp);
+  }
+
+  changeInputsAndButtonsVisibility(temp: ITemplate): void {
     if (temp.value1 === undefined) {
       this.unblockInputs();
       this.showPlusButton();
@@ -101,7 +106,6 @@ export class CreatingAnswersListFormComponent implements OnInit {
     if (this.answersControls.length < MAX_NUMBER_ANSWERS) {
       this.showPlusButton();
     } else this.hidePlusButton();
-
   }
 
   hidePlusButton(): void {
@@ -113,15 +117,26 @@ export class CreatingAnswersListFormComponent implements OnInit {
   }
 
   clearAnswersArray(): void {
-    this.answersForm.controls.answersArray = this._formBuilder.array([]);
+    this.answers.clear();
   }
 
   setTrueAnswer(id: number): void {
     this.answersControls.forEach((e: FormGroup) => {
-      console.log(typeof e);
       +id === +e.value.id ?
                     e.setValue({isTrue: true, name: e.value.name, id: e.value.id}) :
                     e.setValue({isTrue: false, name: e.value.name, id: e.value.id});
     });
+  }
+
+  removeIdFied(): void {
+    // remove id field
+    this.answers.controls.forEach((element: FormGroup) => {
+      element.removeControl('id');
+    });
+  }
+
+  getAnswers(): Answer[] {
+    this.removeIdFied();
+    return this.answers.value;
   }
 }
