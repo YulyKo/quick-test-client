@@ -28,17 +28,22 @@ constructor(
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.maxLength(20),
-        Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9]{2,}'),
+        Validators.minLength(2),
+        Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9 ?><()/*&%$#-]{2,}'),
       ]),
-      text: new FormControl('', [
+      text: new FormControl('',
         Validators.compose([
           Validators.required,
           Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9 ?><()/*&%$#-]{2,}'),
           Validators.minLength(2),
           Validators.maxLength(200),
         ])
-      ]),
-      time: new FormControl(30),
+      ),
+      time: new FormControl(30, Validators.compose([
+        Validators.required,
+        Validators.pattern('0-9'),
+        Validators.minLength(2),
+      ])]),
       template: new FormControl(),
       answerType: new FormControl('', [ Validators.required ]),
     });
