@@ -1,5 +1,10 @@
 export const TEMPLATES: ITemplate[] = [
   {
+    name: 'true/false',
+    value1: 'true',
+    value2: 'false',
+  },
+  {
     name: 'yes/no',
     value1: 'yes',
     value2: 'no',
