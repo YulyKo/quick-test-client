@@ -18,8 +18,9 @@ export class NewQuestionFormComponent implements OnInit {
   templates = TEMPLATES;
   private question: Question;
 
-// TODO формування об'єкту для передачі на бек
-// TODO set масиву відповідей до головної форми
+// TODO формування запиту на бек
+// TODO додати валідацію із повідомленнями
+// TODO додати стилі
 
 constructor(
     private formBuilder: FormBuilder
@@ -27,11 +28,15 @@ constructor(
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.maxLength(20),
+        Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9]{2,}'),
       ]),
       text: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(200),
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9 ?><()/*&%$#-]{2,}'),
+          Validators.minLength(2),
+          Validators.maxLength(200),
+        ])
       ]),
       time: new FormControl(30),
       template: new FormControl(),
@@ -47,6 +52,9 @@ constructor(
   }
 
   onSubmit(): void {
+    const ree = this.form.controls.text.errors;
+    console.log(ree);
+    
     this.checkName();
     this.setQuesion();
     console.log(this.question);
