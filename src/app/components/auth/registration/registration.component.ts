@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ErrorsMessages } from 'src/app/utils/ErrorsMessages';
-import { Patterns } from 'src/app/utils/Patterns';
+import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
+import { Patterns } from 'src/app/utils/Patterns.enum.';
 
 @Component({
   selector: 'app-registration',
