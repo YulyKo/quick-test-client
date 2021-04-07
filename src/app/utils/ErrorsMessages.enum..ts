@@ -17,4 +17,9 @@ export enum ErrorsMessages {
   ERROR_MASSAGE_FOR_NO_EQUALS_PASSWORDS = 'Паролі не однакові',
   // else
   ERROR_MESSAGE_FOR_LOGIN_FORM = 'Невірні дані',
+  // question
+  ERROR_MESSAGE_FOR_SO_SHORT_QUESTION_NAME = 'Мінімальна довжина 2 символи',
+  ERROR_MESSAGE_FOR_SO_LONG_QUESTION_NAME = 'Максимальна довжина 20 символів',
+  ERROR_MESSAGE_FOR_SO_LONG_QUESTION_TEXT = 'Максимальна довжина 200 символів',
+  ERROR_MASSAGE_FOR_INVALID_QUESTION = 'Присутні недопустимі символи',
 }

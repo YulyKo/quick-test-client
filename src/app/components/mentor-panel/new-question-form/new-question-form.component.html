@@ -1,12 +1,22 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <label for="name">Назва запитання *</label>
+  <label for="name">Назва запитання</label>
   <div>
-    <input type="text" formControlName="name">
-    <!-- <app-input-text formControlName="name"></aЦкуцууцpp-input-text> control name does not work -->
+    <input id="name" type="text" formControlName="name">
+  </div>
+  <div *ngIf="this.form.controls.name.status === 'INVALID'">
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.maxlength"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_NAME }}"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.minlength"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_QUESTION_NAME }}"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.pattern"
+      message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
   </div>
   <label for="question">Текст запитання *</label>
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
-  <label for="">Оберіть шаблон запитання *</label>
+  <label for="type">Оберіть шаблон запитання *</label>
   <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
     <option
       *ngFor="let template of templates"

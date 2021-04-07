@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 import { Question } from 'src/app/models/Question/Question';
 import { TEMPLATES } from 'src/app/models/Question/Templates';
 import { QuestionTime } from 'src/app/models/Question/QuestionTime.enum';
 import { Patterns } from 'src/app/utils/Patterns.enum';
+import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
 
 @Component({
   selector: 'app-new-question-form',
@@ -20,6 +21,7 @@ export class NewQuestionFormComponent implements OnInit {
   templates = TEMPLATES;
   private question: Question;
   timesEnum = QuestionTime;
+  ERRORS = ErrorsMessages;
 
 // TODO формування запиту на бек
 // TODO додати валідацію із повідомленнями
@@ -62,6 +64,8 @@ constructor(
   onSubmit(): void {
     this.checkErrors();
     console.log(this.question);
+    console.log(this.form.controls.name.errors.maxlength);
+    
     // call method from service for post data
   }
 

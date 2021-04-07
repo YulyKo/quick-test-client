@@ -7,6 +7,8 @@ import { HeaderComponent } from '../utils/UI/header/header.component';
 import { AuthModule } from './auth/auth.module';
 import { WebsiteModule } from './website/website.module';
 import { MentorPanelModule } from './mentor-panel/mentor-panel.module';
+import { ErrorMessageComponent } from '../utils/UI/error-message/error-message.component';
+import { UIModule } from './UI/ui.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MentorPanelModule } from './mentor-panel/mentor-panel.module';
     MentorPanelModule,
     BrowserModule,
     AppRoutingModule,
+    UIModule,
   ],
+  // exports: [ErrorMessageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

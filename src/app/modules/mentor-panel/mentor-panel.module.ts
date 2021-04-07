@@ -8,6 +8,7 @@ import { InputTextComponent } from 'src/app/utils/UI/form-elements/input-text/in
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TimeFilter } from 'src/app/utils/Time.pipe';
+import { UIModule } from '../UI/ui.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TimeFilter } from 'src/app/utils/Time.pipe';
     TimeFilter,
   ],
   imports: [
+    UIModule,
     CommonModule,
     MentorPanelRoutingModule,
     ReactiveFormsModule,
