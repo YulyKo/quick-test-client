@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
-import { Patterns } from 'src/app/utils/Patterns.enum.';
+import { Patterns } from 'src/app/utils/Patterns.enum';
 
 @Component({
   selector: 'app-registration',

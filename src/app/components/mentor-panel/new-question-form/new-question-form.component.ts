@@ -4,6 +4,7 @@ import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answ
 import { Question } from 'src/app/models/Question/Question';
 import { TEMPLATES } from 'src/app/models/Question/Templates';
 import { QuestionTime } from 'src/app/models/Question/QuestionTime.enum';
+import { Patterns } from 'src/app/utils/Patterns.enum';
 
 @Component({
   selector: 'app-new-question-form',
@@ -31,12 +32,12 @@ constructor(
       name: new FormControl('', [
         Validators.maxLength(20),
         Validators.minLength(2),
-        Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9 ?><()/*&%$#-]{2,}'),
+        Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
       ]),
       text: new FormControl('',
         Validators.compose([
           Validators.required,
-          Validators.pattern('[A-zА-яіїйєІЇЙЄ0-9 ?><()/*&%$#-]{2,}'),
+          Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
           Validators.minLength(2),
           Validators.maxLength(200),
         ])
