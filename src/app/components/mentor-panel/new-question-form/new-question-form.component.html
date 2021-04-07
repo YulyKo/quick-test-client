@@ -16,14 +16,34 @@
   </div>
   <label for="question">Текст запитання *</label>
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
+  <div *ngIf="this.form.controls.text.status === 'INVALID'">
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.required"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.maxlength"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_QUESTION_TEXT }}"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.minlength"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_QUESTION_NAME }}"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.pattern"
+      message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
+  </div>
   <label for="type">Оберіть шаблон запитання *</label>
   <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
     <option
       *ngFor="let template of templates"
       value="{{ template.name }}">{{ template.name }}</option>
   </select>
+  <div *ngIf="this.form.controls.template.status === 'INVALID'">
+    <app-error-message
+      *ngIf="this.form.controls.template.errors.required"
+      message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  </div>
   <label for="time">Час на виконання</label>
   <select name="time" id="time" formControlName="time">
+    <option value="10" selected disabled hidden>10сек</option>
     <option
       *ngFor="let time of timesEnum | TimeFilter"
       value="{{ time }}">{{ time }}</option>

@@ -44,18 +44,19 @@ constructor(
           Validators.maxLength(200),
         ])
       ),
-      time: new FormControl(30, Validators.compose([
+      time: new FormControl(10, Validators.compose([
         Validators.required,
-        Validators.pattern('0-9'),
-        Validators.minLength(2),
       ])),
       template: new FormControl('', Validators.required),
     });
     // answerType: new FormControl('', [ Validators.required ]), -> need only for class Question
     this.question = new Question();
+    this.form.patchValue({time: this.timesEnum['10сек']})
+    console.log(this.form.value);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   changeTemplate(): void {
     this.child.changeTemplate(this.form.value.template);
@@ -64,8 +65,6 @@ constructor(
   onSubmit(): void {
     this.checkErrors();
     console.log(this.question);
-    console.log(this.form.controls.name.errors.maxlength);
-    
     // call method from service for post data
   }
 

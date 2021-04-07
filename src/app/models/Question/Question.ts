@@ -10,7 +10,7 @@ export class Question {
   private answerType: string; // answerType - в майб Enum
   private created?: Date;
   private updated?: Date;
-  private answers: Answer[];
+  private questionAnswers: Answer[];
     
   public get _id(): string {
     return this.id;
@@ -76,9 +76,9 @@ export class Question {
   }
 
   public get _answers(): Answer[] {
-    return this.answers;
+    return this.questionAnswers;
   }
   public set _answers(value: Answer[]) {
-    this.answers = value;
+    this.questionAnswers = value;
   }
 }
