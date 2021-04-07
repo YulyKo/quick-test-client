@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreatingAnswersListFormComponent } from 'src/app/utils/UI/creating-answers-list-form/creating-answers-list-form.component';
 import { Question } from 'src/app/models/Question/Question';
-import { TEMPLATES } from 'src/app/utils/Templates';
+import { TEMPLATES } from 'src/app/models/Question/Templates';
+import { QuestionTime } from 'src/app/models/Question/QuestionTime.enum';
 
 @Component({
   selector: 'app-new-question-form',
@@ -17,6 +18,7 @@ export class NewQuestionFormComponent implements OnInit {
   form: FormGroup;
   templates = TEMPLATES;
   private question: Question;
+  timesEnum = QuestionTime;
 
 // TODO формування запиту на бек
 // TODO додати валідацію із повідомленнями
@@ -43,10 +45,10 @@ constructor(
         Validators.required,
         Validators.pattern('0-9'),
         Validators.minLength(2),
-      ])]),
-      template: new FormControl(),
-      answerType: new FormControl('', [ Validators.required ]),
+      ])),
+      template: new FormControl('', Validators.required),
     });
+    // answerType: new FormControl('', [ Validators.required ]), -> need only for class Question
     this.question = new Question();
   }
 
@@ -57,13 +59,21 @@ constructor(
   }
 
   onSubmit(): void {
-    const ree = this.form.controls.text.errors;
-    console.log(ree);
-    
-    this.checkName();
-    this.setQuesion();
+    this.checkErrors();
     console.log(this.question);
     // call method from service for post data
+  }
+
+  checkErrors(): void {
+    const errors = this.form.controls.text.errors;
+    console.log(errors);
+    errors === null ? this.sendQuestion() : console.log('something wrong');
+  }
+
+  sendQuestion(): void {
+    this.checkName();
+    this.setQuesion();
+    // reqest to sevice method post question
   }
 
   checkName(): void {
@@ -89,7 +99,7 @@ constructor(
     this.question._text = this.form.value.text;
     this.question._name = this.form.value.name;
     this.question._template = this.setTemplate();
-    this.question._time = this.form.value.time;
+    this.question._time = +this.timesEnum[this.form.value.time];
     this.question._answerType = 'BUTTON';
     this.question._answers = this.child.getAnswers();
   }

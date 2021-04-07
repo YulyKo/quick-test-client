@@ -12,6 +12,11 @@
       *ngFor="let template of templates"
       value="{{ template.name }}">{{ template.name }}</option>
   </select>
+  <select name="time" id="time" formControlName="time">
+    <option
+      *ngFor="let time of timesEnum | TimeFilter"
+      value="{{ time }}">{{ time }}</option>
+  </select>
   <app-creating-answers-list-form></app-creating-answers-list-form>
   <button type="submit">submit</button>
 </form>

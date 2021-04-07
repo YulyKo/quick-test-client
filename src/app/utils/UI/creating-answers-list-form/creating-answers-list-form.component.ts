@@ -2,7 +2,7 @@ import { templateSourceUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Answer } from 'src/app/models/Question/Answer';
-import { ITemplate, TEMPLATES } from 'src/app/utils/Templates';
+import { ITemplate, TEMPLATES } from 'src/app/models/Question/Templates';
 
 @Component({
   selector: 'app-creating-answers-list-form',
