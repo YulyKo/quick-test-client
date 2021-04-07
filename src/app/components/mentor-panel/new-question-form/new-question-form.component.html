@@ -1,17 +1,18 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <label for="name">Name *</label>
+  <label for="name">Назва запитання *</label>
   <div>
     <input type="text" formControlName="name">
-    <!-- <app-input-text formControlName="name"></app-input-text> control name does not work -->
+    <!-- <app-input-text formControlName="name"></aЦкуцууцpp-input-text> control name does not work -->
   </div>
-  <label for="question">Text question *</label>
+  <label for="question">Текст запитання *</label>
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
-  <label for="">Choose type *</label>
+  <label for="">Оберіть шаблон запитання *</label>
   <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
     <option
       *ngFor="let template of templates"
       value="{{ template.name }}">{{ template.name }}</option>
   </select>
+  <label for="time">Час на виконання</label>
   <select name="time" id="time" formControlName="time">
     <option
       *ngFor="let time of timesEnum | TimeFilter"
