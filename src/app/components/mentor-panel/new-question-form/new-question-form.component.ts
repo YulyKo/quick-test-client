@@ -22,6 +22,7 @@ export class NewQuestionFormComponent implements OnInit {
   private question: Question;
   timesEnum = QuestionTime;
   ERRORS = ErrorsMessages;
+  submited: boolean = false;
 
 // TODO формування запиту на бек
 // TODO додати валідацію із повідомленнями
@@ -63,6 +64,7 @@ constructor(
   }
 
   onSubmit(): void {
+    this.submited = true;
     this.checkErrors();
     console.log(this.question);
     // call method from service for post data

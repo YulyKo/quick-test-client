@@ -3,7 +3,7 @@
   <div>
     <input id="name" type="text" formControlName="name">
   </div>
-  <div *ngIf="this.form.controls.name.status === 'INVALID'">
+  <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.name.errors.maxlength"
       message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_NAME }}"></app-error-message>
@@ -16,7 +16,7 @@
   </div>
   <label for="question">Текст запитання *</label>
   <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
-  <div *ngIf="this.form.controls.text.status === 'INVALID'">
+  <div *ngIf="this.form.controls.text.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.text.errors.required"
       message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
@@ -36,7 +36,7 @@
       *ngFor="let template of templates"
       value="{{ template.name }}">{{ template.name }}</option>
   </select>
-  <div *ngIf="this.form.controls.template.status === 'INVALID'">
+  <div *ngIf="this.form.controls.template.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.template.errors.required"
       message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
