@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Answer } from 'src/app/models/Question/Answer';
 import { ITemplate, TEMPLATES } from 'src/app/models/Question/Templates';
+import { ErrorsMessages } from '../../ErrorsMessages.enum.';
 import { Patterns } from '../../Patterns.enum';
 
 @Component({
@@ -14,6 +15,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
   private _answersForm: FormGroup;
   buttonPlus: HTMLButtonElement;
   templates = TEMPLATES;
+  ERRORS = ErrorsMessages;
 
   constructor(private _formBuilder: FormBuilder) {
     this.answersForm = this._formBuilder.group({

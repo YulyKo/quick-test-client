@@ -19,16 +19,16 @@
             *ngIf="this.answer.status === 'INVALID'">
             <app-error-message
               *ngIf="answer.controls.name.errors.required"
-              message="error required"></app-error-message>
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
             <app-error-message
               *ngIf="answer.controls.name.errors.minlength"
-              message="error minLength"></app-error-message>
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_QUESTION_NAME }}"></app-error-message>
             <app-error-message
               *ngIf="answer.controls.name.errors.maxlength"
-              message="error maxLength"></app-error-message>
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_ANSWER_TEXT }}"></app-error-message>
             <app-error-message
               *ngIf="answer.controls.name.errors.pattern"
-              message="error pattern"></app-error-message>
+              message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
           </section>
         </div>
 
