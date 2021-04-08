@@ -3,7 +3,7 @@ export enum Patterns {
   NAME_PATTERN = `[А-Я'ЇІЄ]{1}[а-я'їіє]{1,20} [А-Я'ЇІЄ]{1}[а-я'їіє]{1,20}'?-?[а-яА-Я'їіє'ЇІЄ]{1,20}`,
   PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{3,}',
   EMAIL_PATTERN = '[^\s@]+@[^\s@]+',
-  QUESTION_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 ?><()/*,.&%$#-]{2,}',
+  QUESTION_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 !?><()/*,.&%$#-]{1,}',
 }
 // PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,}',
 // PASSWORD_PATTERN = '((?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,})',

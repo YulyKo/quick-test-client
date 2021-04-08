@@ -1,8 +1,9 @@
 import { templateSourceUrl } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, PatternValidator, Validators } from '@angular/forms';
 import { Answer } from 'src/app/models/Question/Answer';
 import { ITemplate, TEMPLATES } from 'src/app/models/Question/Templates';
+import { Patterns } from '../../Patterns.enum';
 
 @Component({
   selector: 'app-creating-answers-list-form',
@@ -37,7 +38,12 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   newAnswer(answer: Answer): FormGroup {
     return new FormGroup({
-      name: new FormControl(answer.name || 'Текст відповіді'),
+      name: new FormControl(answer.name || 'Текст відповіді', Validators.compose([
+        Validators.required,
+        Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
+        Validators.minLength(2),
+        Validators.maxLength(40),
+      ])),
       isTrue: new FormControl(answer.isTrue || false),
       id: new FormControl(this.answers.length),
     });
@@ -64,6 +70,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
   public changeTemplate(typeName: string): void {
     this.clearAnswersArray();
     this.setFormElementsByTypeName(typeName);
+    this.answers.controls.forEach(e => console.log('e', e));
   }
 
   setFormElementsByTypeName(typeName: string) {
