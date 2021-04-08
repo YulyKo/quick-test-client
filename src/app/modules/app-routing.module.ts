@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WebsiteComponent } from '../views/website/website.component';
+import { HomePageComponent } from './site/home-page/home-page.view';
 
 const routes: Routes = [
-  { path: '', component: WebsiteComponent },
+  { path: '', component: HomePageComponent },
   {
     path: 'home/root',
-    loadChildren: () => import('./mentor-panel/mentor-panel.module').then(m => m.MentorPanelModule)
+    loadChildren: () => import('./mentor/mentor-panel.module').then(m => m.MentorPanelModule)
   },
   {
     path: 'auth/login',

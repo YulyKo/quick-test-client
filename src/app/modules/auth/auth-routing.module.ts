@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginViewComponent } from 'src/app/views/auth/login-view/login-view.component';
-import { AuthGuard } from 'src/app/guards/auth.guard';
-import { RegisterViewComponent } from 'src/app/views/auth/register-view/register-view.component';
+import { AuthGuard } from './auth.guard';
+import { LoginView } from './views/login/login.view';
+import { RegisterView } from './views/register/register.view';
 
 const routes: Routes = [
   {
     path: 'auth/login',
-    component: LoginViewComponent,
+    component: LoginView,
     canActivate: [AuthGuard],
   },
   {
     path: 'auth/register',
-    component: RegisterViewComponent,
+    component: RegisterView,
     canActivate: [AuthGuard],
   },
 ];

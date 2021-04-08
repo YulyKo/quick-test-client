@@ -2,28 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from '../app.component';
-import { HeaderComponent } from '../utils/UI/header/header.component';
 import { AuthModule } from './auth/auth.module';
-import { WebsiteModule } from './website/website.module';
-import { MentorPanelModule } from './mentor-panel/mentor-panel.module';
-import { ErrorMessageComponent } from '../utils/UI/error-message/error-message.component';
 import { UIModule } from './UI/ui.module';
+import { AppComponent } from '../app.component';
+import { SiteModule } from './site/site.module';
+import { MentorPanelModule } from './mentor/mentor-panel.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
   ],
   imports: [
     AuthModule,
-    WebsiteModule,
+    SiteModule,
     MentorPanelModule,
+    UIModule,
     BrowserModule,
     AppRoutingModule,
     UIModule,
   ],
-  // exports: [ErrorMessageComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
