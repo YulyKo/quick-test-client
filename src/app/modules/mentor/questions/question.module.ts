@@ -6,6 +6,8 @@ import { UIModule } from '../../UI/ui.module';
 import { CreatingQuestionView } from './views/creating-question-view/creating-question.view';
 import { NewQuestionFormComponent } from './components/new-question-form/new-question-form.component';
 import { CreatingAnswersListFormComponent } from './components/creating-answers-list-form/creating-answers-list-form.component';
+import { RouterModule } from '@angular/router';
+import { questionRoutes } from './question.routing';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { CreatingAnswersListFormComponent } from './components/creating-answers-
     UIModule,
     CommonModule,
     ReactiveFormsModule,
+    RouterModule.forChild(questionRoutes),
   ],
   providers: [],
 })

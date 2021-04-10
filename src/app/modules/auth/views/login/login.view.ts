@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-view',
   templateUrl: './login.view.html',
   styleUrls: ['../auth-view.sass']
 })
@@ -14,6 +14,6 @@ export class LoginView implements OnInit {
   ngOnInit(): void {}
 
   goToRegisterPage(): void {
-    this.router.navigate(['../register'], {relativeTo: this.route});
+    this.router.navigate(['../registration'], {relativeTo: this.route});
   }
 }

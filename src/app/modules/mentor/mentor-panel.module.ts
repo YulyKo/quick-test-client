@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MentorPanelRoutingModule } from './mentor-panel-routing.module';
+import { mentorRoutes } from './mentor-panel.routing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FolderView } from './folders/views/folder-view/folder.view';
 import { UIModule } from '../UI/ui.module';
 import { QuestionModule } from './questions/question.module';
+import { MentorView } from './mentor-view/mentor.view';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    FolderView,
+    MentorView,
   ],
   imports: [
     UIModule,
     QuestionModule,
     CommonModule,
-    MentorPanelRoutingModule,
+    RouterModule.forChild(mentorRoutes),
     ReactiveFormsModule,
   ],
   providers: [],

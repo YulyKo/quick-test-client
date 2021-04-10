@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             this.existUser = true;
             user.setAccessToken(res.accessToken);
             this.authService.setLoginStatus(true);
-            this.router.navigate(['/home/root']);
+            this.router.navigate(['/home']);
           },
           (error) => +error.status === 400 ? this.existUser = false : console.error('error')
         );

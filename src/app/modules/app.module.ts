@@ -16,7 +16,6 @@ import { MentorPanelModule } from './mentor/mentor-panel.module';
     AuthModule,
     SiteModule,
     MentorPanelModule,
-    UIModule,
     BrowserModule,
     AppRoutingModule,
     UIModule,
