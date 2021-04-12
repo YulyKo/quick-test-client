@@ -73,7 +73,10 @@ export class NewQuestionFormComponent implements OnInit {
   sendQuestion(): void {
     this.checkName();
     this.setQuesion();
-    this.questionService.postQuestion(this.question);
+    const newQ = this.questionService.postQuestion(this.question);
+    // newQ.then(e => console.log('e', e));
+    console.log(typeof newQ);
+    console.log('newQ', newQ);
     // reqest to sevice method post question
   }
 
