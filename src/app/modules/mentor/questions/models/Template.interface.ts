@@ -1,4 +1,4 @@
-import { Templates } from "./Templates.enum";
+import { Templates } from './Templates.enum';
 
 export interface ITemplate {
   name: string;

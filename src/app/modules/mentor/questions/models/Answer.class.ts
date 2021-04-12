@@ -1,7 +1,7 @@
 export class Answer {
   private _id?: string;
   private _name: string;
-  private _isTrue: boolean = false;
+  private _isTrue = false;
   private _created?: Date;
   private _updated?: Date;
 

@@ -1,5 +1,5 @@
-import { ITemplate } from "./Template.interface";
-import { Templates } from "./Templates.enum";
+import { ITemplate } from './Template.interface';
+import { Templates } from './Templates.enum';
 
 export const TEMPLATES: ITemplate[] = [
   {

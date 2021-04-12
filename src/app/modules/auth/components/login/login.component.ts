@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
             +error.status === 400 ? this.existEmail = true : console.log(error);
             // пошта існує в базі, вхід доступний
             const user = this.getUser();
-            this.loginUser(user);            
+            this.loginUser(user);
           },
         );
     }, 1000);

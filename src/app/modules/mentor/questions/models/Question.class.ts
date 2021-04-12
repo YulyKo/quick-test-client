@@ -1,16 +1,6 @@
-import { Answer } from "./Answer.class";
-import { AnswerTypes } from "./AnswerTypes.enum";
-import { Templates } from "./Templates.enum";
-// private id?: string;
-// private name: string;
-// private text: string;
-// private time: number;
-// private folderId?: string;
-// private template: Templates;  // true - наявний шаблон || false - відсутній шаблон
-// private answerType: AnswerTypes; // answerType - в майб Enum
-// private created?: Date;
-// private updated?: Date;
-// private questionAnswers: Answer[];
+import { Answer } from './Answer.class';
+import { AnswerTypes } from './AnswerTypes.enum';
+import { Templates } from './Templates.enum';
 
 export class Question {
   id?: string;

@@ -30,7 +30,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
 
   public get answers(): FormArray {
     return this.answersForm.get('answersArray') as FormArray;
-  };
+  }
 
   public get answersControls(): Array<FormGroup> {
     return this.answers.controls as Array<FormGroup>;
@@ -73,7 +73,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
     this.answers.controls.forEach(e => console.log('e', e));
   }
 
-  setFormElementsByTypeName(typeName: string) {
+  setFormElementsByTypeName(typeName: string): void {
     const templates = TEMPLATES;
     let temp: ITemplate;
     templates.forEach((template) => {
@@ -112,7 +112,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
     const MAX_NUMBER_ANSWERS = 5;
     if (this.answersControls.length < MAX_NUMBER_ANSWERS) {
       this.showPlusButton();
-    } else this.hidePlusButton();
+    } else { this.hidePlusButton(); }
   }
 
   hidePlusButton(): void {

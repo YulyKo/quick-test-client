@@ -16,7 +16,7 @@ import { AnswerTypes } from '../../models/AnswerTypes.enum';
   styleUrls: ['./new-question-form.component.sass']
 })
 export class NewQuestionFormComponent implements OnInit {
-  
+
   @ViewChild(CreatingAnswersListFormComponent) child;
   // у майбутньому так буде передаватися formGroup for answers
 
@@ -25,7 +25,7 @@ export class NewQuestionFormComponent implements OnInit {
   private question: Question;
   timesEnum = QuestionTime;
   ERRORS = ErrorsMessages;
-  submited: boolean = false;
+  submited = false;
 
   constructor(private questionService: QuestionService) {
     this.form = new FormGroup({
@@ -52,8 +52,7 @@ export class NewQuestionFormComponent implements OnInit {
     console.log(this.form.value);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   changeTemplate(): void {
     this.child.changeTemplate(this.form.value.template);
@@ -73,16 +72,13 @@ export class NewQuestionFormComponent implements OnInit {
   sendQuestion(): void {
     this.checkName();
     this.setQuesion();
-    const newQ = this.questionService.postQuestion(this.question);
-    // newQ.then(e => console.log('e', e));
-    console.log(typeof newQ);
-    console.log('newQ', newQ);
+    this.questionService.postQuestion(this.question);
     // reqest to sevice method post question
   }
 
   checkName(): void {
-    let formNameField = this.form.value.name;
-    let textField = this.form.value.text;
+    const formNameField = this.form.value.name;
+    const textField = this.form.value.text;
     if (formNameField === '' || textField.length > 20) {
       this.setDefaultName(textField);
     }
@@ -93,7 +89,7 @@ export class NewQuestionFormComponent implements OnInit {
     this.form.patchValue({name: defaultName});
   }
 
-  setAnswerType() {} // here changing answers type by template type
+  setAnswerType(): void {} // here changing answers type by template type
 
   setQuesion(): void {
     this.question._text = this.form.value.text;
