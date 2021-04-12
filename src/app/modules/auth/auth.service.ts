@@ -16,15 +16,15 @@ export class AuthService {
   setLoginStatus(status: boolean): void {
     this.loginStatus = status;
   }
-
+  
   getLoginStatus(): boolean {
     return this.loginStatus;
   }
-
+  
   checkEmail(email: string): Observable<object> {
     return this.http.head(`${this.AUTH_API_URL}/email/${email}`);
   }
-
+  
   register(user: User): Observable<User> {
     return this.http.post<User>(`${this.AUTH_API_URL}/registration`, user);
   }

@@ -43,7 +43,7 @@
   </div>
   <label for="time">Час на виконання</label>
   <select name="time" id="time" formControlName="time">
-    <option value="10" selected disabled hidden>10сек</option>
+    <option value="15" selected disabled hidden>15сек</option>
     <option
       *ngFor="let time of timesEnum | TimeFilter"
       value="{{ time }}">{{ time }}</option>

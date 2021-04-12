@@ -1,4 +1,6 @@
 import { Answer } from "./Answer.class";
+import { AnswerTypes } from "./AnswerTypes.enum";
+import { Templates } from "./Templates.enum";
 
 export class Question {
   private id?: string;
@@ -6,12 +8,12 @@ export class Question {
   private text: string;
   private time: number;
   private folderId?: string;
-  private template: boolean;  // true - наявний шаблон || false - відсутній шаблон
-  private answerType: string; // answerType - в майб Enum
+  private template: Templates;  // true - наявний шаблон || false - відсутній шаблон
+  private answerType: AnswerTypes; // answerType - в майб Enum
   private created?: Date;
   private updated?: Date;
   private questionAnswers: Answer[];
-    
+
   public get _id(): string {
     return this.id;
   }
@@ -47,17 +49,17 @@ export class Question {
     this.folderId = value;
   }
 
-  public get _template(): boolean {
+  public get _template(): Templates {
     return this.template;
   }
-  public set _template(value: boolean) {
+  public set _template(value: Templates) {
     this.template = value;
   }
 
-  public get _answerType(): string {
+  public get _answerType(): AnswerTypes {
     return this.answerType;
   }
-  public set _answerType(value: string) {
+  public set _answerType(value: AnswerTypes) {
     this.answerType = value;
   }
 

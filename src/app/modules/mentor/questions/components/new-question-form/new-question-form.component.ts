@@ -6,6 +6,9 @@ import { CreatingAnswersListFormComponent } from '../creating-answers-list-form/
 import { TEMPLATES } from '../../models/Templates.const';
 import { Question } from '../../models/Question.class';
 import { QuestionTime } from '../../models/QuestionTime.enum';
+import { QuestionService } from '../../question.service';
+import { Templates } from '../../models/Templates.enum';
+import { AnswerTypes } from '../../models/AnswerTypes.enum';
 
 @Component({
   selector: 'app-new-question-form',
@@ -24,7 +27,7 @@ export class NewQuestionFormComponent implements OnInit {
   ERRORS = ErrorsMessages;
   submited: boolean = false;
 
-  constructor() {
+  constructor(private questionService: QuestionService) {
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.maxLength(20),
@@ -45,9 +48,7 @@ export class NewQuestionFormComponent implements OnInit {
       template: new FormControl('', Validators.required),
     });
     this.question = new Question();
-    console.log(this.timesEnum[10]);
-    
-    this.form.patchValue({time: this.timesEnum['10сек']});
+    this.form.patchValue({time: this.timesEnum['15сек']});
     console.log(this.form.value);
   }
 
@@ -66,13 +67,13 @@ export class NewQuestionFormComponent implements OnInit {
 
   checkErrors(): void {
     const errors = this.form.controls.text.errors;
-    console.log(errors);
     errors === null ? this.sendQuestion() : console.log('something wrong');
   }
 
   sendQuestion(): void {
     this.checkName();
     this.setQuesion();
+    this.questionService.postQuestion(this.question);
     // reqest to sevice method post question
   }
 
@@ -89,19 +90,15 @@ export class NewQuestionFormComponent implements OnInit {
     this.form.patchValue({name: defaultName});
   }
 
-  setTemplate(): boolean {
-    let status: boolean;
-    this.form.value.template === 'Власне' ? status = false : status = true;
-    return status;
-  }
+  setAnswerType() {} // here changing answers type by template type
 
   setQuesion(): void {
     this.question._text = this.form.value.text;
     this.question._name = this.form.value.name;
-    this.question._template = this.setTemplate();
+    this.question._template = Templates.BOOLEAN;
     // time 10 - default time for block NaN
-    this.question._time = +this.timesEnum[this.form.value.time] || 10;
-    this.question._answerType = 'BUTTON';
+    this.question._time = +this.timesEnum[this.form.value.time] || 15;
+    this.question._answerType = AnswerTypes.BUTTON;
     this.question._answers = this.child.getAnswers();
   }
 }

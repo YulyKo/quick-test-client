@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
             this.existUser = true;
             user.setAccessToken(res.accessToken);
             this.authService.setLoginStatus(true);
+            localStorage.setItem('token', res.accessToken);
+            console.log(res.accessToken);
             this.router.navigate(['/home']);
           },
           (error) => +error.status === 400 ? this.existUser = false : console.error('error')
@@ -76,7 +78,7 @@ export class LoginComponent implements OnInit {
             +error.status === 400 ? this.existEmail = true : console.log(error);
             // пошта існує в базі, вхід доступний
             const user = this.getUser();
-            this.loginUser(user);
+            this.loginUser(user);            
           },
         );
     }, 1000);

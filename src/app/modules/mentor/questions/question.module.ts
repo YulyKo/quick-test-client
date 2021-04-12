@@ -8,6 +8,7 @@ import { NewQuestionFormComponent } from './components/new-question-form/new-que
 import { CreatingAnswersListFormComponent } from './components/creating-answers-list-form/creating-answers-list-form.component';
 import { RouterModule } from '@angular/router';
 import { questionRoutes } from './question.routing';
+import { QuestionService } from './question.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { questionRoutes } from './question.routing';
     ReactiveFormsModule,
     RouterModule.forChild(questionRoutes),
   ],
-  providers: [],
+  providers: [QuestionService],
 })
 export class QuestionModule { }

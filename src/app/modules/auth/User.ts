@@ -19,4 +19,7 @@ export class User {
   public setAccessToken(accessToken: string): void {
     this.accessToken = accessToken;
   }
+  public getAccessToken(): string {
+    return this.accessToken;
+  }
 }
