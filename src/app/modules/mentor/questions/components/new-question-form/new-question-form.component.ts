@@ -79,7 +79,7 @@ export class NewQuestionFormComponent implements OnInit {
   checkName(): void {
     const formNameField = this.form.value.name;
     const textField = this.form.value.text;
-    if (formNameField === '' || textField.length > 20) {
+    if (formNameField === '') {
       this.setDefaultName(textField);
     }
   }
