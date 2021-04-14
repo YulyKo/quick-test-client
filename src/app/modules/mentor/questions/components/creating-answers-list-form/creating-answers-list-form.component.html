@@ -1,0 +1,42 @@
+<section [formGroup]="answersForm">
+  <div class="flex-row">
+    <div class="flex">
+      <div *ngFor="let answer of answersControls; let i = index">
+        <input (click)="this.setTrueAnswer(answer.controls.id.value)" class="d-block" type="radio" name="idTrueAnswer" [value]="answer.controls.id.value" formControlName="idTrueAnswer" id="{{ i }}">
+      </div>
+    </div>
+    <div class="flex" formArrayName="answersArray">
+      <div *ngFor="let answer of answersControls; let id = index">
+        <div [formGroupName]="id">
+          <input type="text"
+                 value="{{ name }}"
+                 formControlName="name">
+          <button
+              type="button"
+              *ngIf="answers.length >= 3"
+              (click)="this.removeAnswer(id)">x</button>
+          <section
+            *ngIf="this.answer.status === 'INVALID'">
+            <app-error-message
+              *ngIf="answer.controls.name.errors.required"
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+            <app-error-message
+              *ngIf="answer.controls.name.errors.minlength"
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_QUESTION_NAME }}"></app-error-message>
+            <app-error-message
+              *ngIf="answer.controls.name.errors.maxlength"
+              message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_ANSWER_TEXT }}"></app-error-message>
+            <app-error-message
+              *ngIf="answer.controls.name.errors.pattern"
+              message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <button id="plusButton"
+    class="button"
+    type="button"
+    (click)="this.addAnswer('', false)">+</button>
+</section>
