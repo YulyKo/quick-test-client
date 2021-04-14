@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
     UIModule,
     QuestionModule,
     CommonModule,
+    RouterModule,
     RouterModule.forChild(mentorRoutes),
     ReactiveFormsModule,
   ],

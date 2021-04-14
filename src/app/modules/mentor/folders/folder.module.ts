@@ -9,6 +9,9 @@ import { FolderView } from "./views/folder-view/folder.view";
     FolderItemsListComponent,
     FolderView,
   ],
-  imports: [RouterModule.forChild(folderRoutes)],
+  imports: [
+    RouterModule,
+    RouterModule.forChild(folderRoutes),
+  ],
 })
 export class FolderModel {}
