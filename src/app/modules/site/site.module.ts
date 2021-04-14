@@ -12,6 +12,7 @@ import { siteRoutes } from './site.routing';
   imports: [
     CommonModule,
     UIModule,
+    RouterModule,
     RouterModule.forChild(siteRoutes),
   ]
 })

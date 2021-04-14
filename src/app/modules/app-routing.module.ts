@@ -11,16 +11,12 @@ const routes: Routes = [
   },
   {
     path: 'auth/registration',
-    loadChildren: () => import ('./auth/auth.module').then(a => a.AuthModule),
+    loadChildren: () => import ('./auth/auth.module').then(a =>    a.AuthModule),
   },
   {
     path: 'home',
     loadChildren: () => import('./mentor/mentor-panel.module').then(m => m.MentorPanelModule),
   },
-  // {
-  //   path: 'new-question',
-  //   loadChildren: () => import('./mentor/questions/question.module').then(m => m.QuestionModule),
-  // },
 ];
 
 @NgModule({

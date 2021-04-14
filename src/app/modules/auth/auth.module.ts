@@ -25,6 +25,7 @@ import { QuestionModule } from '../mentor/questions/question.module';
     QuestionModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule,
     RouterModule.forChild(authRoutes),
   ],
   providers: [AuthService]
