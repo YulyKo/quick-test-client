@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/modules/auth/User';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/Patterns.enum';
 import { AuthService } from '../../auth.service';
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
             this.authService.setLoginStatus(true);
             localStorage.setItem('token', res.accessToken);
             console.log(res.accessToken);
-            this.router.navigate(['/home/', 'test_id']);
+            this.router.navigate(['/home/', ROOT_FOLDER_NAME]);
           },
           (error) => +error.status === 400 ? this.existUser = false : console.error('error')
         );

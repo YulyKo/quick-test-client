@@ -1,8 +1,9 @@
+import { File } from '../../folders/models/File.class';
 import { Answer } from './Answer.class';
 import { AnswerTypes } from './AnswerTypes.enum';
 import { Templates } from './Templates.enum';
 
-export class Question {
+export class Question extends File {
   id?: string;
   name: string;
   text: string;
