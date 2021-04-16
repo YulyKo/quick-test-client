@@ -14,4 +14,8 @@ export const authRoutes: Routes = [
     component: RegisterView,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'home/:id',
+    loadChildren: () => import('../folders/folder.module').then(f => f.FolderModule),
+  },
 ];

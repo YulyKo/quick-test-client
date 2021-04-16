@@ -6,7 +6,6 @@ import { AuthModule } from './auth/auth.module';
 import { UIModule } from './UI/ui.module';
 import { AppComponent } from '../app.component';
 import { SiteModule } from './site/site.module';
-import { MentorPanelModule } from './mentor/mentor-panel.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { MentorPanelModule } from './mentor/mentor-panel.module';
   imports: [
     AuthModule,
     SiteModule,
-    MentorPanelModule,
     BrowserModule,
     AppRoutingModule,
     UIModule,

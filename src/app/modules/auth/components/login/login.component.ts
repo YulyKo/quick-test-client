@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-    private route: ActivatedRoute) {
+    private router: Router) {
     this.form = this.formBuilder.group({
       email: ['', [
         Validators.required,
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
             this.authService.setLoginStatus(true);
             localStorage.setItem('token', res.accessToken);
             console.log(res.accessToken);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home/', 'test_id']);
           },
           (error) => +error.status === 400 ? this.existUser = false : console.error('error')
         );

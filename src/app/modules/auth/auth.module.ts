@@ -10,7 +10,7 @@ import { RegisterView } from './views/register/register.view';
 import { LoginView } from './views/login/login.view';
 import { RouterModule } from '@angular/router';
 import { authRoutes } from './auth.routing';
-import { QuestionModule } from '../mentor/questions/question.module';
+import { FolderModule } from '../folders/folder.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { QuestionModule } from '../mentor/questions/question.module';
   imports: [
     UIModule,
     CommonModule,
-    QuestionModule,
+    FolderModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,

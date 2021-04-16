@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { QuestionTime } from '../modules/mentor/questions/models/QuestionTime.enum';
+import { QuestionTime } from '../modules/questions/models/QuestionTime.enum';
 
 @Pipe({name: 'TimeFilter'})
 export class TimeFilter implements PipeTransform {
