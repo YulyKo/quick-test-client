@@ -6,12 +6,14 @@ import { AuthModule } from './auth/auth.module';
 import { UIModule } from './UI/ui.module';
 import { AppComponent } from '../app.component';
 import { SiteModule } from './site/site.module';
+import { FolderModule } from './folders/folder.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    FolderModule,
     AuthModule,
     SiteModule,
     BrowserModule,

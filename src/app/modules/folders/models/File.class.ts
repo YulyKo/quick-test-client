@@ -2,7 +2,7 @@ import { FileTypes } from "./FileTypes.enum";
 
 export class File {
   name: string;
-  updated? = new Date();
-  created? = new Date();
+  updated?: Date;
+  created?: Date;
   type?: FileTypes;
 }

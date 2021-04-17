@@ -16,29 +16,41 @@ export class FolderService {
 
   constructor(private http: HttpClient) {}
 
-  async getFolderItems(id: string): Promise<File[]> {
-    // move out lines 15-18 in same const or smth like this
+  getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
-    const autorizationheader = new HttpHeaders({
+    return new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
+  }
+  files = new FolderFiles();
+
+  generateUrl(id: string): string {
     let url = `${this.FOLDER_API_URL}`;
     id !== ROOT_FOLDER_NAME ? url.concat(`/${id}`) : url = this.FOLDER_API_URL;
-    let res = await this.http.get<FolderFiles>(url, { headers: autorizationheader }).toPromise();
-
-    return this.createCommonArrayOfFiles(res);
+    return url;
   }
 
-  createCommonArrayOfFiles(apiFiles: FolderFiles): Array<File> {
+  fetchFiles(id: string): Promise<FolderFiles> {
+    const url = this.generateUrl(id);
+    const promise = new Promise(() => {
+      this.http.get<FolderFiles>(url, { headers: this.getHeaders() })
+        .toPromise()
+        .then((res: FolderFiles) => {this.files = res});
+    });
+    return promise;
+  }
+
+  getCommonArrayOfFiles(): Array<File> {
     let rootArray = new Array<File>();
-    apiFiles.folders.forEach((folder: Folder) => {
+    this.files.folders.forEach((folder: Folder) => {
       folder.type = FileTypes.folder;
       rootArray.push(folder);
     });
-    apiFiles.questions.forEach((question: Question) => {
+    this.files.questions.forEach((question: Question) => {
       question.type = FileTypes.question;
       rootArray.push(question);
     });
+
     // sorting does not work because .getTime() in undefined
     // created is a string
     return rootArray.sort();
@@ -46,7 +58,6 @@ export class FolderService {
 
   // private getTime(date?: Date) {
   //   console.log(date);
-    
   //   return date !== null ? date.getTime() : 0;
   // }
 }

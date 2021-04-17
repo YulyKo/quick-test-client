@@ -1,1 +1,1 @@
-export const ROOT_FOLDER_NAME = '';
+export const ROOT_FOLDER_NAME = 'root';
