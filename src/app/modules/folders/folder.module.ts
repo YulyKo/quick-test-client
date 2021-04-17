@@ -5,7 +5,8 @@ import { QuestionModule } from '../questions/question.module';
 import { FolderFilesListComponent } from './components/folder-items-list/folder-files-list.component';
 import { FolderFileComponent } from './components/folder-items-list/folder-files/folder-file.component';
 import { folderRoutes } from './folder.routing';
-import { FolderService } from './folder.service';
+import { FolderHTTPService } from './services/folder.http.service';
+import { SortFilesService } from './services/sortFiles.service';
 import { FolderView } from './views/folder-view/folder.view';
 
 @NgModule({
@@ -20,6 +21,9 @@ import { FolderView } from './views/folder-view/folder.view';
     RouterModule,
     RouterModule.forChild(folderRoutes),
   ],
-  providers: [FolderService],
+  providers: [
+    FolderHTTPService,
+    SortFilesService,
+  ],
 })
 export class FolderModule {}

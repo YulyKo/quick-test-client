@@ -1,6 +1,7 @@
 <img *ngIf="this.files === undefined" src="../../../../../assets/loader.svg" alt="loader">
 <div *ngIf="this.files !== undefined">
   <div *ngFor="let file of files">
-    <app-folder-file [iconType]="file.type" [fileId]="file.id" [fileName]="file.name"></app-folder-file>
+    {{ file.created }}
+    <!-- <app-folder-file [iconType]="file.type" [fileId]="file.id" [fileName]="file.name"></app-folder-file> -->
   </div>
 </div>

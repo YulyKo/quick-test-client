@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FolderService } from '../../folder.service';
+import { FolderHTTPService } from '../../services/folder.http.service';
 import { File } from '../../models/File.class';
+import { SortFilesService } from '../../services/sortFiles.service';
 
 @Component({
   selector: 'app-folder-files-list',
@@ -12,7 +13,8 @@ export class FolderFilesListComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private folderService: FolderService,
+    private folderService: FolderHTTPService,
+    private folderSortService: SortFilesService,
   ) { }
 
   id: string;
@@ -26,7 +28,8 @@ export class FolderFilesListComponent implements OnInit {
   getFiles() {
     this.folderService.fetchFiles(this.id);
     setTimeout(() => {
-      this.files = this.folderService.getCommonArrayOfFiles();
+      const filesArray = this.folderService.getCommonArrayOfFiles();
+      this.files = this.folderSortService.sortFromNewToOld(filesArray);
     }, 3000);
   }
 }

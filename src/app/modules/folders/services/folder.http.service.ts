@@ -2,16 +2,16 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ROOT_FOLDER_NAME } from "src/app/utils/defaultNames.consts";
 import { environment } from "src/environments/environment";
-import { Folder } from "./models/Folder.class";
-import { File } from "./models/File.class";
-import { FolderFiles } from "./models/FolderFiles.class";
-import { Question } from "../questions/models/Question.class";
-import { FileTypes } from "./models/FileTypes.enum";
+import { Folder } from "../models/Folder.class";
+import { File } from "../models/File.class";
+import { FolderFiles } from "../models/FolderFiles.class";
+import { Question } from "../../questions/models/Question.class";
+import { FileTypes } from "../models/FileTypes.enum";
 
 @Injectable({
   providedIn: 'root',
 })
-export class FolderService {
+export class FolderHTTPService {
   FOLDER_API_URL = `${environment.api}/files`;
 
   constructor(private http: HttpClient) {}
@@ -44,20 +44,16 @@ export class FolderService {
     let rootArray = new Array<File>();
     this.files.folders.forEach((folder: Folder) => {
       folder.type = FileTypes.folder;
+      folder.created = new Date(folder.created);
+      folder.updated = new Date(folder.updated);
       rootArray.push(folder);
     });
     this.files.questions.forEach((question: Question) => {
       question.type = FileTypes.question;
+      question.created = new Date(question.created);
+      question.updated = new Date(question.updated);
       rootArray.push(question);
     });
-
-    // sorting does not work because .getTime() in undefined
-    // created is a string
-    return rootArray.sort();
+    return rootArray;
   }
-
-  // private getTime(date?: Date) {
-  //   console.log(date);
-  //   return date !== null ? date.getTime() : 0;
-  // }
 }
