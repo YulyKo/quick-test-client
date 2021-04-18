@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/modules/auth/User';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/Patterns.enum';
 import { AuthService } from '../../auth.service';
@@ -89,7 +90,7 @@ export class RegistrationComponent implements OnInit {
         user.setAccessToken(res.accessToken);
         this.authService.setLoginStatus(true);
         console.log(user);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home/', ROOT_FOLDER_NAME]);
       });
     }, 1000);
   }

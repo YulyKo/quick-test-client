@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AuthService } from '../../auth/auth.service';
 export class HeaderComponent implements OnInit{
   isOpen = false;
   loginStatus: boolean;
+  ROOT_FOLDER_NAME = ROOT_FOLDER_NAME;
 
   constructor(private authService: AuthService) { }
 
