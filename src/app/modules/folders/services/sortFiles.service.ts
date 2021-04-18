@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { File } from "../models/File.class";
+import { Injectable } from '@angular/core';
+import { File } from '../models/File.class';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class SortFilesService {
     });
   }
 
-  private getTime(date?: Date) {
+  private getTime(date?: Date): number {
     return date !== null ? date.getTime() : 0;
   }
 }

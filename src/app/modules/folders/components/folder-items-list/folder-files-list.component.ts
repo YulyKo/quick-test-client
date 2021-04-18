@@ -25,7 +25,7 @@ export class FolderFilesListComponent implements OnInit {
     this.getFiles();
   }
 
-  getFiles() {
+  getFiles(): void {
     this.folderService.fetchFiles(this.id);
     setTimeout(() => {
       const filesArray = this.folderService.getCommonArrayOfFiles();

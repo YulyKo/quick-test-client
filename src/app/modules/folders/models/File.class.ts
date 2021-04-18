@@ -1,4 +1,4 @@
-import { FileTypes } from "./FileTypes.enum";
+import { FileTypes } from './FileTypes.enum';
 
 export class File {
   name: string;

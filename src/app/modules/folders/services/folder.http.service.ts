@@ -1,20 +1,23 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ROOT_FOLDER_NAME } from "src/app/utils/defaultNames.consts";
-import { environment } from "src/environments/environment";
-import { Folder } from "../models/Folder.class";
-import { File } from "../models/File.class";
-import { FolderFiles } from "../models/FolderFiles.class";
-import { Question } from "../../questions/models/Question.class";
-import { FileTypes } from "../models/FileTypes.enum";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
+import { environment } from 'src/environments/environment';
+import { Folder } from '../models/Folder.class';
+import { File } from '../models/File.class';
+import { FolderFiles } from '../models/FolderFiles.class';
+import { Question } from '../../questions/models/Question.class';
+import { FileTypes } from '../models/FileTypes.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FolderHTTPService {
   FOLDER_API_URL = `${environment.api}/files`;
+  files: FolderFiles;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.files = new FolderFiles();
+  }
 
   getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
@@ -22,7 +25,6 @@ export class FolderHTTPService {
       Authorization: `Bearer ${token}`,
     });
   }
-  files = new FolderFiles();
 
   generateUrl(id: string): string {
     let url = `${this.FOLDER_API_URL}`;
@@ -34,14 +36,14 @@ export class FolderHTTPService {
     const url = this.generateUrl(id);
     const promise = new Promise(() => {
       this.http.get<FolderFiles>(url, { headers: this.getHeaders() })
-        .toPromise()
-        .then((res: FolderFiles) => {this.files = res});
+      .toPromise()
+      .then((res: FolderFiles) => { this.files = res; });
     });
     return promise;
   }
 
   getCommonArrayOfFiles(): Array<File> {
-    let rootArray = new Array<File>();
+    const rootArray = new Array<File>();
     this.files.folders.forEach((folder: Folder) => {
       folder.type = FileTypes.folder;
       folder.created = new Date(folder.created);

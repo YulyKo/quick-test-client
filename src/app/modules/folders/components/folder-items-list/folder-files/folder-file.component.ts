@@ -18,7 +18,7 @@ export class FolderFileComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  generateIconUrl() {
-    return `../../../../../../assets/${this.iconType}-icon.png`
+  generateIconUrl(): string {
+    return `../../../../../../assets/${this.iconType}-icon.png`;
   }
 }
