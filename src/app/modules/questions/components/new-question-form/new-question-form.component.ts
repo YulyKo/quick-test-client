@@ -112,8 +112,6 @@ export class NewQuestionFormComponent implements OnInit {
   }
 
   redirectToFolder(): void {
-    let routerFolderID = ROOT_FOLDER_NAME;
-    this.folderId === ROOT_FOLDER_NAME ? routerFolderID = ROOT_FOLDER_NAME : this.question._folderId;
-    this.router.navigate(['/home/', routerFolderID]);
+    this.router.navigate(['/home/', this.folderId]);
   }
 }
