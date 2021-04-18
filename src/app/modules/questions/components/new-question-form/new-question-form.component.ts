@@ -9,6 +9,8 @@ import { QuestionTime } from '../../models/QuestionTime.enum';
 import { QuestionService } from '../../question.service';
 import { Templates } from '../../models/Templates.enum';
 import { AnswerTypes } from '../../models/AnswerTypes.enum';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 
 @Component({
   selector: 'app-new-question-form',
@@ -26,8 +28,13 @@ export class NewQuestionFormComponent implements OnInit {
   timesEnum = QuestionTime;
   ERRORS = ErrorsMessages;
   submited = false;
+  folderId: string;
 
-  constructor(private questionService: QuestionService) {
+  constructor(
+    private questionService: QuestionService,
+    private router: Router,
+    private activateRoute: ActivatedRoute,
+  ) {
     this.form = new FormGroup({
       name: new FormControl('', [
         Validators.maxLength(20),
@@ -52,7 +59,9 @@ export class NewQuestionFormComponent implements OnInit {
     console.log(this.form.value);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.folderId = this.activateRoute.snapshot.params.id;
+  }
 
   changeTemplate(): void {
     this.child.changeTemplate(this.form.value.template);
@@ -73,6 +82,7 @@ export class NewQuestionFormComponent implements OnInit {
     this.checkName();
     this.setQuesion();
     this.questionService.postQuestion(this.question);
+    this.redirectToFolder();
     // reqest to sevice method post question
   }
 
@@ -99,5 +109,11 @@ export class NewQuestionFormComponent implements OnInit {
     this.question._time = +this.timesEnum[this.form.value.time] || 15;
     this.question._answerType = AnswerTypes.BUTTON;
     this.question._answers = this.child.getAnswers();
+  }
+
+  redirectToFolder(): void {
+    let routerFolderID = ROOT_FOLDER_NAME;
+    this.folderId === ROOT_FOLDER_NAME ? routerFolderID = ROOT_FOLDER_NAME : this.question._folderId;
+    this.router.navigate(['/home/', routerFolderID]);
   }
 }

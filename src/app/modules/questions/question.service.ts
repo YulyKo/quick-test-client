@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 import { environment } from 'src/environments/environment';
 import { Question } from './models/Question.class';
 
@@ -9,7 +11,10 @@ import { Question } from './models/Question.class';
 export class QuestionService {
   QUESTION_API_URL = `${environment.api}/questions`;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) { }
 
   async postQuestion(question: Question): Promise<void> {
     const token = localStorage.getItem('token');
