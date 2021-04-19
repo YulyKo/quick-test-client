@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
+import { DEFAULT_FOLDER_NAME, ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 
 @Component({
   selector: 'app-new-folder-form',
@@ -9,14 +10,28 @@ import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 })
 export class NewFolderFormComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  form: FormGroup;
 
-  ngOnInit(): void {
-  }
+  colors = ['#333', '#33f'];
 
-  closeForm():void {
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder) {
+      this.form = this.formBuilder.group({
+        name: [DEFAULT_FOLDER_NAME, []],
+        color: '',
+      });
+    }
+
+  ngOnInit(): void {}
+
+  closeForm(): void {
     console.log('click');
     this.router.navigate(['/home/', ROOT_FOLDER_NAME]);
   }
 
+  onSubmit(): void {
+    this.closeForm();
+    console.log(this.form.value);
+  }
 }

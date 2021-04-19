@@ -1,2 +1,10 @@
-<p>new-folder-form works!</p>
-<button (click)="this.closeForm()">close</button>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <input type="text" placeholder="Назва теки" formControlName="name">
+  <ul>
+    <li *ngFor="let color of colors">
+      <input type="radio" name="color" id="" [value]="color" formControlName="color">
+      {{color}}
+    </li>
+  </ul>
+  <button type="submit">Зберегти</button>
+</form>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { QuestionModule } from '../questions/question.module';
 import { FolderFilesListComponent } from './components/folder-items-list/folder-files-list.component';
@@ -19,6 +20,7 @@ import { FolderView } from './views/folder-view/folder.view';
   ],
   imports: [
     QuestionModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule,
     RouterModule.forChild(folderRoutes),
