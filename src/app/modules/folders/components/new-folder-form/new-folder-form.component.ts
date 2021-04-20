@@ -64,7 +64,6 @@ export class NewFolderFormComponent implements OnInit {
     } else {
       console.log(this.formErrors);
     }
-    console.log(this.form.value, folder);
   }
 
   setFolder(): Folder {
