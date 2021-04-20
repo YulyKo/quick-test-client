@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FolderHTTPService } from '../../services/folder.http.service';
+import { FileHTTPService } from '../../services/file.http.service';
 import { File } from '../../models/File.class';
 import { SortFilesService } from '../../services/sortFiles.service';
+import { SESSION_PARENT_FOLDER_ID } from 'src/app/utils/defaultNames.consts';
 
 @Component({
   selector: 'app-folder-files-list',
@@ -13,7 +14,7 @@ export class FolderFilesListComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private folderService: FolderHTTPService,
+    private folderService: FileHTTPService,
     private folderSortService: SortFilesService,
   ) { }
 
@@ -22,6 +23,7 @@ export class FolderFilesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot.params.id;
+    sessionStorage.setItem(SESSION_PARENT_FOLDER_ID, this.id);
     this.getFiles();
   }
 

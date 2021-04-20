@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
+import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
 import { environment } from 'src/environments/environment';
 import { Question } from './models/Question.class';
 
@@ -13,15 +12,11 @@ export class QuestionService {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
+    private httpHeaders: HttpHeadersService,
   ) { }
 
   async postQuestion(question: Question): Promise<void> {
-    const token = localStorage.getItem('token');
-    const autorizationheader = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-    await this.http.post<Question>(this.QUESTION_API_URL, question, { headers: autorizationheader }).toPromise();
+    await this.http.post<Question>(this.QUESTION_API_URL, question, { headers: this.httpHeaders.getAuthorizationHeaders() }).toPromise();
     // here add function for add new question to static question array.
     // in future we don't need to do get request for get data from backend
   }

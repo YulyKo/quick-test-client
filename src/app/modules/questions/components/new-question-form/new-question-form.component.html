@@ -45,7 +45,7 @@
   <select name="time" id="time" formControlName="time">
     <option value="15" selected disabled hidden>15сек</option>
     <option
-      *ngFor="let time of timesEnum | TimeFilter"
+      *ngFor="let time of timesEnum | EnumFilter"
       value="{{ time }}">{{ time }}</option>
   </select>
   <app-creating-answers-list-form></app-creating-answers-list-form>

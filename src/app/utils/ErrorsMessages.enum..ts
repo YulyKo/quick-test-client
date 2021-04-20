@@ -22,6 +22,10 @@ export enum ErrorsMessages {
   ERROR_MESSAGE_FOR_SO_LONG_QUESTION_NAME = 'Максимальна довжина 20 символів',
   ERROR_MESSAGE_FOR_SO_LONG_QUESTION_TEXT = 'Максимальна довжина 200 символів',
   ERROR_MASSAGE_FOR_INVALID_QUESTION = 'Присутні недопустимі символи',
-  // ANSWER
+  // answer
   ERROR_MESSAGE_FOR_SO_LONG_ANSWER_TEXT = 'Максимальна довжина 40 символів',
+  // folder
+  ERROR_MESSAGE_FOR_INVALID_FOLDER = 'Заборонені символи: @ / | \ * ~ < > ',
+  ERROR_MESSAGE_FOR_SO_SHORT_FOLDER_NAME = 'Мінімальна довжина 2 символи',
+  ERROR_MESSAGE_FOR_SO_LONG_FOLDER_NAME = 'Максимальна довжина 40 символів',
 }
