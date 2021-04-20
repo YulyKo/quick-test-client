@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DEFAULT_FOLDER_NAME, ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
+import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/Patterns.enum';
 import { FolderColor } from '../../models/FolderColor.enum';
 
@@ -13,13 +14,16 @@ import { FolderColor } from '../../models/FolderColor.enum';
 export class NewFolderFormComponent implements OnInit {
 
   form: FormGroup;
+  submited = false;
 
   colors = FolderColor;
+  ERRORS = ErrorsMessages;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder) {
-      this.form = this.formBuilder.group({
+      this.form = this.formBuilder.group(
+      {
         name: [
           DEFAULT_FOLDER_NAME,
           [
@@ -30,10 +34,15 @@ export class NewFolderFormComponent implements OnInit {
           ]
         ],
         color: ['', [
-
+          Validators.pattern(Patterns.COLOR_PATTERN),
         ]],
-      });
-    }
+      }
+    );
+  }
+  
+  private get formErrors(): string {
+    return this.form.status;
+  }
 
   ngOnInit(): void {
     console.log(Patterns.FOLDER_NAME_PATTERN);
@@ -45,7 +54,8 @@ export class NewFolderFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.closeForm();
+    this.submited = true;
+    this.formErrors === 'VALID' ? this.closeForm() : console.log(this.formErrors);
     console.log(this.form.value);
   }
 }

@@ -1,5 +1,19 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
   <input type="text" placeholder="Назва теки" formControlName="name">
+  <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.required"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.pattern"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_FOLDER"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.minlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_FOLDER_NAME"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.maxlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_LONG_FOLDER_NAME"></app-error-message>
+  </div>
   <ul>
     <li *ngFor="let color of colors | EnumFilter">
       <input
