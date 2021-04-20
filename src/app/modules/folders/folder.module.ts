@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe.module';
 import { QuestionModule } from '../questions/question.module';
 import { FolderFilesListComponent } from './components/folder-items-list/folder-files-list.component';
 import { FolderFileComponent } from './components/folder-items-list/folder-files/folder-file.component';
@@ -19,11 +20,12 @@ import { FolderView } from './views/folder-view/folder.view';
     NewFolderFormComponent,
   ],
   imports: [
+    EnumFilterPipeModule,
     QuestionModule,
     ReactiveFormsModule,
-    CommonModule,
     RouterModule,
     RouterModule.forChild(folderRoutes),
+    CommonModule,
   ],
   providers: [
     FolderHTTPService,

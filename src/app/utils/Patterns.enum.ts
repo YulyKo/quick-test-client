@@ -4,7 +4,12 @@ export enum Patterns {
   PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{3,}',
   EMAIL_PATTERN = '[^\s@]+@[^\s@]+',
   QUESTION_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 !?><()/*,.&%$#-]{1,}',
+  FOLDER_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 \-!#+()&]{1,}',
+  COLOR_PATTERN = '[a-fA-F0-9]{6}',
 }
+// folder name
+// @ / | \ * ~ < >
+
 // PASSWORD_PATTERN = '(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,}',
 // PASSWORD_PATTERN = '((?=.*[a-z])(?=.*[A-Z])(?=.*\d).{3,})',
 // PASSWORD_PATTERN = '((?=.*[a-z]*)(?=.*[A-Z]*)(?=.*\d*).{3,})',

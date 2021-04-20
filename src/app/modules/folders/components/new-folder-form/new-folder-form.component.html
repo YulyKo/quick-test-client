@@ -1,9 +1,11 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
   <input type="text" placeholder="Назва теки" formControlName="name">
   <ul>
-    <li *ngFor="let color of colors">
-      <input type="radio" name="color" id="" [value]="color" formControlName="color">
-      {{color}}
+    <li *ngFor="let color of colors | EnumFilter">
+      <input
+        type="radio" name="color" id="color"
+        [value]="color" formControlName="color">
+      <label for="color">{{ color }}</label>
     </li>
   </ul>
   <button type="submit">Зберегти</button>

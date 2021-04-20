@@ -10,7 +10,6 @@ import { QuestionService } from '../../question.service';
 import { Templates } from '../../models/Templates.enum';
 import { AnswerTypes } from '../../models/AnswerTypes.enum';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
 
 @Component({
   selector: 'app-new-question-form',
