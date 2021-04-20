@@ -5,7 +5,7 @@ export enum Patterns {
   EMAIL_PATTERN = '[^\s@]+@[^\s@]+',
   QUESTION_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 !?><()/*,.&%$#-]{1,}',
   FOLDER_NAME_PATTERN = '[A-zА-яіїйєІЇЙЄ0-9 \-!#+()&]{1,}',
-  COLOR_PATTERN = '[a-fA-F0-9]{6}',
+  COLOR_PATTERN = '#[a-fA-F0-9]{6}',
 }
 // folder name
 // @ / | \ * ~ < >

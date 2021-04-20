@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DEFAULT_FOLDER_NAME, ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DEFAULT_FOLDER_NAME, ROOT_FOLDER_NAME, SESSION_PARENT_FOLDER_ID } from 'src/app/utils/defaultNames.consts';
 import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/Patterns.enum';
+import { Folder } from '../../models/Folder.class';
 import { FolderColor } from '../../models/FolderColor.enum';
+import { FolderHttpService } from '../../services/folder.http.service';
 
 @Component({
   selector: 'app-new-folder-form',
@@ -21,7 +23,8 @@ export class NewFolderFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private folderService: FolderHttpService) {
       this.form = this.formBuilder.group(
       {
         name: [
@@ -39,14 +42,12 @@ export class NewFolderFormComponent implements OnInit {
       }
     );
   }
-  
+
   private get formErrors(): string {
     return this.form.status;
   }
 
-  ngOnInit(): void {
-    console.log(Patterns.FOLDER_NAME_PATTERN);
-  }
+  ngOnInit(): void {}
 
   closeForm(): void {
     console.log('click');
@@ -55,7 +56,41 @@ export class NewFolderFormComponent implements OnInit {
 
   onSubmit(): void {
     this.submited = true;
-    this.formErrors === 'VALID' ? this.closeForm() : console.log(this.formErrors);
-    console.log(this.form.value);
+    let folder: Folder;
+    if (this.formErrors === 'VALID') {
+      folder = this.setFolder();
+      this.folderService.postFolder(folder);
+      this.closeForm();
+    } else {
+      console.log(this.formErrors);
+    }
+    console.log(this.form.value, folder);
+  }
+
+  setFolder(): Folder {
+    const formValue = this.form.value;
+    let folder = new Folder();
+    folder.name = formValue.name;
+    folder.color = formValue.color;
+    this.setParentFolderId(folder);
+    return folder;
+  }
+
+  setParentFolderId(folder: Folder): void {
+    if(this.parentFolderId === '') {
+      folder.folderId = this.parentFolderId;
+    }
+  }
+
+  private get parentFolderId(): string | void {
+    let parentId: string;
+    this.parentFolderIdFromSession === ROOT_FOLDER_NAME ?
+      parentId:
+      parentId = this.parentFolderIdFromSession;
+    return parentId;
+  }
+
+  private get parentFolderIdFromSession(): string {
+    return sessionStorage.getItem(SESSION_PARENT_FOLDER_ID);
   }
 }

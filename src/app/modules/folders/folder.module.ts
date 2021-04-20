@@ -11,7 +11,7 @@ import { FolderFileComponent } from './components/folder-items-list/folder-files
 import { NewFolderFormComponent } from './components/new-folder-form/new-folder-form.component';
 import { folderRoutes } from './folder.routing';
 import { FileHTTPService } from './services/file.http.service';
-import { FolderHttpService } from './services/Folder.http.service';
+import { FolderHttpService } from './services/folder.http.service';
 import { SortFilesService } from './services/sortFiles.service';
 import { FolderView } from './views/folder-view/folder.view';
 

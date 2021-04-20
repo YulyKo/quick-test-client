@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FileHTTPService } from '../../services/file.http.service';
 import { File } from '../../models/File.class';
 import { SortFilesService } from '../../services/sortFiles.service';
+import { SESSION_PARENT_FOLDER_ID } from 'src/app/utils/defaultNames.consts';
 
 @Component({
   selector: 'app-folder-files-list',
@@ -22,7 +23,7 @@ export class FolderFilesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.activateRoute.snapshot.params.id;
-    sessionStorage.setItem('parent_folder_id', this.id);
+    sessionStorage.setItem(SESSION_PARENT_FOLDER_ID, this.id);
     this.getFiles();
   }
 

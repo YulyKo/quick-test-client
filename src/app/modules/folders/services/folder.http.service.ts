@@ -15,11 +15,9 @@ export class FolderHttpService {
     private httpHeadersService: HttpHeadersService,
   ) {}
 
-  postFolder(folder: Folder): void {
-    new Promise(() => {
-      this.http.post<Folder>(
+  async postFolder(folder: Folder): Promise<void> {
+    await this.http.post<Folder>(
         this.FOLDER_API_URL, folder,
-        { headers: this.httpHeadersService.getAuthorizationHeaders() });
-    }).then().catch((error) => console.error(error));
+        { headers: this.httpHeadersService.getAuthorizationHeaders() }).toPromise();
   }
 }
