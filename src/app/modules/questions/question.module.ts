@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { questionRoutes } from './question.routing';
 import { QuestionService } from './question.service';
 import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe.module';
+import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe
     ReactiveFormsModule,
     RouterModule.forChild(questionRoutes),
   ],
-  providers: [QuestionService],
+  providers: [QuestionService, HttpHeadersService],
 })
 export class QuestionModule { }
