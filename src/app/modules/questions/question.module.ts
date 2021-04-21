@@ -11,12 +11,14 @@ import { questionRoutes } from './question.routing';
 import { QuestionService } from './question.service';
 import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe.module';
 import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
+import { ListOfQuestionsComponent } from './components/common/list-of-questions/list-of-questions.component';
 
 @NgModule({
   declarations: [
     CreatingQuestionView,
     NewQuestionFormComponent,
     CreatingAnswersListFormComponent,
+    ListOfQuestionsComponent,
   ],
   imports: [
     UIModule,
@@ -25,6 +27,7 @@ import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders
     ReactiveFormsModule,
     RouterModule.forChild(questionRoutes),
   ],
+  exports: [ListOfQuestionsComponent],
   providers: [QuestionService, HttpHeadersService],
 })
 export class QuestionModule { }
