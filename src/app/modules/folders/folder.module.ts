@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe.module';
 import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
 import { QuestionModule } from '../questions/question.module';
+import { TestModule } from '../test/test.module';
 import { UIModule } from '../UI/ui.module';
 import { FolderFilesListComponent } from './components/folder-items-list/folder-files-list.component';
 import { FolderFileComponent } from './components/folder-items-list/folder-files/folder-file.component';
@@ -24,6 +25,7 @@ import { FolderView } from './views/folder-view/folder.view';
   ],
   imports: [
     UIModule,
+    TestModule,
     EnumFilterPipeModule,
     QuestionModule,
     ReactiveFormsModule,

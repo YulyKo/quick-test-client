@@ -22,7 +22,11 @@ export const folderRoutes: Routes = [
         //     outlet: 'new-folder',
         //   }
         // ],
-      }
+      },
+      {
+        path: 'test',
+        loadChildren: () => import('../test/test.module').then(t => t.TestModule),
+      },
     ],
   },
 ];
