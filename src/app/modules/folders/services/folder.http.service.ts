@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { HttpHeadersService } from "src/app/utils/HttpHeadersService/HttpHeaders.service";
+import { HttpHeadersService } from "src/app/utils/services/http-headers-service/http-headers.service";
 import { environment } from "src/environments/environment";
 import { Folder } from "../models/Folder.class";
 

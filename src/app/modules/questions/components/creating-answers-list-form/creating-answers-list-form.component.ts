@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
-import { Patterns } from 'src/app/utils/Patterns.enum';
+import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
+import { Patterns } from 'src/app/utils/enums/Patterns.enum';
 import { Answer } from '../../models/Answer.class';
 import { ITemplate } from '../../models/Template.interface';
 import { TEMPLATES } from '../../models/Templates.const';

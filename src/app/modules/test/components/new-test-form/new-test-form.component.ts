@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
-import { Patterns } from 'src/app/utils/Patterns.enum';
+import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
+import { Patterns } from 'src/app/utils/enums/Patterns.enum';
+import { SelectedQuestionService } from 'src/app/utils/services/selected-elements-services/selected-question.service';
 
 @Component({
   selector: 'app-new-test-form',
@@ -16,6 +17,7 @@ export class NewTestFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
+    private selectedQS: SelectedQuestionService,
   ) {
     this.form = this.formBuilder.group({
       name: ['', [
@@ -30,12 +32,13 @@ export class NewTestFormComponent {
         Validators.minLength(2),
         Validators.maxLength(200),
       ]],
-      questions: [[], [Validators.required]],
     });
   }
 
   onSubmit(): void {
     this.submited = true;
+    // set selected question ids
+    console.log(this.selectedQS.getIDs());
     console.log('submited');
     console.log(this.form.value);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Patterns } from 'src/app/utils/Patterns.enum';
+import { Patterns } from 'src/app/utils/enums/Patterns.enum';
 
 @Component({
   selector: 'app-folder',

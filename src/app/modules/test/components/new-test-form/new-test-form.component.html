@@ -31,6 +31,8 @@
       *ngIf="this.form.controls.text.errors.pattern"
       [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_TEST"></app-error-message>
   </div>
-  <app-list-of-questions></app-list-of-questions>
+  <ul>
+    <app-list-of-questions></app-list-of-questions>
+  </ul>
   <button type="submit">Зберегти</button>
 </form>

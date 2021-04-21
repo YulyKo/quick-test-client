@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EnumFilterPipeModule } from 'src/app/utils/EnumFilterPipe/EnumFiltePipe.module';
-import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
+import { HttpHeadersService } from 'src/app/utils/services/http-headers-service/http-headers.service';
 import { QuestionModule } from '../questions/question.module';
 import { TestModule } from '../test/test.module';
 import { UIModule } from '../UI/ui.module';

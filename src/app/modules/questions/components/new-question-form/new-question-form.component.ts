@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Patterns } from 'src/app/utils/Patterns.enum';
-import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
+import { Patterns } from 'src/app/utils/enums/Patterns.enum';
+import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
 import { CreatingAnswersListFormComponent } from '../creating-answers-list-form/creating-answers-list-form.component';
 import { TEMPLATES } from '../../models/Templates.const';
 import { Question } from '../../models/Question.class';

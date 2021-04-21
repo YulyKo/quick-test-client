@@ -7,7 +7,7 @@ import { File } from '../models/File.class';
 import { FolderFiles } from '../models/FolderFiles.class';
 import { Question } from '../../questions/models/Question.class';
 import { FileTypes } from '../models/FileTypes.enum';
-import { HttpHeadersService } from 'src/app/utils/HttpHeadersService/HttpHeaders.service';
+import { HttpHeadersService } from 'src/app/utils/services/http-headers-service/http-headers.service';
 
 @Injectable({
   providedIn: 'root',

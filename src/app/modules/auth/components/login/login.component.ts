@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/modules/auth/User';
 import { ROOT_FOLDER_NAME } from 'src/app/utils/defaultNames.consts';
-import { ErrorsMessages } from 'src/app/utils/ErrorsMessages.enum.';
-import { Patterns } from 'src/app/utils/Patterns.enum';
+import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
+import { Patterns } from 'src/app/utils/enums/Patterns.enum';
 import { AuthService } from '../../auth.service';
 
 @Component({
