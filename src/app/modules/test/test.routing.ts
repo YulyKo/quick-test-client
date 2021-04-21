@@ -1,5 +1,5 @@
-import { Routes } from "@angular/router";
-import { NewTestView } from "./views/new-test-view/newTest.view";
+import { Routes } from '@angular/router';
+import { NewTestView } from './views/new-test-view/new-test.view';
 
 export const testRoutes: Routes = [
   {
