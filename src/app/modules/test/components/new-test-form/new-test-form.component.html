@@ -34,5 +34,8 @@
   <ul>
     <app-list-of-questions></app-list-of-questions>
   </ul>
+  <app-error-message
+    *ngIf="this.seletedQTIds.length === 0 && this.submited === true"
+    [message]="ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD"></app-error-message>
   <button type="submit">Зберегти</button>
 </form>
