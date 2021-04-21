@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { QuestionModule } from '../questions/question.module';
 import { UIModule } from '../UI/ui.module';
 import { NewTestFormComponent } from './components/new-test-form/new-test-form.component';
 import { testRoutes } from './test.routing';
@@ -14,6 +15,7 @@ import { NewTestView } from './views/new-test-view/new-test.view';
     NewTestFormComponent,
   ],
   imports: [
+    QuestionModule,
     UIModule,
     CommonModule,
     ReactiveFormsModule,
