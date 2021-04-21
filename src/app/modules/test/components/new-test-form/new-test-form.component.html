@@ -1,8 +1,35 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <label for="testName">Назва тесту</label>
+  <label for="testName">Назва тесту *</label>
   <input type="text" id="testName" formControlName="name">
-  <label for="testText">Опис тесту*</label>
-  <textarea name="" id="testText" cols="30" rows="10"></textarea>
-  <!-- <input type="text" id="testText" formControlName="text"> -->
+  <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.required"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.maxlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_LONG_TEST_NAME"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.minlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_TEST_NAME"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.name.errors.pattern"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_TEST"></app-error-message>
+  </div>
+  <label for="testText">Опис тесту *</label>
+  <textarea id="testText" cols="30" rows="10" formControlName="text"></textarea>
+  <div *ngIf="this.form.controls.text.status === 'INVALID' && this.submited === true">
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.required"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.maxlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_LONG_TEST_TEXT"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.minlength"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_SO_SHORT_TEST_NAME"></app-error-message>
+    <app-error-message
+      *ngIf="this.form.controls.text.errors.pattern"
+      [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_TEST"></app-error-message>
+  </div>
   <button type="submit">Зберегти</button>
 </form>

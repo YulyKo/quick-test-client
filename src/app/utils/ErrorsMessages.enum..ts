@@ -28,4 +28,9 @@ export enum ErrorsMessages {
   ERROR_MESSAGE_FOR_INVALID_FOLDER = 'Заборонені символи: @ / | \ * ~ < > ',
   ERROR_MESSAGE_FOR_SO_SHORT_FOLDER_NAME = 'Мінімальна довжина 2 символи',
   ERROR_MESSAGE_FOR_SO_LONG_FOLDER_NAME = 'Максимальна довжина 40 символів',
+  // test
+  ERROR_MESSAGE_FOR_INVALID_TEST = 'Заборонені символи: @ / | \ * ~ < > ',
+  ERROR_MESSAGE_FOR_SO_SHORT_TEST_NAME = 'Мінімальна довжина 2 символи',
+  ERROR_MESSAGE_FOR_SO_LONG_TEST_NAME = 'Максимальна довжина 20 символів',
+  ERROR_MESSAGE_FOR_SO_LONG_TEST_TEXT = 'Максимальна довжина 200 символів',
 }

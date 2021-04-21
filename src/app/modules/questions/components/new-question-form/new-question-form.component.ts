@@ -37,12 +37,12 @@ export class NewQuestionFormComponent implements OnInit {
       name: new FormControl('', [
         Validators.maxLength(20),
         Validators.minLength(2),
-        Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
+        Validators.pattern(Patterns.TEST_AND_QUESTION_NAME_PATTERN),
       ]),
       text: new FormControl('',
         Validators.compose([
           Validators.required,
-          Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
+          Validators.pattern(Patterns.TEST_AND_QUESTION_NAME_PATTERN),
           Validators.minLength(2),
           Validators.maxLength(200),
         ])

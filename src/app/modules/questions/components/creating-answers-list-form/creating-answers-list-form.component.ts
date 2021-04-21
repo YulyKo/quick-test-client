@@ -40,7 +40,7 @@ export class CreatingAnswersListFormComponent implements OnInit {
     return new FormGroup({
       name: new FormControl(answer.name || 'Текст відповіді', Validators.compose([
         Validators.required,
-        Validators.pattern(Patterns.QUESTION_NAME_PATTERN),
+        Validators.pattern(Patterns.TEST_AND_QUESTION_NAME_PATTERN),
         Validators.minLength(2),
         Validators.maxLength(40),
       ])),
