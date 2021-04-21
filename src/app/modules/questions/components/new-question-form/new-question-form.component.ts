@@ -28,7 +28,6 @@ export class NewQuestionFormComponent implements OnInit {
   ERRORS = ErrorsMessages;
   submited = false;
   folderId: string;
-
   constructor(
     private questionService: QuestionService,
     private router: Router,

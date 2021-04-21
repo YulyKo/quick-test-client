@@ -1,1 +1,8 @@
-<p>new test app</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <label for="testName">Назва тесту</label>
+  <input type="text" id="testName" formControlName="name">
+  <label for="testText">Опис тесту*</label>
+  <textarea name="" id="testText" cols="30" rows="10"></textarea>
+  <!-- <input type="text" id="testText" formControlName="text"> -->
+  <button type="submit">Зберегти</button>
+</form>
