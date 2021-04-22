@@ -1,5 +1,3 @@
-import { Question } from "../../questions/models/Question.class";
-
 export class TestEssence {
   name: string;
   text: string;

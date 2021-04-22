@@ -5,6 +5,7 @@ import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/enums/Patterns.enum';
 import { SelectedQuestionService } from 'src/app/utils/services/selected-elements-services/selected-question.service';
 import { TestEssence } from '../../models/TestEssence.class';
+import { TestService } from '../../test.service';
 
 @Component({
   selector: 'app-new-test-form',
@@ -20,6 +21,7 @@ export class NewTestFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private selectedQS: SelectedQuestionService,
+    private testService: TestService,
   ) {
     this.form = this.formBuilder.group({
       name: ['', [
@@ -59,7 +61,7 @@ export class NewTestFormComponent {
   private get parentFolderId(): string | void {
     let parentId: string;
     this.parentFolderIdFromSession === ROOT_FOLDER_NAME ?
-      parentId:
+      parentId :
       parentId = this.parentFolderIdFromSession;
     return parentId;
   }
@@ -70,7 +72,10 @@ export class NewTestFormComponent {
 
   onSubmit(): void {
     this.submited = true;
-    // set selected question ids
+    if (this.form.status === 'VALID') {
+      const test = this.setTest();
+      this.testService.postTest(test);
+    }
     console.log(this.setTest());
   }
 }
