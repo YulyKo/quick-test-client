@@ -1,0 +1,32 @@
+<header class="page__header" id="page_header">
+  <a class="page__header_link--logo" routerLink="/">
+    <img class="logo-image" src="../../../../assets/logo.png" alt="logo">
+  </a>
+  <h1 class="logo-title" id="title--logo">QuickTest</h1>
+  <ul class="page__header_menu" id="header_menu">
+    <div class="menu_container">
+      <li (click)="closeMenu()"
+          *ngIf="this.loginStatus === true">
+        <a class="menu__link" [routerLink]="['/home/', ROOT_FOLDER_NAME]">Панель ментора</a>
+      </li>
+      <li (click)="closeMenu()"
+          *ngIf="this.loginStatus === true">
+        <a class="menu__link" routerLink="/auth/login">Вихід</a>
+      </li>
+    </div>
+    <li (click)="closeMenu()"
+        *ngIf="this.loginStatus === false">
+      <a class="menu__link" routerLink="/auth/login">Вхід</a>
+    </li>
+    <li (click)="closeMenu()">
+      <a class="menu__link" routerLink="/help">Допомога</a>
+    </li>
+  </ul>
+  <button
+    (click)="changeMenuVisibility()"
+    class="page__header_btn"
+    id="menu-btn"
+    type="button">
+    <span>>></span>
+  </button>
+</header>
