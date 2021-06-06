@@ -1,4 +1,5 @@
 @import './common'
+@import './typpografy'
 
 // _ - block
 // __ - element
@@ -6,12 +7,14 @@
 
 $element-radius: 100px
 
-// for iPhone X
+// .error-message
+
 .input
   @extend .text
   display: block
   padding: 0.95rem 1.7em
-  width: calc(100% - 1.7em*2)
+  margin: 0 auto
+  // width: calc(100% - 1.7em*2)
   &:focus
     border-color: $text-color
     outline: none
@@ -26,7 +29,7 @@ $element-radius: 100px
 
 .label
   @extend .text
-  margin-left: 0.6em
+  margin: 0 auto
   margin-top: 1rem
   margin-bottom: .5rem
   display: block
@@ -37,7 +40,7 @@ $element-radius: 100px
   display: block
   &--submit
     display: block
-    width: 100%
+    // width: 100%
     padding: .7em 0
     margin-right: auto
     margin-left: auto 
@@ -55,3 +58,62 @@ $element-radius: 100px
 .form
   margin: 0 auto
   width: 62%
+  &_errors-c
+    width: fit-content
+    margin: 0 auto
+
+@media (min-width: 0px) and (max-width: 755px) 
+  .btn--submit
+    width: 100%
+  .input
+    width: calc(100% - 1.7em*2)
+@media (min-width: 756px) and (max-width: 1007px)
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: 87%
+@media (min-width: 1008px) and (max-width: 1259px) 
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: 82%
+@media (min-width: 1260px) and (max-width: 1511px) 
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: calc(53% - 1.7em*2)
+@media (min-width: 1512px) and (max-width: 1763px)
+  .input, .label
+    width: calc(43% - 1.7em*2)
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+@media (min-width: 1764px) and (max-width: 2015px)
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: calc(43% - 1.7em*2)
+@media (min-width: 2016px) and (max-width: 2267px)
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: calc(43% - 1.7em*2)
+    margin: 0 12px 15px
+@media (min-width: 2268px)
+  .btn--submit
+    width: fit-content
+    padding-left: 1em
+    padding-right: 1em
+  .input, .label
+    width: calc(43% - 1.7em*2)

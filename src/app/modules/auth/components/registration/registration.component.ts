@@ -10,7 +10,7 @@ import { AuthService } from '../../auth.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: []
+  styleUrls: ['../../../../utils/styles/form-elements.sass']
 })
 export class RegistrationComponent implements OnInit {
   form: FormGroup;

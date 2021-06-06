@@ -40,7 +40,8 @@
         message="{{ ERRORS.ERROR_MESSAGE_FOR_SO_LONG_PASSWORD }}"></app-error-message>
   </div>
 
-  <div>
+  <div *ngIf="this.submited === true && this.form.status === 'INVALID'"
+       class="form_errors-c">
     <!-- common errors -->
     <app-error-message
         *ngIf="this.existEmail === false"
