@@ -1,0 +1,408 @@
+$white: #FFFFFF
+$empty-div-size: 3.6em
+
+%title
+  color: #5B82EF
+  line-height: 53px
+
+.fsz-14px
+  font-size: 14px
+
+.text-small
+  font-weight: 400
+  font-family: Comfortaa, cursive
+
+.button
+  background-color: #5B82EF
+  border-radius: 27px
+  box-shadow: 2px 3px 4px #AEDEFC
+  width: 15em
+  height: $empty-div-size
+  margin: auto
+  margin-top: 15px
+  text-align: center
+
+.container
+  padding: 2.1em 1.1em
+
+.container--blue
+  @extend .container
+  background-color: #5B82EF
+  color: $white
+  border-radius: 10px
+
+.m-top-25px
+  margin-top: 25px
+
+.header
+  margin: 6px 20px
+  display: flex
+  justify-content: space-between
+
+  &__title
+    @extend %title
+    font-size: 1.5em
+
+.logo
+  height: $empty-div-size
+
+.header__btn
+  position: relative
+
+.btn__square
+  background-color: #404040
+  width: $empty-div-size
+  height: 35px
+  transform: translateY(-24%)
+  z-index: 1
+
+.btn__circle
+  background-color: #404040
+  width: $empty-div-size
+  height: $empty-div-size
+  border-radius: 50%
+  z-index: 2
+  position: absolute
+  top: 0
+
+.btn__img
+  position: absolute
+  z-index: 3
+  width: 19px
+  top: 0
+  margin-left: 15px
+
+.container__title
+  @extend %title
+  @extend .text-small
+  font-size: 1.5em
+  text-align: center
+
+.container__desc
+  @extend .text-small
+  text-align: center
+  line-height: 1.6em
+
+.container__desc--left
+  @extend .container__desc
+  text-align: left
+  font-weight: 200
+  width: 95%
+
+.container__link
+  @extend .button
+
+.link__text
+  font-family: Comfortaa, cursive
+  font-size: 1.2em
+  color: $white
+  line-height: 3em
+  text-decoration: none
+
+.heading__text
+  font-family: Comfortaa, cursive
+  font-size: 1.3em
+  font-weight: 700
+  letter-spacing: 2px
+
+.heading__underline
+  width: 5em
+  height: 3px
+  background-color: #FFFFFF
+  margin-top: 5px
+  border-radius: 3px
+
+.container__image
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 1.5em
+
+.image
+  margin-right: 1em
+
+.container__heading--left
+  display: flex
+  justify-content: flex-end
+
+.heading__text--dark 
+  @extend .heading__text
+  color: #404040
+
+.heading__underline--dark
+  @extend .heading__underline
+  background-color: #404040
+
+.content__link
+  @extend .button
+
+.content__title
+  @extend .text-small
+  @extend .m-top-25px
+  font-size: 1.4em
+  text-align: center
+  font-weight: 600
+
+.container__list-step
+  display: flex
+  flex-direction: column
+
+.step
+  @extend .m-top-25px
+  display: flex
+  align-self: flex-start
+  align-items: center
+
+  &__circle
+    width: 40px
+    height: 40px
+    border: 3px solid $white
+    border-radius: 50%
+
+  &__text
+    margin-left: 10px
+    text-align: left
+    line-height: 20px
+    width: 220px
+    letter-spacing: 1px
+    @extend .text-small
+
+  &--right
+    align-self: flex-end
+    @extend .step
+
+.circle__number
+  color: $white
+  text-align: center
+  line-height: 2.3em
+  @extend .heading__text
+
+.container__link--white
+  @extend .button
+  @extend .m-top-25px
+  background-color: $white
+  box-shadow: 2px 3px 4px #AEDEFC
+
+.link__text--black
+  @extend .link__text
+  color: #404040
+
+.footer__copyright
+  display: flex
+  justify-content: center
+  margin: 20px 0
+
+.copyright__icon
+  margin-right: 10px
+
+.copyright__text
+  @extend .text-small
+  color: #8FA4DF
+  line-height: 2em
+
+// slider
+  
+@keyframes tonext 
+  75% 
+    left: 0
+  95% 
+    left: 100%
+  98% 
+    left: 100%
+  99% 
+    left: 0
+
+@keyframes tostart 
+  75% 
+    left: 0
+  95% 
+    left: -300%
+  98% 
+    left: -300%
+  99% 
+    left: 0
+
+@keyframes snap 
+  96% 
+    scroll-snap-align: center
+  97% 
+    scroll-snap-align: none
+  99% 
+    scroll-snap-align: none
+  100% 
+    scroll-snap-align: center
+
+ol, li 
+  list-style: none
+  margin: 0
+  padding: 0
+
+.carousel 
+  position: relative
+  padding-top: 50%
+  // filter: drop-shadow(0 0 10px #0003)
+  perspective: 100px
+  // box-sizing: border-box
+  scrollbar-color: transparent transparent
+
+::-webkit-scrollbar 
+  width: 0
+
+::-webkit-scrollbar-track 
+  background: transparent
+
+::-webkit-scrollbar-thumb 
+  background: transparent
+  border: none
+
+.carousel__viewport 
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  display: flex
+  overflow-x: scroll
+  counter-reset: item
+  scroll-behavior: smooth
+  scroll-snap-type: x mandatory
+
+.carousel__slide 
+  position: relative
+  flex: 0 0 100%
+  width: 100%
+  background-color: #fff
+  counter-increment: item
+
+@mixin before-item
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate3d(-50%,-40%,70px)
+
+.carousel__slide--mentor:nth-child(1):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider1/1.svg")
+.carousel__slide--mentor:nth-child(2):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider1/2.svg")
+.carousel__slide--mentor:nth-child(3):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider1/3.svg")
+.carousel__slide--mentor:nth-child(4):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider1/4.svg")
+
+.carousel__slide--student:nth-child(1):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider2/1.svg")
+.carousel__slide--student:nth-child(2):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider2/2.svg")
+.carousel__slide--student:nth-child(3):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider2/3.svg")
+.carousel__slide--student:nth-child(4):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider2/4.svg")
+.carousel__slide--student:nth-child(5):before
+  @include before-item()
+  content: url("/../../../../../../../assets/website/slider2/4.svg")
+
+.step-name
+  position: absolute
+  top: 80%
+  width: 100%
+  // left: 50%
+  text-align: center
+
+.carousel__snapper 
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  scroll-snap-align: center
+
+@media (hover: hover) 
+  .carousel__snapper 
+    animation-name: tonext, snap
+    animation-timing-function: ease
+    animation-duration: 4s
+    animation-iteration-count: infinite
+  .carousel__slide:last-child .carousel__snapper 
+    animation-name: tostart, snap
+
+@media (prefers-reduced-motion: reduce) 
+  .carousel__snapper 
+    animation-name: none
+  
+.carousel:hover .carousel__snapper,
+.carousel:focus-within .carousel__snapper 
+  animation-name: none
+
+.carousel__navigation 
+  position: absolute
+  right: 0
+  bottom: 0
+  left: 0
+  text-align: center
+
+.carousel__navigation-list,
+.carousel__navigation-item 
+  display: inline-block
+
+.carousel__navigation-button 
+  display: inline-block
+  width: 1.5rem
+  height: 1.5rem
+  background-color: #333
+  background-clip: content-box
+  border: 0.25rem solid transparent
+  border-radius: 50%
+  font-size: 0
+  transition: transform 0.1s
+
+.carousel::before,
+.carousel::after,
+.carousel__prev,
+.carousel__next 
+  position: absolute
+  top: 0
+  margin-top: 23.5%
+  width: 4rem
+  height: 4rem
+  transform: translateY(-50%)
+  border-radius: 50%
+  font-size: 0
+  outline: 0
+
+
+.carousel::before,
+.carousel__prev 
+  left: -1rem
+
+.carousel::after,
+.carousel__next 
+  right: -1rem
+
+.carousel::before,
+.carousel::after 
+  content: ''
+  z-index: 1
+  background-color: #333
+  background-size: 1.5rem 1.5rem
+  background-repeat: no-repeat
+  background-position: center center
+  color: #fff
+  font-size: 2.5rem
+  line-height: 4rem
+  text-align: center
+  pointer-events: none
+
+.carousel::before 
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E")
+
+.carousel::after 
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E")
+
