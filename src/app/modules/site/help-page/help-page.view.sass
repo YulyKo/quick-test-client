@@ -1,0 +1,125 @@
+@import '../../../utils/styles/common'
+@import '../../../utils/styles/typpografy'
+
+.flex
+  width: calc(100% - 6rem)
+  padding: 0 3rem 3rem 3rem
+  display: flex
+  flex-basis: 100%
+  align-items: flex-start
+  flex-wrap: nowrap
+  justify-content: space-between
+  align-content: flex-start
+
+.container-for-menu
+  position: fixed
+  width: 20em
+
+.menu
+  width: 100%
+  position: relative
+
+.article
+  padding: 0 0 0 5rem
+  margin-left: 20rem
+  max-width: 114ch
+  background: #fff
+  display: flex
+  flex-direction: column
+  flex: 1 1 auto
+  max-width: 185ch
+  box-sizing: border-box
+  transition: opacity cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.75s, transform cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.75s
+
+.link
+  font-weight: 800
+
+.sublink
+  @extend .link
+  padding-left: 1rem
+  font-size: 15px
+  font-weight: 400
+
+.subtitle
+  @extend .title
+  font-size: 21px
+  text-align: start
+
+.article__title
+  @extend .title
+  text-align: start
+  border-bottom: 2px solid $text-color
+  margin-bottom: 2rem
+  margin-top: 2rem
+
+.menu__title
+  @extend .article__title
+  border: none
+
+.text
+  text-align: justify
+  line-height: 1.8rem
+  padding: 1rem 3.4rem 0 3.4rem
+  font-size: 15px
+  max-width: 100ch
+  margin: 0 auto
+
+@media (min-width: 0px) and (max-width: 755px)
+  .container-for-menu
+    position: relative
+    margin: 0 auto
+    width: 100%
+  .flex
+    flex-wrap: wrap
+  .article
+    padding: 1rem 0
+  .article__title
+    margin-top: 2rem
+  .sublink
+    padding: 0
+  .text
+    padding: 0
+@media (min-width: 756px) and (max-width: 1007px)
+  .container-for-menu
+    margin: 0 auto
+    width: 20rem
+  .article
+    padding: 0
+    margin-left: 20rem
+  .article__title
+    margin-top: 2rem
+  .sublink
+    padding: 0
+  .text
+    padding: 0
+@media (min-width: 1008px) and (max-width: 1259px) 
+  .container-for-menu
+    margin: 0 auto
+    width: 20rem
+  .article
+    padding: 0 0 0 3rem
+    margin-left: 20rem
+    max-width: 93ch
+  .article__title
+    margin-top: 2rem
+  .sublink
+    padding: 0
+  .text
+    padding: 1rem 3.4rem 0 3.4rem
+@media (min-width: 1260px) and (max-width: 1511px) 
+  .container-for-menu
+    margin: 0 auto
+    width: 20rem
+  .article
+    padding: 0 0 0 5rem
+    margin-left: 20rem
+    max-width: 114ch
+  .article__title
+    margin-top: 2rem
+  .sublink
+    padding: 0
+  .text
+    padding: 1rem 3.4rem 0 3.4rem
+    font-size: 15px
+
+// @media (min-width: 1512px) and (max-width: 1763px)

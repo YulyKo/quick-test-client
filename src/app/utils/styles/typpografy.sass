@@ -5,17 +5,45 @@
   color: $text-color
   background-color: $white
 
-.text
+.text, .title, .subtitle
   font-weight: 400
-  font-size: 12px
-  line-height: 13px
+
+.title
+  margin-bottom: 1.27rem
+
+.text
+  font-family: 'Gothic A1', sans-serif
+  font-size: 14px
+  line-height: 1.37rem
 
 .title
   font-size: 24px
   line-height: 27px
   text-align: center
-  margin-bottom: 1.27rem
 
 .subtitle
   font-size: 14px
-  font-weight: 400
+@media (min-width: 0px) and (max-width: 755px) 
+@media (min-width: 756px) and (max-width: 1007px)
+  .text
+    margin-bottom: 1.27rem
+  .title
+    margin-bottom: 1.27rem
+  .subtitle
+    margin-bottom: 1.27rem
+// @media (min-width: 1008px) and (max-width: 1259px) 
+
+// @media (min-width: 1260px) and (max-width: 1511px) 
+
+@media (min-width: 1512px) and (max-width: 1763px)
+  .text
+    margin-bottom: 1.27rem
+    font-size: 1.25rem
+    line-height: 1.5
+  .title
+    margin-bottom: 1.27rem
+  .subtitle
+    margin-bottom: 1.27rem
+// @media (min-width: 1764px) and (max-width: 2015px)
+// @media (min-width: 2016px) and (max-width: 2267px)
+// @media (min-width: 2268px)
