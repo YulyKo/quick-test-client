@@ -8,6 +8,7 @@ import { FolderFiles } from '../models/FolderFiles.class';
 import { Question } from '../../questions/models/Question.class';
 import { FileTypes } from '../models/FileTypes.enum';
 import { HttpHeadersService } from 'src/app/utils/services/http-headers-service/http-headers.service';
+import { TestEssence } from '../../test/models/TestEssence.class';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,12 @@ export class FileHTTPService {
       question.created = new Date(question.created);
       question.updated = new Date(question.updated);
       rootArray.push(question);
+    });
+    this.files.tests.forEach((test: TestEssence) => {
+      test.type = FileTypes.test;
+      test.created = new Date(test.created);
+      test.updated = new Date(test.updated);
+      rootArray.push(test);
     });
     return rootArray;
   }

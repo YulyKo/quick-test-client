@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ROOT_FOLDER_NAME, SESSION_PARENT_FOLDER_ID } from 'src/app/utils/defaultNames.consts';
 import { ErrorsMessages } from 'src/app/utils/enums/ErrorsMessages.enum.';
 import { Patterns } from 'src/app/utils/enums/Patterns.enum';
@@ -22,6 +23,7 @@ export class NewTestFormComponent {
     private formBuilder: FormBuilder,
     private selectedQS: SelectedQuestionService,
     private testService: TestService,
+    private router: Router,
   ) {
     this.form = this.formBuilder.group({
       name: ['', [
@@ -76,6 +78,5 @@ export class NewTestFormComponent {
       const test = this.setTest();
       this.testService.postTest(test);
     }
-    console.log(this.setTest());
   }
 }

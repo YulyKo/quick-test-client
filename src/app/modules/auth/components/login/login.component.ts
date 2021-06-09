@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             this.existUser = true;
             user.setAccessToken(res.accessToken);
             this.authService.setLoginStatus(true);
-            localStorage.setItem('token', res.accessToken);
+            localStorage.setItem('qt-token', res.accessToken);
             console.log(res.accessToken);
             this.router.navigate(['/home/', ROOT_FOLDER_NAME]);
           },

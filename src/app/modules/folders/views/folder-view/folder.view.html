@@ -1,24 +1,26 @@
 <main>
   <nav>sub menu here</nav>
   <!-- style="background-color: #fff; position: fixed" -->
-  <nav>
+  <nav class="sub-menu">
     <ul>
-      <li><a routerLink="new-question">
-        <img src="../../../../../assets/add-question-icon.png" alt="link for add new question">
-      </a></li>
       <li>
         <a routerLink="new/folder">
-          <img class="add-icon" src="../../../../../../assets/add-folder-icon.png" alt="add folder icon">
+          <img class="menu__item" src="../../../../../../assets/add-folder-icon.png" alt="add folder icon">
+        </a>
+      </li>
+      <li>
+        <a routerLink="new-question">
+          <img class="menu__item" src="../../../../../assets/add-question-icon.png" alt="link for add new question">
         </a>
       </li>
       <li>
         <a routerLink="test/new">
-          <img class="add-icon" src="../../../../../../assets/add-test-icon.png" alt="add test icon">
+          <img class="menu__item" src="../../../../../../assets/add-test-icon.png" alt="add test icon">
         </a>
       </li>
     </ul>
   </nav>
-  <section>
+  <section class="files">
     <!-- router-outlet for show new folder form -->
     <router-outlet></router-outlet>
     <app-folder-files-list></app-folder-files-list>

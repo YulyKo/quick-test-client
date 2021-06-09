@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class HttpHeadersService {
   getAuthorizationHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('qt-token');
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 }

@@ -57,7 +57,6 @@ export class RegistrationComponent implements OnInit {
     setTimeout(() => {
       this.checkExistingEmail(emailValue);
     }, 1000);
-
   }
 
   // true - існує ; false - НЕ існує
@@ -88,8 +87,8 @@ export class RegistrationComponent implements OnInit {
     setTimeout(() => {
       this.authService.login(user).subscribe((res) => {
         user.setAccessToken(res.accessToken);
+        localStorage.setItem('qt-token', res.accessToken);
         this.authService.setLoginStatus(true);
-        console.log(user);
         this.router.navigate(['/home/', ROOT_FOLDER_NAME]);
       });
     }, 1000);
