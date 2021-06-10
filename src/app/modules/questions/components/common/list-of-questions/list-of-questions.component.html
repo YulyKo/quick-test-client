@@ -1,4 +1,8 @@
-<li *ngFor="let question of questions">
-  <input type="checkbox" name="question" [id]="question.id" (click)="selectQuestion(question.id)">
+<li class="question__card" *ngFor="let question of questions">
+  <input
+    class="question__card_input"
+    type="checkbox" name="question"
+    [id]="question.id"
+    (click)="selectQuestion(question.id)">
   <app-question-card [question]="question"></app-question-card>
 </li>

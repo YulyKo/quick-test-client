@@ -1,6 +1,10 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <label for="testName">Назва тесту *</label>
-  <input type="text" id="testName" formControlName="name">
+<form class="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <label class="label" for="testName">Назва тесту *</label>
+  <input formControlName="name"
+         class="input_text"
+         [ngClass]="{'input_text--error': this.form.controls.name.errors
+                     && this.submited === true}"
+         type="text" id="testName">
   <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.name.errors.required"
@@ -15,8 +19,13 @@
       *ngIf="this.form.controls.name.errors.pattern"
       [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_TEST"></app-error-message>
   </div>
-  <label for="testText">Опис тесту *</label>
-  <textarea id="testText" cols="30" rows="10" formControlName="text"></textarea>
+  <label class="label" for="testText">Опис тесту *</label>
+  <textarea formControlName="text"
+            id="testText"
+            class="input_text input_textarea"
+            [ngClass]="{'input_text--error': this.form.controls.text.errors
+                        && this.submited === true}"
+            cols="30" rows="10" ></textarea>
   <div *ngIf="this.form.controls.text.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.text.errors.required"
@@ -31,11 +40,11 @@
       *ngIf="this.form.controls.text.errors.pattern"
       [message]="ERRORS.ERROR_MESSAGE_FOR_INVALID_TEST"></app-error-message>
   </div>
-  <ul>
-    <app-list-of-questions></app-list-of-questions>
+  <ul class="questions">
+    <app-list-of-questions class="questions"></app-list-of-questions>
   </ul>
   <app-error-message
     *ngIf="this.seletedQTIds.length === 0 && this.submited === true"
     [message]="ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD"></app-error-message>
-  <button type="submit">Зберегти</button>
+  <button class="btn--submit" type="submit">Зберегти</button>
 </form>
