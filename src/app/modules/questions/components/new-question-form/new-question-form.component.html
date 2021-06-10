@@ -1,8 +1,11 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <label for="name">Назва запитання</label>
-  <div>
-    <input id="name" type="text" formControlName="name">
-  </div>
+<form class="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <label class="label" for="name">Назва запитання</label>
+  <input formControlName="name"
+         class="input_text"
+         [ngClass]="{'input_text--error': this.form.controls.name.errors
+                        && this.submited === true}"
+         id="name"
+         type="text">
   <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.name.errors.maxlength"
@@ -14,8 +17,16 @@
       *ngIf="this.form.controls.name.errors.pattern"
       message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
   </div>
-  <label for="question">Текст запитання *</label>
-  <textarea name="question" id="question" cols="30" rows="10" formControlName="text"></textarea>
+  <label class="label" for="question">Текст запитання *</label>
+  <textarea formControlName="text"
+            [ngClass]="{'input_text--error': this.form.controls.text.errors
+                        && this.submited === true}"
+            name="question"
+            class="input_text input_textarea"
+            id="question"
+            cols="30"
+            rows="10">
+  </textarea>
   <div *ngIf="this.form.controls.text.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.text.errors.required"
@@ -30,24 +41,38 @@
       *ngIf="this.form.controls.text.errors.pattern"
       message="{{ ERRORS.ERROR_MASSAGE_FOR_INVALID_QUESTION }}"></app-error-message>
   </div>
-  <label for="type">Оберіть шаблон запитання *</label>
-  <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
-    <option
-      *ngFor="let template of templates"
-      value="{{ template.name }}">{{ template.name }}</option>
-  </select>
-  <div *ngIf="this.form.controls.template.status === 'INVALID' && this.submited === true">
-    <app-error-message
-      *ngIf="this.form.controls.template.errors.required"
-      message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+  <div class="flex">
+    <div>
+      <label class="label" for="type">Оберіть шаблон відповіді *</label>
+      <select name="type" id="type" formControlName="template" (change)="changeTemplate()">
+        <option
+          *ngFor="let template of templates"
+          value="{{ template.name }}">{{ template.name }}</option>
+      </select>
+      <div *ngIf="this.form.controls.template.status === 'INVALID' && this.submited === true">
+        <app-error-message
+          *ngIf="this.form.controls.template.errors.required"
+          message="{{ ERRORS.ERROR_MESSAGE_FOR_REQUIRED_FIELD }}"></app-error-message>
+      </div>
+    </div>
+    <div>
+      <label class="label" for="time">Час на виконання</label>
+      <div class="select">
+        <select formControlName="time"
+          name="time"
+          id="time"
+          class="input__select-time">
+          <option
+            value="15"
+            selected disabled hidden>15сек</option>
+          <option
+            class="input__select-time_option"
+            *ngFor="let time of timesEnum | EnumFilter"
+            value="{{ time }}">{{ time }}</option>
+        </select>
+      </div>
+    </div>
   </div>
-  <label for="time">Час на виконання</label>
-  <select name="time" id="time" formControlName="time">
-    <option value="15" selected disabled hidden>15сек</option>
-    <option
-      *ngFor="let time of timesEnum | EnumFilter"
-      value="{{ time }}">{{ time }}</option>
-  </select>
   <app-creating-answers-list-form></app-creating-answers-list-form>
-  <button type="submit">Зберегти</button>
+  <button class="btn--submit" type="submit">Зберегти</button>
 </form>

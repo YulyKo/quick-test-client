@@ -1,20 +1,25 @@
-<section [formGroup]="answersForm">
+<section class="answers" [formGroup]="answersForm">
   <div class="flex-row">
     <div class="flex">
       <div *ngFor="let answer of answersControls; let i = index">
         <input (click)="this.setTrueAnswer(answer.controls.id.value)" class="d-block" type="radio" name="idTrueAnswer" [value]="answer.controls.id.value" formControlName="idTrueAnswer" id="{{ i }}">
       </div>
     </div>
-    <div class="flex" formArrayName="answersArray">
+    <div class="flex"
+         formArrayName="answersArray">
       <div *ngFor="let answer of answersControls; let id = index">
-        <div [formGroupName]="id">
+        <div class="flex-row" [formGroupName]="id">
           <input type="text"
                  value="{{ name }}"
+                 class="input_text"
                  formControlName="name">
           <button
               type="button"
+              class="btn btn--delete"
               *ngIf="answers.length >= 3"
-              (click)="this.removeAnswer(id)">x</button>
+              (click)="this.removeAnswer(id)">
+              <img src="../../../../../assets//del-item-icon.png" alt="delete item">
+            </button>
           <section
             *ngIf="this.answer.status === 'INVALID'">
             <app-error-message
@@ -36,7 +41,9 @@
     </div>
   </div>
   <button id="plusButton"
-    class="button"
+    class="btn btn--add"
     type="button"
-    (click)="this.addAnswer('', false)">+</button>
+    (click)="this.addAnswer('', false)">
+    <img src="../../../../../assets/pluss-icon.png" alt="add answer icon">
+  </button>
 </section>

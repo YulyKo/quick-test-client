@@ -54,7 +54,6 @@ export class NewQuestionFormComponent implements OnInit {
     });
     this.question = new Question();
     this.form.patchValue({time: this.timesEnum['15сек']});
-    console.log(this.form.value);
   }
 
   ngOnInit(): void {
@@ -68,7 +67,6 @@ export class NewQuestionFormComponent implements OnInit {
   onSubmit(): void {
     this.submited = true;
     this.checkErrors();
-    console.log(this.question);
   }
 
   checkErrors(): void {

@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     // якщо користувач залогінений, йому НЕ доступн сорінки входу/реєстрації
-    return this.authService.getLoginStatus() === true ? false : true;
+    // return localStorage.getItem('qt-token') ? true : false;
+    return true;
   }
 }
