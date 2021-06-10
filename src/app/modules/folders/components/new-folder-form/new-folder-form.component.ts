@@ -21,6 +21,8 @@ export class NewFolderFormComponent implements OnInit {
   colors = FolderColor;
   ERRORS = ErrorsMessages;
 
+  colorList: HTMLElement;
+
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -47,7 +49,9 @@ export class NewFolderFormComponent implements OnInit {
     return this.form.status;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.colorList = document.getElementById('colorList');
+  }
 
   closeForm(): void {
     console.log('click');
@@ -91,5 +95,11 @@ export class NewFolderFormComponent implements OnInit {
 
   private get parentFolderIdFromSession(): string {
     return sessionStorage.getItem(SESSION_PARENT_FOLDER_ID);
+  }
+
+  selectColor() {
+    this.colorList.style.display === 'flex' ?
+      this.colorList.style.display = 'none' :
+      this.colorList.style.display = 'flex';
   }
 }

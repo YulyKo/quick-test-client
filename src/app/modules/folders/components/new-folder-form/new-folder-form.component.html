@@ -1,5 +1,5 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form">
-  <input type="text" placeholder="Назва теки" formControlName="name">
+<form class="form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <input class="input" type="text" placeholder="Назва теки" formControlName="name">
   <div *ngIf="this.form.controls.name.status === 'INVALID' && this.submited === true">
     <app-error-message
       *ngIf="this.form.controls.name.errors.required"
@@ -14,13 +14,19 @@
       *ngIf="this.form.controls.name.errors.maxlength"
       [message]="ERRORS.ERROR_MESSAGE_FOR_SO_LONG_FOLDER_NAME"></app-error-message>
   </div>
-  <ul>
-    <li *ngFor="let color of colors | EnumFilter">
-      <input
-        type="radio" name="color" id="color"
-        [value]="color" formControlName="color">
-      <label for="color">{{ color }}</label>
-    </li>
-  </ul>
-  <button type="submit">Зберегти</button>
+  <div class="flex">
+    <button class="text btn" type="button" (click)="selectColor()">
+      <img src="../../../../../assets/icon-color-smart.png" alt="">
+    </button>
+    <ul class="color-list" id="colorList">
+      <li class="color-list__item" *ngFor="let color of colors | EnumFilter">
+        <input
+          class="color-input"
+          type="radio" name="color" id="color"
+          [value]="color" formControlName="color">
+        <label class="color-label" for="color" [style.background-color]="color"></label>
+      </li>
+    </ul>
+  </div>
+  <button class="text btn--submit" type="submit">Зберегти</button>
 </form>
